@@ -137,7 +137,7 @@ export default function Hero() {
 					{/* Left column - Text content */}
 					<div className="flex flex-col space-y-6">
 						{/* Floating banner */}
-						<div className="hidden sm:flex items-center rounded-full bg-white/75 bg-gradient-to-r from-pink-200/40 via-violet-200/40 to-indigo-200/40 border border-white/50 px-4 py-2 text-sm font-medium text-gray-800 dark:text-gray-200 shadow-lg shadow-gray-800/5 ring-1 ring-gray-800/[.075] backdrop-blur-xl w-fit">
+						<div className="hidden sm:flex items-center rounded-full bg-white/75 bg-linear-to-r from-pink-200/40 via-violet-200/40 to-indigo-200/40 border border-white/50 px-4 py-2 text-sm font-medium text-gray-800 dark:text-gray-200 shadow-lg shadow-gray-800/5 ring-1 ring-gray-800/[.075] backdrop-blur-xl w-fit">
 							<span>✨ Launching Early Access</span>
 							<span className="mx-2">•</span>
 							<a href="#" className="text-primary hover:text-primary/80 transition-colors">
@@ -207,7 +207,7 @@ export default function Hero() {
 
 					{/* Right column - Feature descriptions */}
 					<div className="relative rounded-xl">
-						<div className="aspect-[4/3] w-full relative">
+						<div className="aspect-4/3 w-full relative">
 							{carouselItems.map((item, index) => (
 								<div
 									key={item.id}
@@ -250,7 +250,7 @@ export default function Hero() {
 							className={cn(
 								"relative p-4 rounded-lg border transition-all overflow-hidden group",
 								activeIndex === index
-									? "border-primary bg-primary/5 shadow-sm"
+									? "border-primary bg-primary/5 shadow-xs"
 									: "border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700",
 							)}
 						>
