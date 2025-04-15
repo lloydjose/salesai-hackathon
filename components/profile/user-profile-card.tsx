@@ -65,6 +65,17 @@ export default function UserProfileCard({ session, userProfile }: UserProfileCar
       }
 
       const updatedProfile = await response.json();
+      // Update local state with server response
+      setRoleTitle(updatedProfile.roleTitle);
+      setCurrentCompany(updatedProfile.currentCompany);
+      setYearsOfExperience(updatedProfile.yearsOfExperience);
+      setSalesMethodology(updatedProfile.salesMethodology);
+      setSellingStyle(updatedProfile.sellingStyle);
+      setTargetICP(updatedProfile.targetICP);
+      setVerticals(updatedProfile.verticals);
+      setAverageDealSize(updatedProfile.averageDealSize);
+      setToolsUsed(updatedProfile.toolsUsed ?? '');
+      
       toast.success('Profile updated successfully');
       setIsEditing(false);
     } catch (error) {

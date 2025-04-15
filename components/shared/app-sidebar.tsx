@@ -7,7 +7,6 @@ import {
   Send,
   Settings2,
   SquareTerminal,
-  Database,
   Workflow,
   CreditCard,
   UsersIcon

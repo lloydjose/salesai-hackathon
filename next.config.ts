@@ -3,13 +3,13 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   experimental: {
-    turbo: {
-      rules: {
-        resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.json'],
-      },
-    },
     serverActions: {
       allowedOrigins: ['localhost:3000'],
+    },
+  },
+  turbopack: {
+    rules: {
+      resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.json'],
     },
   },
   images: {
