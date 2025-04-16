@@ -83,6 +83,11 @@ export type Subscription = $Result.DefaultSelection<Prisma.$SubscriptionPayload>
  * 
  */
 export type UserProfile = $Result.DefaultSelection<Prisma.$UserProfilePayload>
+/**
+ * Model CallSimulation
+ * 
+ */
+export type CallSimulation = $Result.DefaultSelection<Prisma.$CallSimulationPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -348,6 +353,16 @@ export class PrismaClient<
     * ```
     */
   get userProfile(): Prisma.UserProfileDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.callSimulation`: Exposes CRUD operations for the **CallSimulation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CallSimulations
+    * const callSimulations = await prisma.callSimulation.findMany()
+    * ```
+    */
+  get callSimulation(): Prisma.CallSimulationDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -801,7 +816,8 @@ export namespace Prisma {
     OauthAccessToken: 'OauthAccessToken',
     OauthConsent: 'OauthConsent',
     Subscription: 'Subscription',
-    UserProfile: 'UserProfile'
+    UserProfile: 'UserProfile',
+    CallSimulation: 'CallSimulation'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -820,7 +836,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "account" | "verification" | "organization" | "member" | "invitation" | "twoFactor" | "passkey" | "oauthApplication" | "oauthAccessToken" | "oauthConsent" | "subscription" | "userProfile"
+      modelProps: "user" | "session" | "account" | "verification" | "organization" | "member" | "invitation" | "twoFactor" | "passkey" | "oauthApplication" | "oauthAccessToken" | "oauthConsent" | "subscription" | "userProfile" | "callSimulation"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1860,6 +1876,80 @@ export namespace Prisma {
           }
         }
       }
+      CallSimulation: {
+        payload: Prisma.$CallSimulationPayload<ExtArgs>
+        fields: Prisma.CallSimulationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CallSimulationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallSimulationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CallSimulationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallSimulationPayload>
+          }
+          findFirst: {
+            args: Prisma.CallSimulationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallSimulationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CallSimulationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallSimulationPayload>
+          }
+          findMany: {
+            args: Prisma.CallSimulationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallSimulationPayload>[]
+          }
+          create: {
+            args: Prisma.CallSimulationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallSimulationPayload>
+          }
+          createMany: {
+            args: Prisma.CallSimulationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CallSimulationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallSimulationPayload>[]
+          }
+          delete: {
+            args: Prisma.CallSimulationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallSimulationPayload>
+          }
+          update: {
+            args: Prisma.CallSimulationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallSimulationPayload>
+          }
+          deleteMany: {
+            args: Prisma.CallSimulationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CallSimulationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CallSimulationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallSimulationPayload>[]
+          }
+          upsert: {
+            args: Prisma.CallSimulationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallSimulationPayload>
+          }
+          aggregate: {
+            args: Prisma.CallSimulationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCallSimulation>
+          }
+          groupBy: {
+            args: Prisma.CallSimulationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CallSimulationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CallSimulationCountArgs<ExtArgs>
+            result: $Utils.Optional<CallSimulationCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1958,6 +2048,7 @@ export namespace Prisma {
     oauthConsent?: OauthConsentOmit
     subscription?: SubscriptionOmit
     userProfile?: UserProfileOmit
+    callSimulation?: CallSimulationOmit
   }
 
   /* Types for Logging */
@@ -2058,6 +2149,7 @@ export namespace Prisma {
     invitations: number
     twofactors: number
     passkeys: number
+    callSimulations: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2067,6 +2159,7 @@ export namespace Prisma {
     invitations?: boolean | UserCountOutputTypeCountInvitationsArgs
     twofactors?: boolean | UserCountOutputTypeCountTwofactorsArgs
     passkeys?: boolean | UserCountOutputTypeCountPasskeysArgs
+    callSimulations?: boolean | UserCountOutputTypeCountCallSimulationsArgs
   }
 
   // Custom InputTypes
@@ -2120,6 +2213,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountPasskeysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PasskeyWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCallSimulationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CallSimulationWhereInput
   }
 
 
@@ -2402,6 +2502,7 @@ export namespace Prisma {
     twofactors?: boolean | User$twofactorsArgs<ExtArgs>
     passkeys?: boolean | User$passkeysArgs<ExtArgs>
     profile?: boolean | User$profileArgs<ExtArgs>
+    callSimulations?: boolean | User$callSimulationsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2462,6 +2563,7 @@ export namespace Prisma {
     twofactors?: boolean | User$twofactorsArgs<ExtArgs>
     passkeys?: boolean | User$passkeysArgs<ExtArgs>
     profile?: boolean | User$profileArgs<ExtArgs>
+    callSimulations?: boolean | User$callSimulationsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2477,6 +2579,7 @@ export namespace Prisma {
       twofactors: Prisma.$TwoFactorPayload<ExtArgs>[]
       passkeys: Prisma.$PasskeyPayload<ExtArgs>[]
       profile: Prisma.$UserProfilePayload<ExtArgs> | null
+      callSimulations: Prisma.$CallSimulationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2893,6 +2996,7 @@ export namespace Prisma {
     twofactors<T extends User$twofactorsArgs<ExtArgs> = {}>(args?: Subset<T, User$twofactorsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TwoFactorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     passkeys<T extends User$passkeysArgs<ExtArgs> = {}>(args?: Subset<T, User$passkeysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PasskeyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     profile<T extends User$profileArgs<ExtArgs> = {}>(args?: Subset<T, User$profileArgs<ExtArgs>>): Prisma__UserProfileClient<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    callSimulations<T extends User$callSimulationsArgs<ExtArgs> = {}>(args?: Subset<T, User$callSimulationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CallSimulationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3483,6 +3587,30 @@ export namespace Prisma {
      */
     include?: UserProfileInclude<ExtArgs> | null
     where?: UserProfileWhereInput
+  }
+
+  /**
+   * User.callSimulations
+   */
+  export type User$callSimulationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallSimulation
+     */
+    select?: CallSimulationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallSimulation
+     */
+    omit?: CallSimulationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallSimulationInclude<ExtArgs> | null
+    where?: CallSimulationWhereInput
+    orderBy?: CallSimulationOrderByWithRelationInput | CallSimulationOrderByWithRelationInput[]
+    cursor?: CallSimulationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CallSimulationScalarFieldEnum | CallSimulationScalarFieldEnum[]
   }
 
   /**
@@ -17730,6 +17858,1151 @@ export namespace Prisma {
 
 
   /**
+   * Model CallSimulation
+   */
+
+  export type AggregateCallSimulation = {
+    _count: CallSimulationCountAggregateOutputType | null
+    _avg: CallSimulationAvgAggregateOutputType | null
+    _sum: CallSimulationSumAggregateOutputType | null
+    _min: CallSimulationMinAggregateOutputType | null
+    _max: CallSimulationMaxAggregateOutputType | null
+  }
+
+  export type CallSimulationAvgAggregateOutputType = {
+    duration: number | null
+  }
+
+  export type CallSimulationSumAggregateOutputType = {
+    duration: number | null
+  }
+
+  export type CallSimulationMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    callStatus: string | null
+    recordingUrl: string | null
+    duration: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CallSimulationMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    callStatus: string | null
+    recordingUrl: string | null
+    duration: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CallSimulationCountAggregateOutputType = {
+    id: number
+    userId: number
+    personaDetails: number
+    callStatus: number
+    recordingUrl: number
+    transcript: number
+    duration: number
+    feedback: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CallSimulationAvgAggregateInputType = {
+    duration?: true
+  }
+
+  export type CallSimulationSumAggregateInputType = {
+    duration?: true
+  }
+
+  export type CallSimulationMinAggregateInputType = {
+    id?: true
+    userId?: true
+    callStatus?: true
+    recordingUrl?: true
+    duration?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CallSimulationMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    callStatus?: true
+    recordingUrl?: true
+    duration?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CallSimulationCountAggregateInputType = {
+    id?: true
+    userId?: true
+    personaDetails?: true
+    callStatus?: true
+    recordingUrl?: true
+    transcript?: true
+    duration?: true
+    feedback?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CallSimulationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CallSimulation to aggregate.
+     */
+    where?: CallSimulationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CallSimulations to fetch.
+     */
+    orderBy?: CallSimulationOrderByWithRelationInput | CallSimulationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CallSimulationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CallSimulations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CallSimulations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CallSimulations
+    **/
+    _count?: true | CallSimulationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CallSimulationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CallSimulationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CallSimulationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CallSimulationMaxAggregateInputType
+  }
+
+  export type GetCallSimulationAggregateType<T extends CallSimulationAggregateArgs> = {
+        [P in keyof T & keyof AggregateCallSimulation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCallSimulation[P]>
+      : GetScalarType<T[P], AggregateCallSimulation[P]>
+  }
+
+
+
+
+  export type CallSimulationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CallSimulationWhereInput
+    orderBy?: CallSimulationOrderByWithAggregationInput | CallSimulationOrderByWithAggregationInput[]
+    by: CallSimulationScalarFieldEnum[] | CallSimulationScalarFieldEnum
+    having?: CallSimulationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CallSimulationCountAggregateInputType | true
+    _avg?: CallSimulationAvgAggregateInputType
+    _sum?: CallSimulationSumAggregateInputType
+    _min?: CallSimulationMinAggregateInputType
+    _max?: CallSimulationMaxAggregateInputType
+  }
+
+  export type CallSimulationGroupByOutputType = {
+    id: string
+    userId: string
+    personaDetails: JsonValue
+    callStatus: string
+    recordingUrl: string | null
+    transcript: JsonValue | null
+    duration: number
+    feedback: JsonValue | null
+    createdAt: Date
+    updatedAt: Date
+    _count: CallSimulationCountAggregateOutputType | null
+    _avg: CallSimulationAvgAggregateOutputType | null
+    _sum: CallSimulationSumAggregateOutputType | null
+    _min: CallSimulationMinAggregateOutputType | null
+    _max: CallSimulationMaxAggregateOutputType | null
+  }
+
+  type GetCallSimulationGroupByPayload<T extends CallSimulationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CallSimulationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CallSimulationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CallSimulationGroupByOutputType[P]>
+            : GetScalarType<T[P], CallSimulationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CallSimulationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    personaDetails?: boolean
+    callStatus?: boolean
+    recordingUrl?: boolean
+    transcript?: boolean
+    duration?: boolean
+    feedback?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["callSimulation"]>
+
+  export type CallSimulationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    personaDetails?: boolean
+    callStatus?: boolean
+    recordingUrl?: boolean
+    transcript?: boolean
+    duration?: boolean
+    feedback?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["callSimulation"]>
+
+  export type CallSimulationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    personaDetails?: boolean
+    callStatus?: boolean
+    recordingUrl?: boolean
+    transcript?: boolean
+    duration?: boolean
+    feedback?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["callSimulation"]>
+
+  export type CallSimulationSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    personaDetails?: boolean
+    callStatus?: boolean
+    recordingUrl?: boolean
+    transcript?: boolean
+    duration?: boolean
+    feedback?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CallSimulationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "personaDetails" | "callStatus" | "recordingUrl" | "transcript" | "duration" | "feedback" | "createdAt" | "updatedAt", ExtArgs["result"]["callSimulation"]>
+  export type CallSimulationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type CallSimulationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type CallSimulationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $CallSimulationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CallSimulation"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      personaDetails: Prisma.JsonValue
+      callStatus: string
+      recordingUrl: string | null
+      transcript: Prisma.JsonValue | null
+      duration: number
+      feedback: Prisma.JsonValue | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["callSimulation"]>
+    composites: {}
+  }
+
+  type CallSimulationGetPayload<S extends boolean | null | undefined | CallSimulationDefaultArgs> = $Result.GetResult<Prisma.$CallSimulationPayload, S>
+
+  type CallSimulationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CallSimulationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CallSimulationCountAggregateInputType | true
+    }
+
+  export interface CallSimulationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CallSimulation'], meta: { name: 'CallSimulation' } }
+    /**
+     * Find zero or one CallSimulation that matches the filter.
+     * @param {CallSimulationFindUniqueArgs} args - Arguments to find a CallSimulation
+     * @example
+     * // Get one CallSimulation
+     * const callSimulation = await prisma.callSimulation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CallSimulationFindUniqueArgs>(args: SelectSubset<T, CallSimulationFindUniqueArgs<ExtArgs>>): Prisma__CallSimulationClient<$Result.GetResult<Prisma.$CallSimulationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CallSimulation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CallSimulationFindUniqueOrThrowArgs} args - Arguments to find a CallSimulation
+     * @example
+     * // Get one CallSimulation
+     * const callSimulation = await prisma.callSimulation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CallSimulationFindUniqueOrThrowArgs>(args: SelectSubset<T, CallSimulationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CallSimulationClient<$Result.GetResult<Prisma.$CallSimulationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CallSimulation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CallSimulationFindFirstArgs} args - Arguments to find a CallSimulation
+     * @example
+     * // Get one CallSimulation
+     * const callSimulation = await prisma.callSimulation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CallSimulationFindFirstArgs>(args?: SelectSubset<T, CallSimulationFindFirstArgs<ExtArgs>>): Prisma__CallSimulationClient<$Result.GetResult<Prisma.$CallSimulationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CallSimulation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CallSimulationFindFirstOrThrowArgs} args - Arguments to find a CallSimulation
+     * @example
+     * // Get one CallSimulation
+     * const callSimulation = await prisma.callSimulation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CallSimulationFindFirstOrThrowArgs>(args?: SelectSubset<T, CallSimulationFindFirstOrThrowArgs<ExtArgs>>): Prisma__CallSimulationClient<$Result.GetResult<Prisma.$CallSimulationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CallSimulations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CallSimulationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CallSimulations
+     * const callSimulations = await prisma.callSimulation.findMany()
+     * 
+     * // Get first 10 CallSimulations
+     * const callSimulations = await prisma.callSimulation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const callSimulationWithIdOnly = await prisma.callSimulation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CallSimulationFindManyArgs>(args?: SelectSubset<T, CallSimulationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CallSimulationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CallSimulation.
+     * @param {CallSimulationCreateArgs} args - Arguments to create a CallSimulation.
+     * @example
+     * // Create one CallSimulation
+     * const CallSimulation = await prisma.callSimulation.create({
+     *   data: {
+     *     // ... data to create a CallSimulation
+     *   }
+     * })
+     * 
+     */
+    create<T extends CallSimulationCreateArgs>(args: SelectSubset<T, CallSimulationCreateArgs<ExtArgs>>): Prisma__CallSimulationClient<$Result.GetResult<Prisma.$CallSimulationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CallSimulations.
+     * @param {CallSimulationCreateManyArgs} args - Arguments to create many CallSimulations.
+     * @example
+     * // Create many CallSimulations
+     * const callSimulation = await prisma.callSimulation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CallSimulationCreateManyArgs>(args?: SelectSubset<T, CallSimulationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CallSimulations and returns the data saved in the database.
+     * @param {CallSimulationCreateManyAndReturnArgs} args - Arguments to create many CallSimulations.
+     * @example
+     * // Create many CallSimulations
+     * const callSimulation = await prisma.callSimulation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CallSimulations and only return the `id`
+     * const callSimulationWithIdOnly = await prisma.callSimulation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CallSimulationCreateManyAndReturnArgs>(args?: SelectSubset<T, CallSimulationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CallSimulationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CallSimulation.
+     * @param {CallSimulationDeleteArgs} args - Arguments to delete one CallSimulation.
+     * @example
+     * // Delete one CallSimulation
+     * const CallSimulation = await prisma.callSimulation.delete({
+     *   where: {
+     *     // ... filter to delete one CallSimulation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CallSimulationDeleteArgs>(args: SelectSubset<T, CallSimulationDeleteArgs<ExtArgs>>): Prisma__CallSimulationClient<$Result.GetResult<Prisma.$CallSimulationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CallSimulation.
+     * @param {CallSimulationUpdateArgs} args - Arguments to update one CallSimulation.
+     * @example
+     * // Update one CallSimulation
+     * const callSimulation = await prisma.callSimulation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CallSimulationUpdateArgs>(args: SelectSubset<T, CallSimulationUpdateArgs<ExtArgs>>): Prisma__CallSimulationClient<$Result.GetResult<Prisma.$CallSimulationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CallSimulations.
+     * @param {CallSimulationDeleteManyArgs} args - Arguments to filter CallSimulations to delete.
+     * @example
+     * // Delete a few CallSimulations
+     * const { count } = await prisma.callSimulation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CallSimulationDeleteManyArgs>(args?: SelectSubset<T, CallSimulationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CallSimulations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CallSimulationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CallSimulations
+     * const callSimulation = await prisma.callSimulation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CallSimulationUpdateManyArgs>(args: SelectSubset<T, CallSimulationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CallSimulations and returns the data updated in the database.
+     * @param {CallSimulationUpdateManyAndReturnArgs} args - Arguments to update many CallSimulations.
+     * @example
+     * // Update many CallSimulations
+     * const callSimulation = await prisma.callSimulation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CallSimulations and only return the `id`
+     * const callSimulationWithIdOnly = await prisma.callSimulation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CallSimulationUpdateManyAndReturnArgs>(args: SelectSubset<T, CallSimulationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CallSimulationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CallSimulation.
+     * @param {CallSimulationUpsertArgs} args - Arguments to update or create a CallSimulation.
+     * @example
+     * // Update or create a CallSimulation
+     * const callSimulation = await prisma.callSimulation.upsert({
+     *   create: {
+     *     // ... data to create a CallSimulation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CallSimulation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CallSimulationUpsertArgs>(args: SelectSubset<T, CallSimulationUpsertArgs<ExtArgs>>): Prisma__CallSimulationClient<$Result.GetResult<Prisma.$CallSimulationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CallSimulations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CallSimulationCountArgs} args - Arguments to filter CallSimulations to count.
+     * @example
+     * // Count the number of CallSimulations
+     * const count = await prisma.callSimulation.count({
+     *   where: {
+     *     // ... the filter for the CallSimulations we want to count
+     *   }
+     * })
+    **/
+    count<T extends CallSimulationCountArgs>(
+      args?: Subset<T, CallSimulationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CallSimulationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CallSimulation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CallSimulationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CallSimulationAggregateArgs>(args: Subset<T, CallSimulationAggregateArgs>): Prisma.PrismaPromise<GetCallSimulationAggregateType<T>>
+
+    /**
+     * Group by CallSimulation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CallSimulationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CallSimulationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CallSimulationGroupByArgs['orderBy'] }
+        : { orderBy?: CallSimulationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CallSimulationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCallSimulationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CallSimulation model
+   */
+  readonly fields: CallSimulationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CallSimulation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CallSimulationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CallSimulation model
+   */
+  interface CallSimulationFieldRefs {
+    readonly id: FieldRef<"CallSimulation", 'String'>
+    readonly userId: FieldRef<"CallSimulation", 'String'>
+    readonly personaDetails: FieldRef<"CallSimulation", 'Json'>
+    readonly callStatus: FieldRef<"CallSimulation", 'String'>
+    readonly recordingUrl: FieldRef<"CallSimulation", 'String'>
+    readonly transcript: FieldRef<"CallSimulation", 'Json'>
+    readonly duration: FieldRef<"CallSimulation", 'Int'>
+    readonly feedback: FieldRef<"CallSimulation", 'Json'>
+    readonly createdAt: FieldRef<"CallSimulation", 'DateTime'>
+    readonly updatedAt: FieldRef<"CallSimulation", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CallSimulation findUnique
+   */
+  export type CallSimulationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallSimulation
+     */
+    select?: CallSimulationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallSimulation
+     */
+    omit?: CallSimulationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallSimulationInclude<ExtArgs> | null
+    /**
+     * Filter, which CallSimulation to fetch.
+     */
+    where: CallSimulationWhereUniqueInput
+  }
+
+  /**
+   * CallSimulation findUniqueOrThrow
+   */
+  export type CallSimulationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallSimulation
+     */
+    select?: CallSimulationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallSimulation
+     */
+    omit?: CallSimulationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallSimulationInclude<ExtArgs> | null
+    /**
+     * Filter, which CallSimulation to fetch.
+     */
+    where: CallSimulationWhereUniqueInput
+  }
+
+  /**
+   * CallSimulation findFirst
+   */
+  export type CallSimulationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallSimulation
+     */
+    select?: CallSimulationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallSimulation
+     */
+    omit?: CallSimulationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallSimulationInclude<ExtArgs> | null
+    /**
+     * Filter, which CallSimulation to fetch.
+     */
+    where?: CallSimulationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CallSimulations to fetch.
+     */
+    orderBy?: CallSimulationOrderByWithRelationInput | CallSimulationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CallSimulations.
+     */
+    cursor?: CallSimulationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CallSimulations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CallSimulations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CallSimulations.
+     */
+    distinct?: CallSimulationScalarFieldEnum | CallSimulationScalarFieldEnum[]
+  }
+
+  /**
+   * CallSimulation findFirstOrThrow
+   */
+  export type CallSimulationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallSimulation
+     */
+    select?: CallSimulationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallSimulation
+     */
+    omit?: CallSimulationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallSimulationInclude<ExtArgs> | null
+    /**
+     * Filter, which CallSimulation to fetch.
+     */
+    where?: CallSimulationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CallSimulations to fetch.
+     */
+    orderBy?: CallSimulationOrderByWithRelationInput | CallSimulationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CallSimulations.
+     */
+    cursor?: CallSimulationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CallSimulations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CallSimulations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CallSimulations.
+     */
+    distinct?: CallSimulationScalarFieldEnum | CallSimulationScalarFieldEnum[]
+  }
+
+  /**
+   * CallSimulation findMany
+   */
+  export type CallSimulationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallSimulation
+     */
+    select?: CallSimulationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallSimulation
+     */
+    omit?: CallSimulationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallSimulationInclude<ExtArgs> | null
+    /**
+     * Filter, which CallSimulations to fetch.
+     */
+    where?: CallSimulationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CallSimulations to fetch.
+     */
+    orderBy?: CallSimulationOrderByWithRelationInput | CallSimulationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CallSimulations.
+     */
+    cursor?: CallSimulationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CallSimulations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CallSimulations.
+     */
+    skip?: number
+    distinct?: CallSimulationScalarFieldEnum | CallSimulationScalarFieldEnum[]
+  }
+
+  /**
+   * CallSimulation create
+   */
+  export type CallSimulationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallSimulation
+     */
+    select?: CallSimulationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallSimulation
+     */
+    omit?: CallSimulationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallSimulationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CallSimulation.
+     */
+    data: XOR<CallSimulationCreateInput, CallSimulationUncheckedCreateInput>
+  }
+
+  /**
+   * CallSimulation createMany
+   */
+  export type CallSimulationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CallSimulations.
+     */
+    data: CallSimulationCreateManyInput | CallSimulationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CallSimulation createManyAndReturn
+   */
+  export type CallSimulationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallSimulation
+     */
+    select?: CallSimulationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallSimulation
+     */
+    omit?: CallSimulationOmit<ExtArgs> | null
+    /**
+     * The data used to create many CallSimulations.
+     */
+    data: CallSimulationCreateManyInput | CallSimulationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallSimulationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CallSimulation update
+   */
+  export type CallSimulationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallSimulation
+     */
+    select?: CallSimulationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallSimulation
+     */
+    omit?: CallSimulationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallSimulationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CallSimulation.
+     */
+    data: XOR<CallSimulationUpdateInput, CallSimulationUncheckedUpdateInput>
+    /**
+     * Choose, which CallSimulation to update.
+     */
+    where: CallSimulationWhereUniqueInput
+  }
+
+  /**
+   * CallSimulation updateMany
+   */
+  export type CallSimulationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CallSimulations.
+     */
+    data: XOR<CallSimulationUpdateManyMutationInput, CallSimulationUncheckedUpdateManyInput>
+    /**
+     * Filter which CallSimulations to update
+     */
+    where?: CallSimulationWhereInput
+    /**
+     * Limit how many CallSimulations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CallSimulation updateManyAndReturn
+   */
+  export type CallSimulationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallSimulation
+     */
+    select?: CallSimulationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallSimulation
+     */
+    omit?: CallSimulationOmit<ExtArgs> | null
+    /**
+     * The data used to update CallSimulations.
+     */
+    data: XOR<CallSimulationUpdateManyMutationInput, CallSimulationUncheckedUpdateManyInput>
+    /**
+     * Filter which CallSimulations to update
+     */
+    where?: CallSimulationWhereInput
+    /**
+     * Limit how many CallSimulations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallSimulationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CallSimulation upsert
+   */
+  export type CallSimulationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallSimulation
+     */
+    select?: CallSimulationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallSimulation
+     */
+    omit?: CallSimulationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallSimulationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CallSimulation to update in case it exists.
+     */
+    where: CallSimulationWhereUniqueInput
+    /**
+     * In case the CallSimulation found by the `where` argument doesn't exist, create a new CallSimulation with this data.
+     */
+    create: XOR<CallSimulationCreateInput, CallSimulationUncheckedCreateInput>
+    /**
+     * In case the CallSimulation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CallSimulationUpdateInput, CallSimulationUncheckedUpdateInput>
+  }
+
+  /**
+   * CallSimulation delete
+   */
+  export type CallSimulationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallSimulation
+     */
+    select?: CallSimulationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallSimulation
+     */
+    omit?: CallSimulationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallSimulationInclude<ExtArgs> | null
+    /**
+     * Filter which CallSimulation to delete.
+     */
+    where: CallSimulationWhereUniqueInput
+  }
+
+  /**
+   * CallSimulation deleteMany
+   */
+  export type CallSimulationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CallSimulations to delete
+     */
+    where?: CallSimulationWhereInput
+    /**
+     * Limit how many CallSimulations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CallSimulation without action
+   */
+  export type CallSimulationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallSimulation
+     */
+    select?: CallSimulationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallSimulation
+     */
+    omit?: CallSimulationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallSimulationInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -17953,12 +19226,43 @@ export namespace Prisma {
   export type UserProfileScalarFieldEnum = (typeof UserProfileScalarFieldEnum)[keyof typeof UserProfileScalarFieldEnum]
 
 
+  export const CallSimulationScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    personaDetails: 'personaDetails',
+    callStatus: 'callStatus',
+    recordingUrl: 'recordingUrl',
+    transcript: 'transcript',
+    duration: 'duration',
+    feedback: 'feedback',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CallSimulationScalarFieldEnum = (typeof CallSimulationScalarFieldEnum)[keyof typeof CallSimulationScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
   export const QueryMode: {
@@ -17975,6 +19279,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -18043,6 +19356,20 @@ export namespace Prisma {
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
   /**
    * Deep Input Types
    */
@@ -18072,6 +19399,7 @@ export namespace Prisma {
     twofactors?: TwoFactorListRelationFilter
     passkeys?: PasskeyListRelationFilter
     profile?: XOR<UserProfileNullableScalarRelationFilter, UserProfileWhereInput> | null
+    callSimulations?: CallSimulationListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -18095,6 +19423,7 @@ export namespace Prisma {
     twofactors?: TwoFactorOrderByRelationAggregateInput
     passkeys?: PasskeyOrderByRelationAggregateInput
     profile?: UserProfileOrderByWithRelationInput
+    callSimulations?: CallSimulationOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -18121,6 +19450,7 @@ export namespace Prisma {
     twofactors?: TwoFactorListRelationFilter
     passkeys?: PasskeyListRelationFilter
     profile?: XOR<UserProfileNullableScalarRelationFilter, UserProfileWhereInput> | null
+    callSimulations?: CallSimulationListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -19116,6 +20446,88 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"UserProfile"> | Date | string
   }
 
+  export type CallSimulationWhereInput = {
+    AND?: CallSimulationWhereInput | CallSimulationWhereInput[]
+    OR?: CallSimulationWhereInput[]
+    NOT?: CallSimulationWhereInput | CallSimulationWhereInput[]
+    id?: StringFilter<"CallSimulation"> | string
+    userId?: StringFilter<"CallSimulation"> | string
+    personaDetails?: JsonFilter<"CallSimulation">
+    callStatus?: StringFilter<"CallSimulation"> | string
+    recordingUrl?: StringNullableFilter<"CallSimulation"> | string | null
+    transcript?: JsonNullableFilter<"CallSimulation">
+    duration?: IntFilter<"CallSimulation"> | number
+    feedback?: JsonNullableFilter<"CallSimulation">
+    createdAt?: DateTimeFilter<"CallSimulation"> | Date | string
+    updatedAt?: DateTimeFilter<"CallSimulation"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type CallSimulationOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    personaDetails?: SortOrder
+    callStatus?: SortOrder
+    recordingUrl?: SortOrderInput | SortOrder
+    transcript?: SortOrderInput | SortOrder
+    duration?: SortOrder
+    feedback?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type CallSimulationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CallSimulationWhereInput | CallSimulationWhereInput[]
+    OR?: CallSimulationWhereInput[]
+    NOT?: CallSimulationWhereInput | CallSimulationWhereInput[]
+    userId?: StringFilter<"CallSimulation"> | string
+    personaDetails?: JsonFilter<"CallSimulation">
+    callStatus?: StringFilter<"CallSimulation"> | string
+    recordingUrl?: StringNullableFilter<"CallSimulation"> | string | null
+    transcript?: JsonNullableFilter<"CallSimulation">
+    duration?: IntFilter<"CallSimulation"> | number
+    feedback?: JsonNullableFilter<"CallSimulation">
+    createdAt?: DateTimeFilter<"CallSimulation"> | Date | string
+    updatedAt?: DateTimeFilter<"CallSimulation"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type CallSimulationOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    personaDetails?: SortOrder
+    callStatus?: SortOrder
+    recordingUrl?: SortOrderInput | SortOrder
+    transcript?: SortOrderInput | SortOrder
+    duration?: SortOrder
+    feedback?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CallSimulationCountOrderByAggregateInput
+    _avg?: CallSimulationAvgOrderByAggregateInput
+    _max?: CallSimulationMaxOrderByAggregateInput
+    _min?: CallSimulationMinOrderByAggregateInput
+    _sum?: CallSimulationSumOrderByAggregateInput
+  }
+
+  export type CallSimulationScalarWhereWithAggregatesInput = {
+    AND?: CallSimulationScalarWhereWithAggregatesInput | CallSimulationScalarWhereWithAggregatesInput[]
+    OR?: CallSimulationScalarWhereWithAggregatesInput[]
+    NOT?: CallSimulationScalarWhereWithAggregatesInput | CallSimulationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CallSimulation"> | string
+    userId?: StringWithAggregatesFilter<"CallSimulation"> | string
+    personaDetails?: JsonWithAggregatesFilter<"CallSimulation">
+    callStatus?: StringWithAggregatesFilter<"CallSimulation"> | string
+    recordingUrl?: StringNullableWithAggregatesFilter<"CallSimulation"> | string | null
+    transcript?: JsonNullableWithAggregatesFilter<"CallSimulation">
+    duration?: IntWithAggregatesFilter<"CallSimulation"> | number
+    feedback?: JsonNullableWithAggregatesFilter<"CallSimulation">
+    createdAt?: DateTimeWithAggregatesFilter<"CallSimulation"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"CallSimulation"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -19137,6 +20549,7 @@ export namespace Prisma {
     twofactors?: TwoFactorCreateNestedManyWithoutUserInput
     passkeys?: PasskeyCreateNestedManyWithoutUserInput
     profile?: UserProfileCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -19160,6 +20573,7 @@ export namespace Prisma {
     twofactors?: TwoFactorUncheckedCreateNestedManyWithoutUserInput
     passkeys?: PasskeyUncheckedCreateNestedManyWithoutUserInput
     profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -19183,6 +20597,7 @@ export namespace Prisma {
     twofactors?: TwoFactorUpdateManyWithoutUserNestedInput
     passkeys?: PasskeyUpdateManyWithoutUserNestedInput
     profile?: UserProfileUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -19206,6 +20621,7 @@ export namespace Prisma {
     twofactors?: TwoFactorUncheckedUpdateManyWithoutUserNestedInput
     passkeys?: PasskeyUncheckedUpdateManyWithoutUserNestedInput
     profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -20319,6 +21735,96 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CallSimulationCreateInput = {
+    id?: string
+    personaDetails: JsonNullValueInput | InputJsonValue
+    callStatus: string
+    recordingUrl?: string | null
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    duration: number
+    feedback?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutCallSimulationsInput
+  }
+
+  export type CallSimulationUncheckedCreateInput = {
+    id?: string
+    userId: string
+    personaDetails: JsonNullValueInput | InputJsonValue
+    callStatus: string
+    recordingUrl?: string | null
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    duration: number
+    feedback?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CallSimulationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    personaDetails?: JsonNullValueInput | InputJsonValue
+    callStatus?: StringFieldUpdateOperationsInput | string
+    recordingUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    duration?: IntFieldUpdateOperationsInput | number
+    feedback?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCallSimulationsNestedInput
+  }
+
+  export type CallSimulationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    personaDetails?: JsonNullValueInput | InputJsonValue
+    callStatus?: StringFieldUpdateOperationsInput | string
+    recordingUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    duration?: IntFieldUpdateOperationsInput | number
+    feedback?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CallSimulationCreateManyInput = {
+    id?: string
+    userId: string
+    personaDetails: JsonNullValueInput | InputJsonValue
+    callStatus: string
+    recordingUrl?: string | null
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    duration: number
+    feedback?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CallSimulationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    personaDetails?: JsonNullValueInput | InputJsonValue
+    callStatus?: StringFieldUpdateOperationsInput | string
+    recordingUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    duration?: IntFieldUpdateOperationsInput | number
+    feedback?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CallSimulationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    personaDetails?: JsonNullValueInput | InputJsonValue
+    callStatus?: StringFieldUpdateOperationsInput | string
+    recordingUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    duration?: IntFieldUpdateOperationsInput | number
+    feedback?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -20422,6 +21928,12 @@ export namespace Prisma {
     isNot?: UserProfileWhereInput | null
   }
 
+  export type CallSimulationListRelationFilter = {
+    every?: CallSimulationWhereInput
+    some?: CallSimulationWhereInput
+    none?: CallSimulationWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -20448,6 +21960,10 @@ export namespace Prisma {
   }
 
   export type PasskeyOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CallSimulationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -21151,6 +22667,145 @@ export namespace Prisma {
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
   }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type CallSimulationCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    personaDetails?: SortOrder
+    callStatus?: SortOrder
+    recordingUrl?: SortOrder
+    transcript?: SortOrder
+    duration?: SortOrder
+    feedback?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CallSimulationAvgOrderByAggregateInput = {
+    duration?: SortOrder
+  }
+
+  export type CallSimulationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    callStatus?: SortOrder
+    recordingUrl?: SortOrder
+    duration?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CallSimulationMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    callStatus?: SortOrder
+    recordingUrl?: SortOrder
+    duration?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CallSimulationSumOrderByAggregateInput = {
+    duration?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
 
   export type SessionCreateNestedManyWithoutUserInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
@@ -21200,6 +22855,13 @@ export namespace Prisma {
     connect?: UserProfileWhereUniqueInput
   }
 
+  export type CallSimulationCreateNestedManyWithoutUserInput = {
+    create?: XOR<CallSimulationCreateWithoutUserInput, CallSimulationUncheckedCreateWithoutUserInput> | CallSimulationCreateWithoutUserInput[] | CallSimulationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CallSimulationCreateOrConnectWithoutUserInput | CallSimulationCreateOrConnectWithoutUserInput[]
+    createMany?: CallSimulationCreateManyUserInputEnvelope
+    connect?: CallSimulationWhereUniqueInput | CallSimulationWhereUniqueInput[]
+  }
+
   export type SessionUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -21246,6 +22908,13 @@ export namespace Prisma {
     create?: XOR<UserProfileCreateWithoutUserInput, UserProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: UserProfileCreateOrConnectWithoutUserInput
     connect?: UserProfileWhereUniqueInput
+  }
+
+  export type CallSimulationUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<CallSimulationCreateWithoutUserInput, CallSimulationUncheckedCreateWithoutUserInput> | CallSimulationCreateWithoutUserInput[] | CallSimulationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CallSimulationCreateOrConnectWithoutUserInput | CallSimulationCreateOrConnectWithoutUserInput[]
+    createMany?: CallSimulationCreateManyUserInputEnvelope
+    connect?: CallSimulationWhereUniqueInput | CallSimulationWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -21366,6 +23035,20 @@ export namespace Prisma {
     update?: XOR<XOR<UserProfileUpdateToOneWithWhereWithoutUserInput, UserProfileUpdateWithoutUserInput>, UserProfileUncheckedUpdateWithoutUserInput>
   }
 
+  export type CallSimulationUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CallSimulationCreateWithoutUserInput, CallSimulationUncheckedCreateWithoutUserInput> | CallSimulationCreateWithoutUserInput[] | CallSimulationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CallSimulationCreateOrConnectWithoutUserInput | CallSimulationCreateOrConnectWithoutUserInput[]
+    upsert?: CallSimulationUpsertWithWhereUniqueWithoutUserInput | CallSimulationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CallSimulationCreateManyUserInputEnvelope
+    set?: CallSimulationWhereUniqueInput | CallSimulationWhereUniqueInput[]
+    disconnect?: CallSimulationWhereUniqueInput | CallSimulationWhereUniqueInput[]
+    delete?: CallSimulationWhereUniqueInput | CallSimulationWhereUniqueInput[]
+    connect?: CallSimulationWhereUniqueInput | CallSimulationWhereUniqueInput[]
+    update?: CallSimulationUpdateWithWhereUniqueWithoutUserInput | CallSimulationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CallSimulationUpdateManyWithWhereWithoutUserInput | CallSimulationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CallSimulationScalarWhereInput | CallSimulationScalarWhereInput[]
+  }
+
   export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -21458,6 +23141,20 @@ export namespace Prisma {
     delete?: UserProfileWhereInput | boolean
     connect?: UserProfileWhereUniqueInput
     update?: XOR<XOR<UserProfileUpdateToOneWithWhereWithoutUserInput, UserProfileUpdateWithoutUserInput>, UserProfileUncheckedUpdateWithoutUserInput>
+  }
+
+  export type CallSimulationUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CallSimulationCreateWithoutUserInput, CallSimulationUncheckedCreateWithoutUserInput> | CallSimulationCreateWithoutUserInput[] | CallSimulationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CallSimulationCreateOrConnectWithoutUserInput | CallSimulationCreateOrConnectWithoutUserInput[]
+    upsert?: CallSimulationUpsertWithWhereUniqueWithoutUserInput | CallSimulationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CallSimulationCreateManyUserInputEnvelope
+    set?: CallSimulationWhereUniqueInput | CallSimulationWhereUniqueInput[]
+    disconnect?: CallSimulationWhereUniqueInput | CallSimulationWhereUniqueInput[]
+    delete?: CallSimulationWhereUniqueInput | CallSimulationWhereUniqueInput[]
+    connect?: CallSimulationWhereUniqueInput | CallSimulationWhereUniqueInput[]
+    update?: CallSimulationUpdateWithWhereUniqueWithoutUserInput | CallSimulationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CallSimulationUpdateManyWithWhereWithoutUserInput | CallSimulationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CallSimulationScalarWhereInput | CallSimulationScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutSessionsInput = {
@@ -21694,6 +23391,20 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProfileInput, UserUpdateWithoutProfileInput>, UserUncheckedUpdateWithoutProfileInput>
   }
 
+  export type UserCreateNestedOneWithoutCallSimulationsInput = {
+    create?: XOR<UserCreateWithoutCallSimulationsInput, UserUncheckedCreateWithoutCallSimulationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCallSimulationsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutCallSimulationsNestedInput = {
+    create?: XOR<UserCreateWithoutCallSimulationsInput, UserUncheckedCreateWithoutCallSimulationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCallSimulationsInput
+    upsert?: UserUpsertWithoutCallSimulationsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCallSimulationsInput, UserUpdateWithoutCallSimulationsInput>, UserUncheckedUpdateWithoutCallSimulationsInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -21923,6 +23634,52 @@ export namespace Prisma {
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
   }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type SessionCreateWithoutUserInput = {
     id: string
@@ -22139,6 +23896,40 @@ export namespace Prisma {
   export type UserProfileCreateOrConnectWithoutUserInput = {
     where: UserProfileWhereUniqueInput
     create: XOR<UserProfileCreateWithoutUserInput, UserProfileUncheckedCreateWithoutUserInput>
+  }
+
+  export type CallSimulationCreateWithoutUserInput = {
+    id?: string
+    personaDetails: JsonNullValueInput | InputJsonValue
+    callStatus: string
+    recordingUrl?: string | null
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    duration: number
+    feedback?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CallSimulationUncheckedCreateWithoutUserInput = {
+    id?: string
+    personaDetails: JsonNullValueInput | InputJsonValue
+    callStatus: string
+    recordingUrl?: string | null
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    duration: number
+    feedback?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CallSimulationCreateOrConnectWithoutUserInput = {
+    where: CallSimulationWhereUniqueInput
+    create: XOR<CallSimulationCreateWithoutUserInput, CallSimulationUncheckedCreateWithoutUserInput>
+  }
+
+  export type CallSimulationCreateManyUserInputEnvelope = {
+    data: CallSimulationCreateManyUserInput | CallSimulationCreateManyUserInput[]
+    skipDuplicates?: boolean
   }
 
   export type SessionUpsertWithWhereUniqueWithoutUserInput = {
@@ -22363,6 +24154,38 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CallSimulationUpsertWithWhereUniqueWithoutUserInput = {
+    where: CallSimulationWhereUniqueInput
+    update: XOR<CallSimulationUpdateWithoutUserInput, CallSimulationUncheckedUpdateWithoutUserInput>
+    create: XOR<CallSimulationCreateWithoutUserInput, CallSimulationUncheckedCreateWithoutUserInput>
+  }
+
+  export type CallSimulationUpdateWithWhereUniqueWithoutUserInput = {
+    where: CallSimulationWhereUniqueInput
+    data: XOR<CallSimulationUpdateWithoutUserInput, CallSimulationUncheckedUpdateWithoutUserInput>
+  }
+
+  export type CallSimulationUpdateManyWithWhereWithoutUserInput = {
+    where: CallSimulationScalarWhereInput
+    data: XOR<CallSimulationUpdateManyMutationInput, CallSimulationUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type CallSimulationScalarWhereInput = {
+    AND?: CallSimulationScalarWhereInput | CallSimulationScalarWhereInput[]
+    OR?: CallSimulationScalarWhereInput[]
+    NOT?: CallSimulationScalarWhereInput | CallSimulationScalarWhereInput[]
+    id?: StringFilter<"CallSimulation"> | string
+    userId?: StringFilter<"CallSimulation"> | string
+    personaDetails?: JsonFilter<"CallSimulation">
+    callStatus?: StringFilter<"CallSimulation"> | string
+    recordingUrl?: StringNullableFilter<"CallSimulation"> | string | null
+    transcript?: JsonNullableFilter<"CallSimulation">
+    duration?: IntFilter<"CallSimulation"> | number
+    feedback?: JsonNullableFilter<"CallSimulation">
+    createdAt?: DateTimeFilter<"CallSimulation"> | Date | string
+    updatedAt?: DateTimeFilter<"CallSimulation"> | Date | string
+  }
+
   export type UserCreateWithoutSessionsInput = {
     id?: string
     email: string
@@ -22383,6 +24206,7 @@ export namespace Prisma {
     twofactors?: TwoFactorCreateNestedManyWithoutUserInput
     passkeys?: PasskeyCreateNestedManyWithoutUserInput
     profile?: UserProfileCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -22405,6 +24229,7 @@ export namespace Prisma {
     twofactors?: TwoFactorUncheckedCreateNestedManyWithoutUserInput
     passkeys?: PasskeyUncheckedCreateNestedManyWithoutUserInput
     profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -22443,6 +24268,7 @@ export namespace Prisma {
     twofactors?: TwoFactorUpdateManyWithoutUserNestedInput
     passkeys?: PasskeyUpdateManyWithoutUserNestedInput
     profile?: UserProfileUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -22465,6 +24291,7 @@ export namespace Prisma {
     twofactors?: TwoFactorUncheckedUpdateManyWithoutUserNestedInput
     passkeys?: PasskeyUncheckedUpdateManyWithoutUserNestedInput
     profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAccountsInput = {
@@ -22487,6 +24314,7 @@ export namespace Prisma {
     twofactors?: TwoFactorCreateNestedManyWithoutUserInput
     passkeys?: PasskeyCreateNestedManyWithoutUserInput
     profile?: UserProfileCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -22509,6 +24337,7 @@ export namespace Prisma {
     twofactors?: TwoFactorUncheckedCreateNestedManyWithoutUserInput
     passkeys?: PasskeyUncheckedCreateNestedManyWithoutUserInput
     profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -22547,6 +24376,7 @@ export namespace Prisma {
     twofactors?: TwoFactorUpdateManyWithoutUserNestedInput
     passkeys?: PasskeyUpdateManyWithoutUserNestedInput
     profile?: UserProfileUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -22569,6 +24399,7 @@ export namespace Prisma {
     twofactors?: TwoFactorUncheckedUpdateManyWithoutUserNestedInput
     passkeys?: PasskeyUncheckedUpdateManyWithoutUserNestedInput
     profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type MemberCreateWithoutOrganizationInput = {
@@ -22700,6 +24531,7 @@ export namespace Prisma {
     twofactors?: TwoFactorCreateNestedManyWithoutUserInput
     passkeys?: PasskeyCreateNestedManyWithoutUserInput
     profile?: UserProfileCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMembersInput = {
@@ -22722,6 +24554,7 @@ export namespace Prisma {
     twofactors?: TwoFactorUncheckedCreateNestedManyWithoutUserInput
     passkeys?: PasskeyUncheckedCreateNestedManyWithoutUserInput
     profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMembersInput = {
@@ -22791,6 +24624,7 @@ export namespace Prisma {
     twofactors?: TwoFactorUpdateManyWithoutUserNestedInput
     passkeys?: PasskeyUpdateManyWithoutUserNestedInput
     profile?: UserProfileUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMembersInput = {
@@ -22813,6 +24647,7 @@ export namespace Prisma {
     twofactors?: TwoFactorUncheckedUpdateManyWithoutUserNestedInput
     passkeys?: PasskeyUncheckedUpdateManyWithoutUserNestedInput
     profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type OrganizationCreateWithoutInvitationsInput = {
@@ -22860,6 +24695,7 @@ export namespace Prisma {
     twofactors?: TwoFactorCreateNestedManyWithoutUserInput
     passkeys?: PasskeyCreateNestedManyWithoutUserInput
     profile?: UserProfileCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutInvitationsInput = {
@@ -22882,6 +24718,7 @@ export namespace Prisma {
     twofactors?: TwoFactorUncheckedCreateNestedManyWithoutUserInput
     passkeys?: PasskeyUncheckedCreateNestedManyWithoutUserInput
     profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutInvitationsInput = {
@@ -22951,6 +24788,7 @@ export namespace Prisma {
     twofactors?: TwoFactorUpdateManyWithoutUserNestedInput
     passkeys?: PasskeyUpdateManyWithoutUserNestedInput
     profile?: UserProfileUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutInvitationsInput = {
@@ -22973,6 +24811,7 @@ export namespace Prisma {
     twofactors?: TwoFactorUncheckedUpdateManyWithoutUserNestedInput
     passkeys?: PasskeyUncheckedUpdateManyWithoutUserNestedInput
     profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutTwofactorsInput = {
@@ -22995,6 +24834,7 @@ export namespace Prisma {
     invitations?: InvitationCreateNestedManyWithoutUserInput
     passkeys?: PasskeyCreateNestedManyWithoutUserInput
     profile?: UserProfileCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTwofactorsInput = {
@@ -23017,6 +24857,7 @@ export namespace Prisma {
     invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
     passkeys?: PasskeyUncheckedCreateNestedManyWithoutUserInput
     profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTwofactorsInput = {
@@ -23055,6 +24896,7 @@ export namespace Prisma {
     invitations?: InvitationUpdateManyWithoutUserNestedInput
     passkeys?: PasskeyUpdateManyWithoutUserNestedInput
     profile?: UserProfileUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTwofactorsInput = {
@@ -23077,6 +24919,7 @@ export namespace Prisma {
     invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
     passkeys?: PasskeyUncheckedUpdateManyWithoutUserNestedInput
     profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPasskeysInput = {
@@ -23099,6 +24942,7 @@ export namespace Prisma {
     invitations?: InvitationCreateNestedManyWithoutUserInput
     twofactors?: TwoFactorCreateNestedManyWithoutUserInput
     profile?: UserProfileCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPasskeysInput = {
@@ -23121,6 +24965,7 @@ export namespace Prisma {
     invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
     twofactors?: TwoFactorUncheckedCreateNestedManyWithoutUserInput
     profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPasskeysInput = {
@@ -23159,6 +25004,7 @@ export namespace Prisma {
     invitations?: InvitationUpdateManyWithoutUserNestedInput
     twofactors?: TwoFactorUpdateManyWithoutUserNestedInput
     profile?: UserProfileUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPasskeysInput = {
@@ -23181,6 +25027,7 @@ export namespace Prisma {
     invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
     twofactors?: TwoFactorUncheckedUpdateManyWithoutUserNestedInput
     profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutProfileInput = {
@@ -23203,6 +25050,7 @@ export namespace Prisma {
     invitations?: InvitationCreateNestedManyWithoutUserInput
     twofactors?: TwoFactorCreateNestedManyWithoutUserInput
     passkeys?: PasskeyCreateNestedManyWithoutUserInput
+    callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProfileInput = {
@@ -23225,6 +25073,7 @@ export namespace Prisma {
     invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
     twofactors?: TwoFactorUncheckedCreateNestedManyWithoutUserInput
     passkeys?: PasskeyUncheckedCreateNestedManyWithoutUserInput
+    callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProfileInput = {
@@ -23263,6 +25112,7 @@ export namespace Prisma {
     invitations?: InvitationUpdateManyWithoutUserNestedInput
     twofactors?: TwoFactorUpdateManyWithoutUserNestedInput
     passkeys?: PasskeyUpdateManyWithoutUserNestedInput
+    callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProfileInput = {
@@ -23285,6 +25135,115 @@ export namespace Prisma {
     invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
     twofactors?: TwoFactorUncheckedUpdateManyWithoutUserNestedInput
     passkeys?: PasskeyUncheckedUpdateManyWithoutUserNestedInput
+    callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutCallSimulationsInput = {
+    id?: string
+    email: string
+    name?: string | null
+    emailVerified: boolean
+    image?: string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    twoFactorEnabled?: boolean | null
+    role?: string | null
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    stripeCustomerId?: string | null
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    members?: MemberCreateNestedManyWithoutUserInput
+    invitations?: InvitationCreateNestedManyWithoutUserInput
+    twofactors?: TwoFactorCreateNestedManyWithoutUserInput
+    passkeys?: PasskeyCreateNestedManyWithoutUserInput
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutCallSimulationsInput = {
+    id?: string
+    email: string
+    name?: string | null
+    emailVerified: boolean
+    image?: string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    twoFactorEnabled?: boolean | null
+    role?: string | null
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    stripeCustomerId?: string | null
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
+    twofactors?: TwoFactorUncheckedCreateNestedManyWithoutUserInput
+    passkeys?: PasskeyUncheckedCreateNestedManyWithoutUserInput
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutCallSimulationsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCallSimulationsInput, UserUncheckedCreateWithoutCallSimulationsInput>
+  }
+
+  export type UserUpsertWithoutCallSimulationsInput = {
+    update: XOR<UserUpdateWithoutCallSimulationsInput, UserUncheckedUpdateWithoutCallSimulationsInput>
+    create: XOR<UserCreateWithoutCallSimulationsInput, UserUncheckedCreateWithoutCallSimulationsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCallSimulationsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCallSimulationsInput, UserUncheckedUpdateWithoutCallSimulationsInput>
+  }
+
+  export type UserUpdateWithoutCallSimulationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    twoFactorEnabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    members?: MemberUpdateManyWithoutUserNestedInput
+    invitations?: InvitationUpdateManyWithoutUserNestedInput
+    twofactors?: TwoFactorUpdateManyWithoutUserNestedInput
+    passkeys?: PasskeyUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCallSimulationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    twoFactorEnabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
+    twofactors?: TwoFactorUncheckedUpdateManyWithoutUserNestedInput
+    passkeys?: PasskeyUncheckedUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type SessionCreateManyUserInput = {
@@ -23346,6 +25305,18 @@ export namespace Prisma {
     backedUp: boolean
     transports?: string | null
     createdAt?: Date | string | null
+  }
+
+  export type CallSimulationCreateManyUserInput = {
+    id?: string
+    personaDetails: JsonNullValueInput | InputJsonValue
+    callStatus: string
+    recordingUrl?: string | null
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    duration: number
+    feedback?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SessionUpdateWithoutUserInput = {
@@ -23529,6 +25500,42 @@ export namespace Prisma {
     backedUp?: BoolFieldUpdateOperationsInput | boolean
     transports?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type CallSimulationUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    personaDetails?: JsonNullValueInput | InputJsonValue
+    callStatus?: StringFieldUpdateOperationsInput | string
+    recordingUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    duration?: IntFieldUpdateOperationsInput | number
+    feedback?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CallSimulationUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    personaDetails?: JsonNullValueInput | InputJsonValue
+    callStatus?: StringFieldUpdateOperationsInput | string
+    recordingUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    duration?: IntFieldUpdateOperationsInput | number
+    feedback?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CallSimulationUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    personaDetails?: JsonNullValueInput | InputJsonValue
+    callStatus?: StringFieldUpdateOperationsInput | string
+    recordingUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    duration?: IntFieldUpdateOperationsInput | number
+    feedback?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MemberCreateManyOrganizationInput = {

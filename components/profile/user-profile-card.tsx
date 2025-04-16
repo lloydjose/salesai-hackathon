@@ -10,6 +10,7 @@ import { Session } from '@/lib/auth-types';
 import { UserProfile } from '@/lib/data/user-profile';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Loader2 } from 'lucide-react';
+import { client } from '@/lib/auth-client';
 
 interface UserProfileCardProps {
   session: Session;
@@ -21,16 +22,21 @@ const SELLING_STYLES = ['Consultative', 'Transactional', 'Solution-Led', 'Relati
 
 export default function UserProfileCard({ session, userProfile }: UserProfileCardProps) {
   const [isEditing, setIsEditing] = useState(false);
+  // Local state for displaying profile data
+  const [localProfile, setLocalProfile] = useState<UserProfile | null>(userProfile);
+  const [localName, setLocalName] = useState(session.user.name ?? '');
+  
+  // Form field states
   const [name, setName] = useState(session.user.name ?? '');
   const [roleTitle, setRoleTitle] = useState(userProfile?.roleTitle ?? '');
   const [currentCompany, setCurrentCompany] = useState(userProfile?.currentCompany ?? '');
   const [yearsOfExperience, setYearsOfExperience] = useState(userProfile?.yearsOfExperience ?? 0);
-  const [salesMethodology, setSalesMethodology] = useState<typeof SALES_METHODOLOGIES[number]>(
-    userProfile?.salesMethodology ?? ''
+  const [salesMethodology, setSalesMethodology] = useState<(typeof SALES_METHODOLOGIES)[number]>(
+    userProfile?.salesMethodology as (typeof SALES_METHODOLOGIES)[number] ?? SALES_METHODOLOGIES[0]
   );
   const [customSalesMethodology, setCustomSalesMethodology] = useState('');
-  const [sellingStyle, setSellingStyle] = useState<typeof SELLING_STYLES[number]>(
-    userProfile?.sellingStyle ?? ''
+  const [sellingStyle, setSellingStyle] = useState<(typeof SELLING_STYLES)[number]>(
+    userProfile?.sellingStyle as (typeof SELLING_STYLES)[number] ?? SELLING_STYLES[0]
   );
   const [customSellingStyle, setCustomSellingStyle] = useState('');
   const [targetICP, setTargetICP] = useState(userProfile?.targetICP ?? '');
@@ -42,6 +48,17 @@ export default function UserProfileCard({ session, userProfile }: UserProfileCar
   const handleUpdateProfile = async () => {
     setIsLoading(true);
     try {
+      // Update the user's name using the existing client method
+      await client.updateUser({
+        name: name,
+        fetchOptions: {
+          onError: (error) => {
+            throw new Error(error.error.message);
+          },
+        },
+      });
+
+      // Then update the profile
       const response = await fetch('/api/user/profile', {
         method: 'POST',
         headers: {
@@ -65,16 +82,21 @@ export default function UserProfileCard({ session, userProfile }: UserProfileCar
       }
 
       const updatedProfile = await response.json();
-      // Update local state with server response
+      
+      // Update both form states and display states
       setRoleTitle(updatedProfile.roleTitle);
       setCurrentCompany(updatedProfile.currentCompany);
       setYearsOfExperience(updatedProfile.yearsOfExperience);
-      setSalesMethodology(updatedProfile.salesMethodology);
-      setSellingStyle(updatedProfile.sellingStyle);
+      setSalesMethodology(updatedProfile.salesMethodology as (typeof SALES_METHODOLOGIES)[number]);
+      setSellingStyle(updatedProfile.sellingStyle as (typeof SELLING_STYLES)[number]);
       setTargetICP(updatedProfile.targetICP);
       setVerticals(updatedProfile.verticals);
       setAverageDealSize(updatedProfile.averageDealSize);
       setToolsUsed(updatedProfile.toolsUsed ?? '');
+      
+      // Update local profile state for instant display updates
+      setLocalProfile(updatedProfile);
+      setLocalName(name); // Update display name
       
       toast.success('Profile updated successfully');
       setIsEditing(false);
@@ -98,41 +120,41 @@ export default function UserProfileCard({ session, userProfile }: UserProfileCar
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-1">
               <p className="text-sm font-medium">Full Name</p>
-              <p className="text-sm text-muted-foreground">{session.user.name}</p>
+              <p className="text-sm text-muted-foreground">{localName}</p>
             </div>
             <div className="space-y-1">
               <p className="text-sm font-medium">Role</p>
-              <p className="text-sm text-muted-foreground">{userProfile?.roleTitle} at {userProfile?.currentCompany}</p>
+              <p className="text-sm text-muted-foreground">{localProfile?.roleTitle} at {localProfile?.currentCompany}</p>
             </div>
             <div className="space-y-1">
               <p className="text-sm font-medium">Experience</p>
-              <p className="text-sm text-muted-foreground">{userProfile?.yearsOfExperience} years</p>
+              <p className="text-sm text-muted-foreground">{localProfile?.yearsOfExperience} years</p>
             </div>
             <div className="space-y-1">
               <p className="text-sm font-medium">Sales Methodology</p>
-              <p className="text-sm text-muted-foreground">{userProfile?.salesMethodology}</p>
+              <p className="text-sm text-muted-foreground">{localProfile?.salesMethodology}</p>
             </div>
             <div className="space-y-1">
               <p className="text-sm font-medium">Selling Style</p>
-              <p className="text-sm text-muted-foreground">{userProfile?.sellingStyle}</p>
+              <p className="text-sm text-muted-foreground">{localProfile?.sellingStyle}</p>
             </div>
             <div className="space-y-1">
               <p className="text-sm font-medium">Average Deal Size</p>
-              <p className="text-sm text-muted-foreground">${userProfile?.averageDealSize.toLocaleString()}</p>
+              <p className="text-sm text-muted-foreground">${localProfile?.averageDealSize.toLocaleString()}</p>
             </div>
             <div className="space-y-1">
               <p className="text-sm font-medium">Target ICP</p>
-              <p className="text-sm text-muted-foreground">{userProfile?.targetICP}</p>
+              <p className="text-sm text-muted-foreground">{localProfile?.targetICP}</p>
             </div>
             <div className="space-y-1">
               <p className="text-sm font-medium">Verticals</p>
-              <p className="text-sm text-muted-foreground">{userProfile?.verticals}</p>
+              <p className="text-sm text-muted-foreground">{localProfile?.verticals}</p>
             </div>
           </div>
-          {userProfile?.toolsUsed && (
+          {localProfile?.toolsUsed && (
             <div className="space-y-1">
               <p className="text-sm font-medium">Tools Used</p>
-              <p className="text-sm text-muted-foreground">{userProfile.toolsUsed}</p>
+              <p className="text-sm text-muted-foreground">{localProfile.toolsUsed}</p>
             </div>
           )}
         </CardContent>
@@ -170,7 +192,7 @@ export default function UserProfileCard({ session, userProfile }: UserProfileCar
           </div>
           <div className="grid gap-2">
             <Label htmlFor="salesMethodology">Sales Methodology</Label>
-            <Select value={salesMethodology} onValueChange={(value: typeof SALES_METHODOLOGIES[number]) => setSalesMethodology(value)}>
+            <Select value={salesMethodology} onValueChange={(value) => setSalesMethodology(value as (typeof SALES_METHODOLOGIES)[number])}>
               <SelectTrigger>
                 <SelectValue placeholder="Select methodology" />
               </SelectTrigger>
@@ -192,7 +214,7 @@ export default function UserProfileCard({ session, userProfile }: UserProfileCar
           </div>
           <div className="grid gap-2">
             <Label htmlFor="sellingStyle">Selling Style</Label>
-            <Select value={sellingStyle} onValueChange={(value: typeof SELLING_STYLES[number]) => setSellingStyle(value)}>
+            <Select value={sellingStyle} onValueChange={(value) => setSellingStyle(value as (typeof SELLING_STYLES)[number])}>
               <SelectTrigger>
                 <SelectValue placeholder="Select style" />
               </SelectTrigger>

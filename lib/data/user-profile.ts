@@ -1,7 +1,6 @@
 import { z } from 'zod';
 
 export const userProfile = z.object({
-  fullName: z.string(),
   roleTitle: z.string(),
   currentCompany: z.string(),
   yearsOfExperience: z.number().int().nonnegative(),

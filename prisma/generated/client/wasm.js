@@ -285,9 +285,31 @@ exports.Prisma.UserProfileScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.CallSimulationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  personaDetails: 'personaDetails',
+  callStatus: 'callStatus',
+  recordingUrl: 'recordingUrl',
+  transcript: 'transcript',
+  duration: 'duration',
+  feedback: 'feedback',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -298,6 +320,12 @@ exports.Prisma.QueryMode = {
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 
 
@@ -315,7 +343,8 @@ exports.Prisma.ModelName = {
   OauthAccessToken: 'OauthAccessToken',
   OauthConsent: 'OauthConsent',
   Subscription: 'Subscription',
-  UserProfile: 'UserProfile'
+  UserProfile: 'UserProfile',
+  CallSimulation: 'CallSimulation'
 };
 
 /**

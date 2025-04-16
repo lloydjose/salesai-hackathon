@@ -15,8 +15,8 @@ datasource db {
 }
 
 model User {
-  id               String           @id @default(cuid())
-  email            String           @unique
+  id               String       @id @default(cuid())
+  email            String       @unique
   name             String?
   emailVerified    Boolean
   image            String?
@@ -216,36 +216,41 @@ model Subscription {
 }
 
 model UserProfile {
-  id                String   @id @default(cuid())
-  roleTitle         String
-  currentCompany    String
-  yearsOfExperience Int
-  salesMethodology  String
-  sellingStyle      String
-  targetICP         String
-  verticals         String
-  averageDealSize   Float
-  toolsUsed         String?
-  userId            String   @unique
-  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
-
+  id                  String   @id @default(cuid())
+  roleTitle           String
+  currentCompany      String
+  yearsOfExperience   Int
+  salesMethodology    String
+  sellingStyle        String
+  targetICP           String
+  verticals           String
+  averageDealSize     Float
+  toolsUsed           String?
+  userId              String   @unique
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
   @@map("userProfile")
 }
 
 model CallSimulation {
-  id             String   @id @default(cuid())
-  userId         String
-  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  personaDetails Json // Detailed information about the persona being called
-  callStatus     String // Call status
-  recordingUrl   String?
-  transcript     Json? // Detailed conversation transcript
-  duration       Int // Call duration in seconds
-  feedback       Json? // Structured feedback about the call
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  personaDetails  Json     // Detailed information about the persona being called
+  recordingUrl    String?
+  transcript      Json?    // Detailed conversation transcript
+  duration        Int      // Call duration in seconds
+  callStatus      String   // e.g., 'completed', 'interrupted', 'failed'
+  feedback        Json?    // Structured feedback about the call
+  scorecard       Json?    // Numerical scores for different aspects
+  keyMoments      Json?    // Important moments in the call
+  talkRatio      Float?   // Percentage of time the salesperson talked
+  paceWPM        Int?     // Words per minute
+  fillerWordCount Int?    // Count of filler words used
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+  completedAt    DateTime?
 
   @@map("callSimulation")
 }

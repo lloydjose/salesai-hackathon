@@ -2,7 +2,6 @@
 
 import {
   BadgeCheck,
-  Bell,
   ChevronsUpDown,
   CreditCard,
   LogOut,
@@ -115,17 +114,13 @@ export function NavUser() {
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem onClick={() => router.push("/dashboard/account")}>
+              <DropdownMenuItem onClick={() => router.push("/dashboard/account/profile")}>
                 <BadgeCheck className="mr-2 h-4 w-4" />
                 Account
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => router.push("/dashboard/account")}>
+              <DropdownMenuItem onClick={() => router.push("/dashboard/account/settings")}>
                 <CreditCard className="mr-2 h-4 w-4" />
                 Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => router.push("/dashboard/account")}>
-                <Bell className="mr-2 h-4 w-4" />
-                Notifications
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
