@@ -88,6 +88,35 @@ export type UserProfile = $Result.DefaultSelection<Prisma.$UserProfilePayload>
  * 
  */
 export type CallSimulation = $Result.DefaultSelection<Prisma.$CallSimulationPayload>
+/**
+ * Model Prospect
+ * 
+ */
+export type Prospect = $Result.DefaultSelection<Prisma.$ProspectPayload>
+/**
+ * Model CallPrepBrief
+ * 
+ */
+export type CallPrepBrief = $Result.DefaultSelection<Prisma.$CallPrepBriefPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const ProspectSource: {
+  MANUAL: 'MANUAL',
+  LINKEDIN: 'LINKEDIN',
+  CRM: 'CRM',
+  OTHER: 'OTHER'
+};
+
+export type ProspectSource = (typeof ProspectSource)[keyof typeof ProspectSource]
+
+}
+
+export type ProspectSource = $Enums.ProspectSource
+
+export const ProspectSource: typeof $Enums.ProspectSource
 
 /**
  * ##  Prisma Client ʲˢ
@@ -363,6 +392,26 @@ export class PrismaClient<
     * ```
     */
   get callSimulation(): Prisma.CallSimulationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.prospect`: Exposes CRUD operations for the **Prospect** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Prospects
+    * const prospects = await prisma.prospect.findMany()
+    * ```
+    */
+  get prospect(): Prisma.ProspectDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.callPrepBrief`: Exposes CRUD operations for the **CallPrepBrief** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CallPrepBriefs
+    * const callPrepBriefs = await prisma.callPrepBrief.findMany()
+    * ```
+    */
+  get callPrepBrief(): Prisma.CallPrepBriefDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -817,7 +866,9 @@ export namespace Prisma {
     OauthConsent: 'OauthConsent',
     Subscription: 'Subscription',
     UserProfile: 'UserProfile',
-    CallSimulation: 'CallSimulation'
+    CallSimulation: 'CallSimulation',
+    Prospect: 'Prospect',
+    CallPrepBrief: 'CallPrepBrief'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -836,7 +887,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "account" | "verification" | "organization" | "member" | "invitation" | "twoFactor" | "passkey" | "oauthApplication" | "oauthAccessToken" | "oauthConsent" | "subscription" | "userProfile" | "callSimulation"
+      modelProps: "user" | "session" | "account" | "verification" | "organization" | "member" | "invitation" | "twoFactor" | "passkey" | "oauthApplication" | "oauthAccessToken" | "oauthConsent" | "subscription" | "userProfile" | "callSimulation" | "prospect" | "callPrepBrief"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1950,6 +2001,154 @@ export namespace Prisma {
           }
         }
       }
+      Prospect: {
+        payload: Prisma.$ProspectPayload<ExtArgs>
+        fields: Prisma.ProspectFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProspectFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProspectPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProspectFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProspectPayload>
+          }
+          findFirst: {
+            args: Prisma.ProspectFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProspectPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProspectFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProspectPayload>
+          }
+          findMany: {
+            args: Prisma.ProspectFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProspectPayload>[]
+          }
+          create: {
+            args: Prisma.ProspectCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProspectPayload>
+          }
+          createMany: {
+            args: Prisma.ProspectCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProspectCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProspectPayload>[]
+          }
+          delete: {
+            args: Prisma.ProspectDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProspectPayload>
+          }
+          update: {
+            args: Prisma.ProspectUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProspectPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProspectDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProspectUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProspectUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProspectPayload>[]
+          }
+          upsert: {
+            args: Prisma.ProspectUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProspectPayload>
+          }
+          aggregate: {
+            args: Prisma.ProspectAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProspect>
+          }
+          groupBy: {
+            args: Prisma.ProspectGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProspectGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProspectCountArgs<ExtArgs>
+            result: $Utils.Optional<ProspectCountAggregateOutputType> | number
+          }
+        }
+      }
+      CallPrepBrief: {
+        payload: Prisma.$CallPrepBriefPayload<ExtArgs>
+        fields: Prisma.CallPrepBriefFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CallPrepBriefFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallPrepBriefPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CallPrepBriefFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallPrepBriefPayload>
+          }
+          findFirst: {
+            args: Prisma.CallPrepBriefFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallPrepBriefPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CallPrepBriefFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallPrepBriefPayload>
+          }
+          findMany: {
+            args: Prisma.CallPrepBriefFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallPrepBriefPayload>[]
+          }
+          create: {
+            args: Prisma.CallPrepBriefCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallPrepBriefPayload>
+          }
+          createMany: {
+            args: Prisma.CallPrepBriefCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CallPrepBriefCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallPrepBriefPayload>[]
+          }
+          delete: {
+            args: Prisma.CallPrepBriefDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallPrepBriefPayload>
+          }
+          update: {
+            args: Prisma.CallPrepBriefUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallPrepBriefPayload>
+          }
+          deleteMany: {
+            args: Prisma.CallPrepBriefDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CallPrepBriefUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CallPrepBriefUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallPrepBriefPayload>[]
+          }
+          upsert: {
+            args: Prisma.CallPrepBriefUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CallPrepBriefPayload>
+          }
+          aggregate: {
+            args: Prisma.CallPrepBriefAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCallPrepBrief>
+          }
+          groupBy: {
+            args: Prisma.CallPrepBriefGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CallPrepBriefGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CallPrepBriefCountArgs<ExtArgs>
+            result: $Utils.Optional<CallPrepBriefCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2049,6 +2248,8 @@ export namespace Prisma {
     subscription?: SubscriptionOmit
     userProfile?: UserProfileOmit
     callSimulation?: CallSimulationOmit
+    prospect?: ProspectOmit
+    callPrepBrief?: CallPrepBriefOmit
   }
 
   /* Types for Logging */
@@ -2150,6 +2351,8 @@ export namespace Prisma {
     twofactors: number
     passkeys: number
     callSimulations: number
+    prospects: number
+    callPrepBriefs: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2160,6 +2363,8 @@ export namespace Prisma {
     twofactors?: boolean | UserCountOutputTypeCountTwofactorsArgs
     passkeys?: boolean | UserCountOutputTypeCountPasskeysArgs
     callSimulations?: boolean | UserCountOutputTypeCountCallSimulationsArgs
+    prospects?: boolean | UserCountOutputTypeCountProspectsArgs
+    callPrepBriefs?: boolean | UserCountOutputTypeCountCallPrepBriefsArgs
   }
 
   // Custom InputTypes
@@ -2222,6 +2427,20 @@ export namespace Prisma {
     where?: CallSimulationWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountProspectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProspectWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCallPrepBriefsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CallPrepBriefWhereInput
+  }
+
 
   /**
    * Count Type OrganizationCountOutputType
@@ -2260,6 +2479,37 @@ export namespace Prisma {
    */
   export type OrganizationCountOutputTypeCountInvitationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: InvitationWhereInput
+  }
+
+
+  /**
+   * Count Type ProspectCountOutputType
+   */
+
+  export type ProspectCountOutputType = {
+    callPrepBriefs: number
+  }
+
+  export type ProspectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    callPrepBriefs?: boolean | ProspectCountOutputTypeCountCallPrepBriefsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ProspectCountOutputType without action
+   */
+  export type ProspectCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProspectCountOutputType
+     */
+    select?: ProspectCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ProspectCountOutputType without action
+   */
+  export type ProspectCountOutputTypeCountCallPrepBriefsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CallPrepBriefWhereInput
   }
 
 
@@ -2503,6 +2753,8 @@ export namespace Prisma {
     passkeys?: boolean | User$passkeysArgs<ExtArgs>
     profile?: boolean | User$profileArgs<ExtArgs>
     callSimulations?: boolean | User$callSimulationsArgs<ExtArgs>
+    prospects?: boolean | User$prospectsArgs<ExtArgs>
+    callPrepBriefs?: boolean | User$callPrepBriefsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2564,6 +2816,8 @@ export namespace Prisma {
     passkeys?: boolean | User$passkeysArgs<ExtArgs>
     profile?: boolean | User$profileArgs<ExtArgs>
     callSimulations?: boolean | User$callSimulationsArgs<ExtArgs>
+    prospects?: boolean | User$prospectsArgs<ExtArgs>
+    callPrepBriefs?: boolean | User$callPrepBriefsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2580,6 +2834,8 @@ export namespace Prisma {
       passkeys: Prisma.$PasskeyPayload<ExtArgs>[]
       profile: Prisma.$UserProfilePayload<ExtArgs> | null
       callSimulations: Prisma.$CallSimulationPayload<ExtArgs>[]
+      prospects: Prisma.$ProspectPayload<ExtArgs>[]
+      callPrepBriefs: Prisma.$CallPrepBriefPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2997,6 +3253,8 @@ export namespace Prisma {
     passkeys<T extends User$passkeysArgs<ExtArgs> = {}>(args?: Subset<T, User$passkeysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PasskeyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     profile<T extends User$profileArgs<ExtArgs> = {}>(args?: Subset<T, User$profileArgs<ExtArgs>>): Prisma__UserProfileClient<$Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     callSimulations<T extends User$callSimulationsArgs<ExtArgs> = {}>(args?: Subset<T, User$callSimulationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CallSimulationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    prospects<T extends User$prospectsArgs<ExtArgs> = {}>(args?: Subset<T, User$prospectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProspectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    callPrepBriefs<T extends User$callPrepBriefsArgs<ExtArgs> = {}>(args?: Subset<T, User$callPrepBriefsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CallPrepBriefPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3611,6 +3869,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CallSimulationScalarFieldEnum | CallSimulationScalarFieldEnum[]
+  }
+
+  /**
+   * User.prospects
+   */
+  export type User$prospectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Prospect
+     */
+    select?: ProspectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Prospect
+     */
+    omit?: ProspectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProspectInclude<ExtArgs> | null
+    where?: ProspectWhereInput
+    orderBy?: ProspectOrderByWithRelationInput | ProspectOrderByWithRelationInput[]
+    cursor?: ProspectWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProspectScalarFieldEnum | ProspectScalarFieldEnum[]
+  }
+
+  /**
+   * User.callPrepBriefs
+   */
+  export type User$callPrepBriefsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallPrepBrief
+     */
+    select?: CallPrepBriefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallPrepBrief
+     */
+    omit?: CallPrepBriefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallPrepBriefInclude<ExtArgs> | null
+    where?: CallPrepBriefWhereInput
+    orderBy?: CallPrepBriefOrderByWithRelationInput | CallPrepBriefOrderByWithRelationInput[]
+    cursor?: CallPrepBriefWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CallPrepBriefScalarFieldEnum | CallPrepBriefScalarFieldEnum[]
   }
 
   /**
@@ -19003,6 +19309,2231 @@ export namespace Prisma {
 
 
   /**
+   * Model Prospect
+   */
+
+  export type AggregateProspect = {
+    _count: ProspectCountAggregateOutputType | null
+    _min: ProspectMinAggregateOutputType | null
+    _max: ProspectMaxAggregateOutputType | null
+  }
+
+  export type ProspectMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    name: string | null
+    linkedinProfileUrl: string | null
+    source: $Enums.ProspectSource | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ProspectMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    name: string | null
+    linkedinProfileUrl: string | null
+    source: $Enums.ProspectSource | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ProspectCountAggregateOutputType = {
+    id: number
+    userId: number
+    name: number
+    linkedinProfileUrl: number
+    customData: number
+    source: number
+    linkedinData: number
+    aiAnalysis: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ProspectMinAggregateInputType = {
+    id?: true
+    userId?: true
+    name?: true
+    linkedinProfileUrl?: true
+    source?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ProspectMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    name?: true
+    linkedinProfileUrl?: true
+    source?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ProspectCountAggregateInputType = {
+    id?: true
+    userId?: true
+    name?: true
+    linkedinProfileUrl?: true
+    customData?: true
+    source?: true
+    linkedinData?: true
+    aiAnalysis?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ProspectAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Prospect to aggregate.
+     */
+    where?: ProspectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Prospects to fetch.
+     */
+    orderBy?: ProspectOrderByWithRelationInput | ProspectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProspectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Prospects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Prospects.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Prospects
+    **/
+    _count?: true | ProspectCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProspectMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProspectMaxAggregateInputType
+  }
+
+  export type GetProspectAggregateType<T extends ProspectAggregateArgs> = {
+        [P in keyof T & keyof AggregateProspect]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProspect[P]>
+      : GetScalarType<T[P], AggregateProspect[P]>
+  }
+
+
+
+
+  export type ProspectGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProspectWhereInput
+    orderBy?: ProspectOrderByWithAggregationInput | ProspectOrderByWithAggregationInput[]
+    by: ProspectScalarFieldEnum[] | ProspectScalarFieldEnum
+    having?: ProspectScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProspectCountAggregateInputType | true
+    _min?: ProspectMinAggregateInputType
+    _max?: ProspectMaxAggregateInputType
+  }
+
+  export type ProspectGroupByOutputType = {
+    id: string
+    userId: string
+    name: string
+    linkedinProfileUrl: string | null
+    customData: JsonValue | null
+    source: $Enums.ProspectSource
+    linkedinData: JsonValue | null
+    aiAnalysis: JsonValue | null
+    createdAt: Date
+    updatedAt: Date
+    _count: ProspectCountAggregateOutputType | null
+    _min: ProspectMinAggregateOutputType | null
+    _max: ProspectMaxAggregateOutputType | null
+  }
+
+  type GetProspectGroupByPayload<T extends ProspectGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProspectGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProspectGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProspectGroupByOutputType[P]>
+            : GetScalarType<T[P], ProspectGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProspectSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    linkedinProfileUrl?: boolean
+    customData?: boolean
+    source?: boolean
+    linkedinData?: boolean
+    aiAnalysis?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    callPrepBriefs?: boolean | Prospect$callPrepBriefsArgs<ExtArgs>
+    _count?: boolean | ProspectCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["prospect"]>
+
+  export type ProspectSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    linkedinProfileUrl?: boolean
+    customData?: boolean
+    source?: boolean
+    linkedinData?: boolean
+    aiAnalysis?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["prospect"]>
+
+  export type ProspectSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    linkedinProfileUrl?: boolean
+    customData?: boolean
+    source?: boolean
+    linkedinData?: boolean
+    aiAnalysis?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["prospect"]>
+
+  export type ProspectSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    linkedinProfileUrl?: boolean
+    customData?: boolean
+    source?: boolean
+    linkedinData?: boolean
+    aiAnalysis?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ProspectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "linkedinProfileUrl" | "customData" | "source" | "linkedinData" | "aiAnalysis" | "createdAt" | "updatedAt", ExtArgs["result"]["prospect"]>
+  export type ProspectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    callPrepBriefs?: boolean | Prospect$callPrepBriefsArgs<ExtArgs>
+    _count?: boolean | ProspectCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ProspectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ProspectIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ProspectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Prospect"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      callPrepBriefs: Prisma.$CallPrepBriefPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      name: string
+      linkedinProfileUrl: string | null
+      customData: Prisma.JsonValue | null
+      source: $Enums.ProspectSource
+      linkedinData: Prisma.JsonValue | null
+      aiAnalysis: Prisma.JsonValue | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["prospect"]>
+    composites: {}
+  }
+
+  type ProspectGetPayload<S extends boolean | null | undefined | ProspectDefaultArgs> = $Result.GetResult<Prisma.$ProspectPayload, S>
+
+  type ProspectCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProspectFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProspectCountAggregateInputType | true
+    }
+
+  export interface ProspectDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Prospect'], meta: { name: 'Prospect' } }
+    /**
+     * Find zero or one Prospect that matches the filter.
+     * @param {ProspectFindUniqueArgs} args - Arguments to find a Prospect
+     * @example
+     * // Get one Prospect
+     * const prospect = await prisma.prospect.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProspectFindUniqueArgs>(args: SelectSubset<T, ProspectFindUniqueArgs<ExtArgs>>): Prisma__ProspectClient<$Result.GetResult<Prisma.$ProspectPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Prospect that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProspectFindUniqueOrThrowArgs} args - Arguments to find a Prospect
+     * @example
+     * // Get one Prospect
+     * const prospect = await prisma.prospect.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProspectFindUniqueOrThrowArgs>(args: SelectSubset<T, ProspectFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProspectClient<$Result.GetResult<Prisma.$ProspectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Prospect that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProspectFindFirstArgs} args - Arguments to find a Prospect
+     * @example
+     * // Get one Prospect
+     * const prospect = await prisma.prospect.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProspectFindFirstArgs>(args?: SelectSubset<T, ProspectFindFirstArgs<ExtArgs>>): Prisma__ProspectClient<$Result.GetResult<Prisma.$ProspectPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Prospect that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProspectFindFirstOrThrowArgs} args - Arguments to find a Prospect
+     * @example
+     * // Get one Prospect
+     * const prospect = await prisma.prospect.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProspectFindFirstOrThrowArgs>(args?: SelectSubset<T, ProspectFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProspectClient<$Result.GetResult<Prisma.$ProspectPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Prospects that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProspectFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Prospects
+     * const prospects = await prisma.prospect.findMany()
+     * 
+     * // Get first 10 Prospects
+     * const prospects = await prisma.prospect.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const prospectWithIdOnly = await prisma.prospect.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProspectFindManyArgs>(args?: SelectSubset<T, ProspectFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProspectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Prospect.
+     * @param {ProspectCreateArgs} args - Arguments to create a Prospect.
+     * @example
+     * // Create one Prospect
+     * const Prospect = await prisma.prospect.create({
+     *   data: {
+     *     // ... data to create a Prospect
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProspectCreateArgs>(args: SelectSubset<T, ProspectCreateArgs<ExtArgs>>): Prisma__ProspectClient<$Result.GetResult<Prisma.$ProspectPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Prospects.
+     * @param {ProspectCreateManyArgs} args - Arguments to create many Prospects.
+     * @example
+     * // Create many Prospects
+     * const prospect = await prisma.prospect.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProspectCreateManyArgs>(args?: SelectSubset<T, ProspectCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Prospects and returns the data saved in the database.
+     * @param {ProspectCreateManyAndReturnArgs} args - Arguments to create many Prospects.
+     * @example
+     * // Create many Prospects
+     * const prospect = await prisma.prospect.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Prospects and only return the `id`
+     * const prospectWithIdOnly = await prisma.prospect.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProspectCreateManyAndReturnArgs>(args?: SelectSubset<T, ProspectCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProspectPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Prospect.
+     * @param {ProspectDeleteArgs} args - Arguments to delete one Prospect.
+     * @example
+     * // Delete one Prospect
+     * const Prospect = await prisma.prospect.delete({
+     *   where: {
+     *     // ... filter to delete one Prospect
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProspectDeleteArgs>(args: SelectSubset<T, ProspectDeleteArgs<ExtArgs>>): Prisma__ProspectClient<$Result.GetResult<Prisma.$ProspectPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Prospect.
+     * @param {ProspectUpdateArgs} args - Arguments to update one Prospect.
+     * @example
+     * // Update one Prospect
+     * const prospect = await prisma.prospect.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProspectUpdateArgs>(args: SelectSubset<T, ProspectUpdateArgs<ExtArgs>>): Prisma__ProspectClient<$Result.GetResult<Prisma.$ProspectPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Prospects.
+     * @param {ProspectDeleteManyArgs} args - Arguments to filter Prospects to delete.
+     * @example
+     * // Delete a few Prospects
+     * const { count } = await prisma.prospect.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProspectDeleteManyArgs>(args?: SelectSubset<T, ProspectDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Prospects.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProspectUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Prospects
+     * const prospect = await prisma.prospect.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProspectUpdateManyArgs>(args: SelectSubset<T, ProspectUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Prospects and returns the data updated in the database.
+     * @param {ProspectUpdateManyAndReturnArgs} args - Arguments to update many Prospects.
+     * @example
+     * // Update many Prospects
+     * const prospect = await prisma.prospect.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Prospects and only return the `id`
+     * const prospectWithIdOnly = await prisma.prospect.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProspectUpdateManyAndReturnArgs>(args: SelectSubset<T, ProspectUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProspectPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Prospect.
+     * @param {ProspectUpsertArgs} args - Arguments to update or create a Prospect.
+     * @example
+     * // Update or create a Prospect
+     * const prospect = await prisma.prospect.upsert({
+     *   create: {
+     *     // ... data to create a Prospect
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Prospect we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProspectUpsertArgs>(args: SelectSubset<T, ProspectUpsertArgs<ExtArgs>>): Prisma__ProspectClient<$Result.GetResult<Prisma.$ProspectPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Prospects.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProspectCountArgs} args - Arguments to filter Prospects to count.
+     * @example
+     * // Count the number of Prospects
+     * const count = await prisma.prospect.count({
+     *   where: {
+     *     // ... the filter for the Prospects we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProspectCountArgs>(
+      args?: Subset<T, ProspectCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProspectCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Prospect.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProspectAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProspectAggregateArgs>(args: Subset<T, ProspectAggregateArgs>): Prisma.PrismaPromise<GetProspectAggregateType<T>>
+
+    /**
+     * Group by Prospect.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProspectGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProspectGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProspectGroupByArgs['orderBy'] }
+        : { orderBy?: ProspectGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProspectGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProspectGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Prospect model
+   */
+  readonly fields: ProspectFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Prospect.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProspectClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    callPrepBriefs<T extends Prospect$callPrepBriefsArgs<ExtArgs> = {}>(args?: Subset<T, Prospect$callPrepBriefsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CallPrepBriefPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Prospect model
+   */
+  interface ProspectFieldRefs {
+    readonly id: FieldRef<"Prospect", 'String'>
+    readonly userId: FieldRef<"Prospect", 'String'>
+    readonly name: FieldRef<"Prospect", 'String'>
+    readonly linkedinProfileUrl: FieldRef<"Prospect", 'String'>
+    readonly customData: FieldRef<"Prospect", 'Json'>
+    readonly source: FieldRef<"Prospect", 'ProspectSource'>
+    readonly linkedinData: FieldRef<"Prospect", 'Json'>
+    readonly aiAnalysis: FieldRef<"Prospect", 'Json'>
+    readonly createdAt: FieldRef<"Prospect", 'DateTime'>
+    readonly updatedAt: FieldRef<"Prospect", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Prospect findUnique
+   */
+  export type ProspectFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Prospect
+     */
+    select?: ProspectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Prospect
+     */
+    omit?: ProspectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProspectInclude<ExtArgs> | null
+    /**
+     * Filter, which Prospect to fetch.
+     */
+    where: ProspectWhereUniqueInput
+  }
+
+  /**
+   * Prospect findUniqueOrThrow
+   */
+  export type ProspectFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Prospect
+     */
+    select?: ProspectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Prospect
+     */
+    omit?: ProspectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProspectInclude<ExtArgs> | null
+    /**
+     * Filter, which Prospect to fetch.
+     */
+    where: ProspectWhereUniqueInput
+  }
+
+  /**
+   * Prospect findFirst
+   */
+  export type ProspectFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Prospect
+     */
+    select?: ProspectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Prospect
+     */
+    omit?: ProspectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProspectInclude<ExtArgs> | null
+    /**
+     * Filter, which Prospect to fetch.
+     */
+    where?: ProspectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Prospects to fetch.
+     */
+    orderBy?: ProspectOrderByWithRelationInput | ProspectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Prospects.
+     */
+    cursor?: ProspectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Prospects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Prospects.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Prospects.
+     */
+    distinct?: ProspectScalarFieldEnum | ProspectScalarFieldEnum[]
+  }
+
+  /**
+   * Prospect findFirstOrThrow
+   */
+  export type ProspectFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Prospect
+     */
+    select?: ProspectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Prospect
+     */
+    omit?: ProspectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProspectInclude<ExtArgs> | null
+    /**
+     * Filter, which Prospect to fetch.
+     */
+    where?: ProspectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Prospects to fetch.
+     */
+    orderBy?: ProspectOrderByWithRelationInput | ProspectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Prospects.
+     */
+    cursor?: ProspectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Prospects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Prospects.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Prospects.
+     */
+    distinct?: ProspectScalarFieldEnum | ProspectScalarFieldEnum[]
+  }
+
+  /**
+   * Prospect findMany
+   */
+  export type ProspectFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Prospect
+     */
+    select?: ProspectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Prospect
+     */
+    omit?: ProspectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProspectInclude<ExtArgs> | null
+    /**
+     * Filter, which Prospects to fetch.
+     */
+    where?: ProspectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Prospects to fetch.
+     */
+    orderBy?: ProspectOrderByWithRelationInput | ProspectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Prospects.
+     */
+    cursor?: ProspectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Prospects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Prospects.
+     */
+    skip?: number
+    distinct?: ProspectScalarFieldEnum | ProspectScalarFieldEnum[]
+  }
+
+  /**
+   * Prospect create
+   */
+  export type ProspectCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Prospect
+     */
+    select?: ProspectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Prospect
+     */
+    omit?: ProspectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProspectInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Prospect.
+     */
+    data: XOR<ProspectCreateInput, ProspectUncheckedCreateInput>
+  }
+
+  /**
+   * Prospect createMany
+   */
+  export type ProspectCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Prospects.
+     */
+    data: ProspectCreateManyInput | ProspectCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Prospect createManyAndReturn
+   */
+  export type ProspectCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Prospect
+     */
+    select?: ProspectSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Prospect
+     */
+    omit?: ProspectOmit<ExtArgs> | null
+    /**
+     * The data used to create many Prospects.
+     */
+    data: ProspectCreateManyInput | ProspectCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProspectIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Prospect update
+   */
+  export type ProspectUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Prospect
+     */
+    select?: ProspectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Prospect
+     */
+    omit?: ProspectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProspectInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Prospect.
+     */
+    data: XOR<ProspectUpdateInput, ProspectUncheckedUpdateInput>
+    /**
+     * Choose, which Prospect to update.
+     */
+    where: ProspectWhereUniqueInput
+  }
+
+  /**
+   * Prospect updateMany
+   */
+  export type ProspectUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Prospects.
+     */
+    data: XOR<ProspectUpdateManyMutationInput, ProspectUncheckedUpdateManyInput>
+    /**
+     * Filter which Prospects to update
+     */
+    where?: ProspectWhereInput
+    /**
+     * Limit how many Prospects to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Prospect updateManyAndReturn
+   */
+  export type ProspectUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Prospect
+     */
+    select?: ProspectSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Prospect
+     */
+    omit?: ProspectOmit<ExtArgs> | null
+    /**
+     * The data used to update Prospects.
+     */
+    data: XOR<ProspectUpdateManyMutationInput, ProspectUncheckedUpdateManyInput>
+    /**
+     * Filter which Prospects to update
+     */
+    where?: ProspectWhereInput
+    /**
+     * Limit how many Prospects to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProspectIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Prospect upsert
+   */
+  export type ProspectUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Prospect
+     */
+    select?: ProspectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Prospect
+     */
+    omit?: ProspectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProspectInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Prospect to update in case it exists.
+     */
+    where: ProspectWhereUniqueInput
+    /**
+     * In case the Prospect found by the `where` argument doesn't exist, create a new Prospect with this data.
+     */
+    create: XOR<ProspectCreateInput, ProspectUncheckedCreateInput>
+    /**
+     * In case the Prospect was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProspectUpdateInput, ProspectUncheckedUpdateInput>
+  }
+
+  /**
+   * Prospect delete
+   */
+  export type ProspectDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Prospect
+     */
+    select?: ProspectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Prospect
+     */
+    omit?: ProspectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProspectInclude<ExtArgs> | null
+    /**
+     * Filter which Prospect to delete.
+     */
+    where: ProspectWhereUniqueInput
+  }
+
+  /**
+   * Prospect deleteMany
+   */
+  export type ProspectDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Prospects to delete
+     */
+    where?: ProspectWhereInput
+    /**
+     * Limit how many Prospects to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Prospect.callPrepBriefs
+   */
+  export type Prospect$callPrepBriefsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallPrepBrief
+     */
+    select?: CallPrepBriefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallPrepBrief
+     */
+    omit?: CallPrepBriefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallPrepBriefInclude<ExtArgs> | null
+    where?: CallPrepBriefWhereInput
+    orderBy?: CallPrepBriefOrderByWithRelationInput | CallPrepBriefOrderByWithRelationInput[]
+    cursor?: CallPrepBriefWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CallPrepBriefScalarFieldEnum | CallPrepBriefScalarFieldEnum[]
+  }
+
+  /**
+   * Prospect without action
+   */
+  export type ProspectDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Prospect
+     */
+    select?: ProspectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Prospect
+     */
+    omit?: ProspectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProspectInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CallPrepBrief
+   */
+
+  export type AggregateCallPrepBrief = {
+    _count: CallPrepBriefCountAggregateOutputType | null
+    _min: CallPrepBriefMinAggregateOutputType | null
+    _max: CallPrepBriefMaxAggregateOutputType | null
+  }
+
+  export type CallPrepBriefMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    prospectId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CallPrepBriefMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    prospectId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CallPrepBriefCountAggregateOutputType = {
+    id: number
+    userId: number
+    prospectId: number
+    formInput: number
+    aiCallPrep: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CallPrepBriefMinAggregateInputType = {
+    id?: true
+    userId?: true
+    prospectId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CallPrepBriefMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    prospectId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CallPrepBriefCountAggregateInputType = {
+    id?: true
+    userId?: true
+    prospectId?: true
+    formInput?: true
+    aiCallPrep?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CallPrepBriefAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CallPrepBrief to aggregate.
+     */
+    where?: CallPrepBriefWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CallPrepBriefs to fetch.
+     */
+    orderBy?: CallPrepBriefOrderByWithRelationInput | CallPrepBriefOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CallPrepBriefWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CallPrepBriefs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CallPrepBriefs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CallPrepBriefs
+    **/
+    _count?: true | CallPrepBriefCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CallPrepBriefMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CallPrepBriefMaxAggregateInputType
+  }
+
+  export type GetCallPrepBriefAggregateType<T extends CallPrepBriefAggregateArgs> = {
+        [P in keyof T & keyof AggregateCallPrepBrief]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCallPrepBrief[P]>
+      : GetScalarType<T[P], AggregateCallPrepBrief[P]>
+  }
+
+
+
+
+  export type CallPrepBriefGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CallPrepBriefWhereInput
+    orderBy?: CallPrepBriefOrderByWithAggregationInput | CallPrepBriefOrderByWithAggregationInput[]
+    by: CallPrepBriefScalarFieldEnum[] | CallPrepBriefScalarFieldEnum
+    having?: CallPrepBriefScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CallPrepBriefCountAggregateInputType | true
+    _min?: CallPrepBriefMinAggregateInputType
+    _max?: CallPrepBriefMaxAggregateInputType
+  }
+
+  export type CallPrepBriefGroupByOutputType = {
+    id: string
+    userId: string
+    prospectId: string
+    formInput: JsonValue
+    aiCallPrep: JsonValue | null
+    createdAt: Date
+    updatedAt: Date
+    _count: CallPrepBriefCountAggregateOutputType | null
+    _min: CallPrepBriefMinAggregateOutputType | null
+    _max: CallPrepBriefMaxAggregateOutputType | null
+  }
+
+  type GetCallPrepBriefGroupByPayload<T extends CallPrepBriefGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CallPrepBriefGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CallPrepBriefGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CallPrepBriefGroupByOutputType[P]>
+            : GetScalarType<T[P], CallPrepBriefGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CallPrepBriefSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    prospectId?: boolean
+    formInput?: boolean
+    aiCallPrep?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    prospect?: boolean | ProspectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["callPrepBrief"]>
+
+  export type CallPrepBriefSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    prospectId?: boolean
+    formInput?: boolean
+    aiCallPrep?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    prospect?: boolean | ProspectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["callPrepBrief"]>
+
+  export type CallPrepBriefSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    prospectId?: boolean
+    formInput?: boolean
+    aiCallPrep?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    prospect?: boolean | ProspectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["callPrepBrief"]>
+
+  export type CallPrepBriefSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    prospectId?: boolean
+    formInput?: boolean
+    aiCallPrep?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CallPrepBriefOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "prospectId" | "formInput" | "aiCallPrep" | "createdAt" | "updatedAt", ExtArgs["result"]["callPrepBrief"]>
+  export type CallPrepBriefInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    prospect?: boolean | ProspectDefaultArgs<ExtArgs>
+  }
+  export type CallPrepBriefIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    prospect?: boolean | ProspectDefaultArgs<ExtArgs>
+  }
+  export type CallPrepBriefIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    prospect?: boolean | ProspectDefaultArgs<ExtArgs>
+  }
+
+  export type $CallPrepBriefPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CallPrepBrief"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      prospect: Prisma.$ProspectPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      prospectId: string
+      formInput: Prisma.JsonValue
+      aiCallPrep: Prisma.JsonValue | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["callPrepBrief"]>
+    composites: {}
+  }
+
+  type CallPrepBriefGetPayload<S extends boolean | null | undefined | CallPrepBriefDefaultArgs> = $Result.GetResult<Prisma.$CallPrepBriefPayload, S>
+
+  type CallPrepBriefCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CallPrepBriefFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CallPrepBriefCountAggregateInputType | true
+    }
+
+  export interface CallPrepBriefDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CallPrepBrief'], meta: { name: 'CallPrepBrief' } }
+    /**
+     * Find zero or one CallPrepBrief that matches the filter.
+     * @param {CallPrepBriefFindUniqueArgs} args - Arguments to find a CallPrepBrief
+     * @example
+     * // Get one CallPrepBrief
+     * const callPrepBrief = await prisma.callPrepBrief.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CallPrepBriefFindUniqueArgs>(args: SelectSubset<T, CallPrepBriefFindUniqueArgs<ExtArgs>>): Prisma__CallPrepBriefClient<$Result.GetResult<Prisma.$CallPrepBriefPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CallPrepBrief that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CallPrepBriefFindUniqueOrThrowArgs} args - Arguments to find a CallPrepBrief
+     * @example
+     * // Get one CallPrepBrief
+     * const callPrepBrief = await prisma.callPrepBrief.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CallPrepBriefFindUniqueOrThrowArgs>(args: SelectSubset<T, CallPrepBriefFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CallPrepBriefClient<$Result.GetResult<Prisma.$CallPrepBriefPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CallPrepBrief that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CallPrepBriefFindFirstArgs} args - Arguments to find a CallPrepBrief
+     * @example
+     * // Get one CallPrepBrief
+     * const callPrepBrief = await prisma.callPrepBrief.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CallPrepBriefFindFirstArgs>(args?: SelectSubset<T, CallPrepBriefFindFirstArgs<ExtArgs>>): Prisma__CallPrepBriefClient<$Result.GetResult<Prisma.$CallPrepBriefPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CallPrepBrief that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CallPrepBriefFindFirstOrThrowArgs} args - Arguments to find a CallPrepBrief
+     * @example
+     * // Get one CallPrepBrief
+     * const callPrepBrief = await prisma.callPrepBrief.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CallPrepBriefFindFirstOrThrowArgs>(args?: SelectSubset<T, CallPrepBriefFindFirstOrThrowArgs<ExtArgs>>): Prisma__CallPrepBriefClient<$Result.GetResult<Prisma.$CallPrepBriefPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CallPrepBriefs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CallPrepBriefFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CallPrepBriefs
+     * const callPrepBriefs = await prisma.callPrepBrief.findMany()
+     * 
+     * // Get first 10 CallPrepBriefs
+     * const callPrepBriefs = await prisma.callPrepBrief.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const callPrepBriefWithIdOnly = await prisma.callPrepBrief.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CallPrepBriefFindManyArgs>(args?: SelectSubset<T, CallPrepBriefFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CallPrepBriefPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CallPrepBrief.
+     * @param {CallPrepBriefCreateArgs} args - Arguments to create a CallPrepBrief.
+     * @example
+     * // Create one CallPrepBrief
+     * const CallPrepBrief = await prisma.callPrepBrief.create({
+     *   data: {
+     *     // ... data to create a CallPrepBrief
+     *   }
+     * })
+     * 
+     */
+    create<T extends CallPrepBriefCreateArgs>(args: SelectSubset<T, CallPrepBriefCreateArgs<ExtArgs>>): Prisma__CallPrepBriefClient<$Result.GetResult<Prisma.$CallPrepBriefPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CallPrepBriefs.
+     * @param {CallPrepBriefCreateManyArgs} args - Arguments to create many CallPrepBriefs.
+     * @example
+     * // Create many CallPrepBriefs
+     * const callPrepBrief = await prisma.callPrepBrief.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CallPrepBriefCreateManyArgs>(args?: SelectSubset<T, CallPrepBriefCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CallPrepBriefs and returns the data saved in the database.
+     * @param {CallPrepBriefCreateManyAndReturnArgs} args - Arguments to create many CallPrepBriefs.
+     * @example
+     * // Create many CallPrepBriefs
+     * const callPrepBrief = await prisma.callPrepBrief.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CallPrepBriefs and only return the `id`
+     * const callPrepBriefWithIdOnly = await prisma.callPrepBrief.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CallPrepBriefCreateManyAndReturnArgs>(args?: SelectSubset<T, CallPrepBriefCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CallPrepBriefPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CallPrepBrief.
+     * @param {CallPrepBriefDeleteArgs} args - Arguments to delete one CallPrepBrief.
+     * @example
+     * // Delete one CallPrepBrief
+     * const CallPrepBrief = await prisma.callPrepBrief.delete({
+     *   where: {
+     *     // ... filter to delete one CallPrepBrief
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CallPrepBriefDeleteArgs>(args: SelectSubset<T, CallPrepBriefDeleteArgs<ExtArgs>>): Prisma__CallPrepBriefClient<$Result.GetResult<Prisma.$CallPrepBriefPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CallPrepBrief.
+     * @param {CallPrepBriefUpdateArgs} args - Arguments to update one CallPrepBrief.
+     * @example
+     * // Update one CallPrepBrief
+     * const callPrepBrief = await prisma.callPrepBrief.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CallPrepBriefUpdateArgs>(args: SelectSubset<T, CallPrepBriefUpdateArgs<ExtArgs>>): Prisma__CallPrepBriefClient<$Result.GetResult<Prisma.$CallPrepBriefPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CallPrepBriefs.
+     * @param {CallPrepBriefDeleteManyArgs} args - Arguments to filter CallPrepBriefs to delete.
+     * @example
+     * // Delete a few CallPrepBriefs
+     * const { count } = await prisma.callPrepBrief.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CallPrepBriefDeleteManyArgs>(args?: SelectSubset<T, CallPrepBriefDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CallPrepBriefs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CallPrepBriefUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CallPrepBriefs
+     * const callPrepBrief = await prisma.callPrepBrief.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CallPrepBriefUpdateManyArgs>(args: SelectSubset<T, CallPrepBriefUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CallPrepBriefs and returns the data updated in the database.
+     * @param {CallPrepBriefUpdateManyAndReturnArgs} args - Arguments to update many CallPrepBriefs.
+     * @example
+     * // Update many CallPrepBriefs
+     * const callPrepBrief = await prisma.callPrepBrief.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CallPrepBriefs and only return the `id`
+     * const callPrepBriefWithIdOnly = await prisma.callPrepBrief.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CallPrepBriefUpdateManyAndReturnArgs>(args: SelectSubset<T, CallPrepBriefUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CallPrepBriefPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CallPrepBrief.
+     * @param {CallPrepBriefUpsertArgs} args - Arguments to update or create a CallPrepBrief.
+     * @example
+     * // Update or create a CallPrepBrief
+     * const callPrepBrief = await prisma.callPrepBrief.upsert({
+     *   create: {
+     *     // ... data to create a CallPrepBrief
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CallPrepBrief we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CallPrepBriefUpsertArgs>(args: SelectSubset<T, CallPrepBriefUpsertArgs<ExtArgs>>): Prisma__CallPrepBriefClient<$Result.GetResult<Prisma.$CallPrepBriefPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CallPrepBriefs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CallPrepBriefCountArgs} args - Arguments to filter CallPrepBriefs to count.
+     * @example
+     * // Count the number of CallPrepBriefs
+     * const count = await prisma.callPrepBrief.count({
+     *   where: {
+     *     // ... the filter for the CallPrepBriefs we want to count
+     *   }
+     * })
+    **/
+    count<T extends CallPrepBriefCountArgs>(
+      args?: Subset<T, CallPrepBriefCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CallPrepBriefCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CallPrepBrief.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CallPrepBriefAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CallPrepBriefAggregateArgs>(args: Subset<T, CallPrepBriefAggregateArgs>): Prisma.PrismaPromise<GetCallPrepBriefAggregateType<T>>
+
+    /**
+     * Group by CallPrepBrief.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CallPrepBriefGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CallPrepBriefGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CallPrepBriefGroupByArgs['orderBy'] }
+        : { orderBy?: CallPrepBriefGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CallPrepBriefGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCallPrepBriefGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CallPrepBrief model
+   */
+  readonly fields: CallPrepBriefFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CallPrepBrief.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CallPrepBriefClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    prospect<T extends ProspectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProspectDefaultArgs<ExtArgs>>): Prisma__ProspectClient<$Result.GetResult<Prisma.$ProspectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CallPrepBrief model
+   */
+  interface CallPrepBriefFieldRefs {
+    readonly id: FieldRef<"CallPrepBrief", 'String'>
+    readonly userId: FieldRef<"CallPrepBrief", 'String'>
+    readonly prospectId: FieldRef<"CallPrepBrief", 'String'>
+    readonly formInput: FieldRef<"CallPrepBrief", 'Json'>
+    readonly aiCallPrep: FieldRef<"CallPrepBrief", 'Json'>
+    readonly createdAt: FieldRef<"CallPrepBrief", 'DateTime'>
+    readonly updatedAt: FieldRef<"CallPrepBrief", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CallPrepBrief findUnique
+   */
+  export type CallPrepBriefFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallPrepBrief
+     */
+    select?: CallPrepBriefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallPrepBrief
+     */
+    omit?: CallPrepBriefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallPrepBriefInclude<ExtArgs> | null
+    /**
+     * Filter, which CallPrepBrief to fetch.
+     */
+    where: CallPrepBriefWhereUniqueInput
+  }
+
+  /**
+   * CallPrepBrief findUniqueOrThrow
+   */
+  export type CallPrepBriefFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallPrepBrief
+     */
+    select?: CallPrepBriefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallPrepBrief
+     */
+    omit?: CallPrepBriefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallPrepBriefInclude<ExtArgs> | null
+    /**
+     * Filter, which CallPrepBrief to fetch.
+     */
+    where: CallPrepBriefWhereUniqueInput
+  }
+
+  /**
+   * CallPrepBrief findFirst
+   */
+  export type CallPrepBriefFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallPrepBrief
+     */
+    select?: CallPrepBriefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallPrepBrief
+     */
+    omit?: CallPrepBriefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallPrepBriefInclude<ExtArgs> | null
+    /**
+     * Filter, which CallPrepBrief to fetch.
+     */
+    where?: CallPrepBriefWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CallPrepBriefs to fetch.
+     */
+    orderBy?: CallPrepBriefOrderByWithRelationInput | CallPrepBriefOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CallPrepBriefs.
+     */
+    cursor?: CallPrepBriefWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CallPrepBriefs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CallPrepBriefs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CallPrepBriefs.
+     */
+    distinct?: CallPrepBriefScalarFieldEnum | CallPrepBriefScalarFieldEnum[]
+  }
+
+  /**
+   * CallPrepBrief findFirstOrThrow
+   */
+  export type CallPrepBriefFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallPrepBrief
+     */
+    select?: CallPrepBriefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallPrepBrief
+     */
+    omit?: CallPrepBriefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallPrepBriefInclude<ExtArgs> | null
+    /**
+     * Filter, which CallPrepBrief to fetch.
+     */
+    where?: CallPrepBriefWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CallPrepBriefs to fetch.
+     */
+    orderBy?: CallPrepBriefOrderByWithRelationInput | CallPrepBriefOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CallPrepBriefs.
+     */
+    cursor?: CallPrepBriefWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CallPrepBriefs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CallPrepBriefs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CallPrepBriefs.
+     */
+    distinct?: CallPrepBriefScalarFieldEnum | CallPrepBriefScalarFieldEnum[]
+  }
+
+  /**
+   * CallPrepBrief findMany
+   */
+  export type CallPrepBriefFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallPrepBrief
+     */
+    select?: CallPrepBriefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallPrepBrief
+     */
+    omit?: CallPrepBriefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallPrepBriefInclude<ExtArgs> | null
+    /**
+     * Filter, which CallPrepBriefs to fetch.
+     */
+    where?: CallPrepBriefWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CallPrepBriefs to fetch.
+     */
+    orderBy?: CallPrepBriefOrderByWithRelationInput | CallPrepBriefOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CallPrepBriefs.
+     */
+    cursor?: CallPrepBriefWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CallPrepBriefs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CallPrepBriefs.
+     */
+    skip?: number
+    distinct?: CallPrepBriefScalarFieldEnum | CallPrepBriefScalarFieldEnum[]
+  }
+
+  /**
+   * CallPrepBrief create
+   */
+  export type CallPrepBriefCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallPrepBrief
+     */
+    select?: CallPrepBriefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallPrepBrief
+     */
+    omit?: CallPrepBriefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallPrepBriefInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CallPrepBrief.
+     */
+    data: XOR<CallPrepBriefCreateInput, CallPrepBriefUncheckedCreateInput>
+  }
+
+  /**
+   * CallPrepBrief createMany
+   */
+  export type CallPrepBriefCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CallPrepBriefs.
+     */
+    data: CallPrepBriefCreateManyInput | CallPrepBriefCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CallPrepBrief createManyAndReturn
+   */
+  export type CallPrepBriefCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallPrepBrief
+     */
+    select?: CallPrepBriefSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallPrepBrief
+     */
+    omit?: CallPrepBriefOmit<ExtArgs> | null
+    /**
+     * The data used to create many CallPrepBriefs.
+     */
+    data: CallPrepBriefCreateManyInput | CallPrepBriefCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallPrepBriefIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CallPrepBrief update
+   */
+  export type CallPrepBriefUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallPrepBrief
+     */
+    select?: CallPrepBriefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallPrepBrief
+     */
+    omit?: CallPrepBriefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallPrepBriefInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CallPrepBrief.
+     */
+    data: XOR<CallPrepBriefUpdateInput, CallPrepBriefUncheckedUpdateInput>
+    /**
+     * Choose, which CallPrepBrief to update.
+     */
+    where: CallPrepBriefWhereUniqueInput
+  }
+
+  /**
+   * CallPrepBrief updateMany
+   */
+  export type CallPrepBriefUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CallPrepBriefs.
+     */
+    data: XOR<CallPrepBriefUpdateManyMutationInput, CallPrepBriefUncheckedUpdateManyInput>
+    /**
+     * Filter which CallPrepBriefs to update
+     */
+    where?: CallPrepBriefWhereInput
+    /**
+     * Limit how many CallPrepBriefs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CallPrepBrief updateManyAndReturn
+   */
+  export type CallPrepBriefUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallPrepBrief
+     */
+    select?: CallPrepBriefSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallPrepBrief
+     */
+    omit?: CallPrepBriefOmit<ExtArgs> | null
+    /**
+     * The data used to update CallPrepBriefs.
+     */
+    data: XOR<CallPrepBriefUpdateManyMutationInput, CallPrepBriefUncheckedUpdateManyInput>
+    /**
+     * Filter which CallPrepBriefs to update
+     */
+    where?: CallPrepBriefWhereInput
+    /**
+     * Limit how many CallPrepBriefs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallPrepBriefIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CallPrepBrief upsert
+   */
+  export type CallPrepBriefUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallPrepBrief
+     */
+    select?: CallPrepBriefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallPrepBrief
+     */
+    omit?: CallPrepBriefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallPrepBriefInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CallPrepBrief to update in case it exists.
+     */
+    where: CallPrepBriefWhereUniqueInput
+    /**
+     * In case the CallPrepBrief found by the `where` argument doesn't exist, create a new CallPrepBrief with this data.
+     */
+    create: XOR<CallPrepBriefCreateInput, CallPrepBriefUncheckedCreateInput>
+    /**
+     * In case the CallPrepBrief was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CallPrepBriefUpdateInput, CallPrepBriefUncheckedUpdateInput>
+  }
+
+  /**
+   * CallPrepBrief delete
+   */
+  export type CallPrepBriefDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallPrepBrief
+     */
+    select?: CallPrepBriefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallPrepBrief
+     */
+    omit?: CallPrepBriefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallPrepBriefInclude<ExtArgs> | null
+    /**
+     * Filter which CallPrepBrief to delete.
+     */
+    where: CallPrepBriefWhereUniqueInput
+  }
+
+  /**
+   * CallPrepBrief deleteMany
+   */
+  export type CallPrepBriefDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CallPrepBriefs to delete
+     */
+    where?: CallPrepBriefWhereInput
+    /**
+     * Limit how many CallPrepBriefs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CallPrepBrief without action
+   */
+  export type CallPrepBriefDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CallPrepBrief
+     */
+    select?: CallPrepBriefSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CallPrepBrief
+     */
+    omit?: CallPrepBriefOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CallPrepBriefInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -19242,6 +21773,35 @@ export namespace Prisma {
   export type CallSimulationScalarFieldEnum = (typeof CallSimulationScalarFieldEnum)[keyof typeof CallSimulationScalarFieldEnum]
 
 
+  export const ProspectScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    name: 'name',
+    linkedinProfileUrl: 'linkedinProfileUrl',
+    customData: 'customData',
+    source: 'source',
+    linkedinData: 'linkedinData',
+    aiAnalysis: 'aiAnalysis',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ProspectScalarFieldEnum = (typeof ProspectScalarFieldEnum)[keyof typeof ProspectScalarFieldEnum]
+
+
+  export const CallPrepBriefScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    prospectId: 'prospectId',
+    formInput: 'formInput',
+    aiCallPrep: 'aiCallPrep',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CallPrepBriefScalarFieldEnum = (typeof CallPrepBriefScalarFieldEnum)[keyof typeof CallPrepBriefScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -19370,6 +21930,20 @@ export namespace Prisma {
    */
   export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
+
+
+  /**
+   * Reference to a field of type 'ProspectSource'
+   */
+  export type EnumProspectSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProspectSource'>
+    
+
+
+  /**
+   * Reference to a field of type 'ProspectSource[]'
+   */
+  export type ListEnumProspectSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProspectSource[]'>
+    
   /**
    * Deep Input Types
    */
@@ -19400,6 +21974,8 @@ export namespace Prisma {
     passkeys?: PasskeyListRelationFilter
     profile?: XOR<UserProfileNullableScalarRelationFilter, UserProfileWhereInput> | null
     callSimulations?: CallSimulationListRelationFilter
+    prospects?: ProspectListRelationFilter
+    callPrepBriefs?: CallPrepBriefListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -19424,6 +22000,8 @@ export namespace Prisma {
     passkeys?: PasskeyOrderByRelationAggregateInput
     profile?: UserProfileOrderByWithRelationInput
     callSimulations?: CallSimulationOrderByRelationAggregateInput
+    prospects?: ProspectOrderByRelationAggregateInput
+    callPrepBriefs?: CallPrepBriefOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -19451,6 +22029,8 @@ export namespace Prisma {
     passkeys?: PasskeyListRelationFilter
     profile?: XOR<UserProfileNullableScalarRelationFilter, UserProfileWhereInput> | null
     callSimulations?: CallSimulationListRelationFilter
+    prospects?: ProspectListRelationFilter
+    callPrepBriefs?: CallPrepBriefListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -20528,6 +23108,158 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"CallSimulation"> | Date | string
   }
 
+  export type ProspectWhereInput = {
+    AND?: ProspectWhereInput | ProspectWhereInput[]
+    OR?: ProspectWhereInput[]
+    NOT?: ProspectWhereInput | ProspectWhereInput[]
+    id?: StringFilter<"Prospect"> | string
+    userId?: StringFilter<"Prospect"> | string
+    name?: StringFilter<"Prospect"> | string
+    linkedinProfileUrl?: StringNullableFilter<"Prospect"> | string | null
+    customData?: JsonNullableFilter<"Prospect">
+    source?: EnumProspectSourceFilter<"Prospect"> | $Enums.ProspectSource
+    linkedinData?: JsonNullableFilter<"Prospect">
+    aiAnalysis?: JsonNullableFilter<"Prospect">
+    createdAt?: DateTimeFilter<"Prospect"> | Date | string
+    updatedAt?: DateTimeFilter<"Prospect"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    callPrepBriefs?: CallPrepBriefListRelationFilter
+  }
+
+  export type ProspectOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    linkedinProfileUrl?: SortOrderInput | SortOrder
+    customData?: SortOrderInput | SortOrder
+    source?: SortOrder
+    linkedinData?: SortOrderInput | SortOrder
+    aiAnalysis?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    callPrepBriefs?: CallPrepBriefOrderByRelationAggregateInput
+  }
+
+  export type ProspectWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    linkedinProfileUrl?: string
+    userId_linkedinProfileUrl?: ProspectUserIdLinkedinProfileUrlCompoundUniqueInput
+    AND?: ProspectWhereInput | ProspectWhereInput[]
+    OR?: ProspectWhereInput[]
+    NOT?: ProspectWhereInput | ProspectWhereInput[]
+    userId?: StringFilter<"Prospect"> | string
+    name?: StringFilter<"Prospect"> | string
+    customData?: JsonNullableFilter<"Prospect">
+    source?: EnumProspectSourceFilter<"Prospect"> | $Enums.ProspectSource
+    linkedinData?: JsonNullableFilter<"Prospect">
+    aiAnalysis?: JsonNullableFilter<"Prospect">
+    createdAt?: DateTimeFilter<"Prospect"> | Date | string
+    updatedAt?: DateTimeFilter<"Prospect"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    callPrepBriefs?: CallPrepBriefListRelationFilter
+  }, "id" | "linkedinProfileUrl" | "userId_linkedinProfileUrl">
+
+  export type ProspectOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    linkedinProfileUrl?: SortOrderInput | SortOrder
+    customData?: SortOrderInput | SortOrder
+    source?: SortOrder
+    linkedinData?: SortOrderInput | SortOrder
+    aiAnalysis?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ProspectCountOrderByAggregateInput
+    _max?: ProspectMaxOrderByAggregateInput
+    _min?: ProspectMinOrderByAggregateInput
+  }
+
+  export type ProspectScalarWhereWithAggregatesInput = {
+    AND?: ProspectScalarWhereWithAggregatesInput | ProspectScalarWhereWithAggregatesInput[]
+    OR?: ProspectScalarWhereWithAggregatesInput[]
+    NOT?: ProspectScalarWhereWithAggregatesInput | ProspectScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Prospect"> | string
+    userId?: StringWithAggregatesFilter<"Prospect"> | string
+    name?: StringWithAggregatesFilter<"Prospect"> | string
+    linkedinProfileUrl?: StringNullableWithAggregatesFilter<"Prospect"> | string | null
+    customData?: JsonNullableWithAggregatesFilter<"Prospect">
+    source?: EnumProspectSourceWithAggregatesFilter<"Prospect"> | $Enums.ProspectSource
+    linkedinData?: JsonNullableWithAggregatesFilter<"Prospect">
+    aiAnalysis?: JsonNullableWithAggregatesFilter<"Prospect">
+    createdAt?: DateTimeWithAggregatesFilter<"Prospect"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Prospect"> | Date | string
+  }
+
+  export type CallPrepBriefWhereInput = {
+    AND?: CallPrepBriefWhereInput | CallPrepBriefWhereInput[]
+    OR?: CallPrepBriefWhereInput[]
+    NOT?: CallPrepBriefWhereInput | CallPrepBriefWhereInput[]
+    id?: StringFilter<"CallPrepBrief"> | string
+    userId?: StringFilter<"CallPrepBrief"> | string
+    prospectId?: StringFilter<"CallPrepBrief"> | string
+    formInput?: JsonFilter<"CallPrepBrief">
+    aiCallPrep?: JsonNullableFilter<"CallPrepBrief">
+    createdAt?: DateTimeFilter<"CallPrepBrief"> | Date | string
+    updatedAt?: DateTimeFilter<"CallPrepBrief"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    prospect?: XOR<ProspectScalarRelationFilter, ProspectWhereInput>
+  }
+
+  export type CallPrepBriefOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    prospectId?: SortOrder
+    formInput?: SortOrder
+    aiCallPrep?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    prospect?: ProspectOrderByWithRelationInput
+  }
+
+  export type CallPrepBriefWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CallPrepBriefWhereInput | CallPrepBriefWhereInput[]
+    OR?: CallPrepBriefWhereInput[]
+    NOT?: CallPrepBriefWhereInput | CallPrepBriefWhereInput[]
+    userId?: StringFilter<"CallPrepBrief"> | string
+    prospectId?: StringFilter<"CallPrepBrief"> | string
+    formInput?: JsonFilter<"CallPrepBrief">
+    aiCallPrep?: JsonNullableFilter<"CallPrepBrief">
+    createdAt?: DateTimeFilter<"CallPrepBrief"> | Date | string
+    updatedAt?: DateTimeFilter<"CallPrepBrief"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    prospect?: XOR<ProspectScalarRelationFilter, ProspectWhereInput>
+  }, "id">
+
+  export type CallPrepBriefOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    prospectId?: SortOrder
+    formInput?: SortOrder
+    aiCallPrep?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CallPrepBriefCountOrderByAggregateInput
+    _max?: CallPrepBriefMaxOrderByAggregateInput
+    _min?: CallPrepBriefMinOrderByAggregateInput
+  }
+
+  export type CallPrepBriefScalarWhereWithAggregatesInput = {
+    AND?: CallPrepBriefScalarWhereWithAggregatesInput | CallPrepBriefScalarWhereWithAggregatesInput[]
+    OR?: CallPrepBriefScalarWhereWithAggregatesInput[]
+    NOT?: CallPrepBriefScalarWhereWithAggregatesInput | CallPrepBriefScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CallPrepBrief"> | string
+    userId?: StringWithAggregatesFilter<"CallPrepBrief"> | string
+    prospectId?: StringWithAggregatesFilter<"CallPrepBrief"> | string
+    formInput?: JsonWithAggregatesFilter<"CallPrepBrief">
+    aiCallPrep?: JsonNullableWithAggregatesFilter<"CallPrepBrief">
+    createdAt?: DateTimeWithAggregatesFilter<"CallPrepBrief"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"CallPrepBrief"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -20550,6 +23282,8 @@ export namespace Prisma {
     passkeys?: PasskeyCreateNestedManyWithoutUserInput
     profile?: UserProfileCreateNestedOneWithoutUserInput
     callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
+    prospects?: ProspectCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -20574,6 +23308,8 @@ export namespace Prisma {
     passkeys?: PasskeyUncheckedCreateNestedManyWithoutUserInput
     profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
     callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
+    prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -20598,6 +23334,8 @@ export namespace Prisma {
     passkeys?: PasskeyUpdateManyWithoutUserNestedInput
     profile?: UserProfileUpdateOneWithoutUserNestedInput
     callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -20622,6 +23360,8 @@ export namespace Prisma {
     passkeys?: PasskeyUncheckedUpdateManyWithoutUserNestedInput
     profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
     callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -21825,6 +24565,168 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ProspectCreateInput = {
+    id?: string
+    name: string
+    linkedinProfileUrl?: string | null
+    customData?: NullableJsonNullValueInput | InputJsonValue
+    source?: $Enums.ProspectSource
+    linkedinData?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutProspectsInput
+    callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutProspectInput
+  }
+
+  export type ProspectUncheckedCreateInput = {
+    id?: string
+    userId: string
+    name: string
+    linkedinProfileUrl?: string | null
+    customData?: NullableJsonNullValueInput | InputJsonValue
+    source?: $Enums.ProspectSource
+    linkedinData?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutProspectInput
+  }
+
+  export type ProspectUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    linkedinProfileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    customData?: NullableJsonNullValueInput | InputJsonValue
+    source?: EnumProspectSourceFieldUpdateOperationsInput | $Enums.ProspectSource
+    linkedinData?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutProspectsNestedInput
+    callPrepBriefs?: CallPrepBriefUpdateManyWithoutProspectNestedInput
+  }
+
+  export type ProspectUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    linkedinProfileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    customData?: NullableJsonNullValueInput | InputJsonValue
+    source?: EnumProspectSourceFieldUpdateOperationsInput | $Enums.ProspectSource
+    linkedinData?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutProspectNestedInput
+  }
+
+  export type ProspectCreateManyInput = {
+    id?: string
+    userId: string
+    name: string
+    linkedinProfileUrl?: string | null
+    customData?: NullableJsonNullValueInput | InputJsonValue
+    source?: $Enums.ProspectSource
+    linkedinData?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProspectUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    linkedinProfileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    customData?: NullableJsonNullValueInput | InputJsonValue
+    source?: EnumProspectSourceFieldUpdateOperationsInput | $Enums.ProspectSource
+    linkedinData?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProspectUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    linkedinProfileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    customData?: NullableJsonNullValueInput | InputJsonValue
+    source?: EnumProspectSourceFieldUpdateOperationsInput | $Enums.ProspectSource
+    linkedinData?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CallPrepBriefCreateInput = {
+    id?: string
+    formInput: JsonNullValueInput | InputJsonValue
+    aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutCallPrepBriefsInput
+    prospect: ProspectCreateNestedOneWithoutCallPrepBriefsInput
+  }
+
+  export type CallPrepBriefUncheckedCreateInput = {
+    id?: string
+    userId: string
+    prospectId: string
+    formInput: JsonNullValueInput | InputJsonValue
+    aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CallPrepBriefUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    formInput?: JsonNullValueInput | InputJsonValue
+    aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCallPrepBriefsNestedInput
+    prospect?: ProspectUpdateOneRequiredWithoutCallPrepBriefsNestedInput
+  }
+
+  export type CallPrepBriefUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    prospectId?: StringFieldUpdateOperationsInput | string
+    formInput?: JsonNullValueInput | InputJsonValue
+    aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CallPrepBriefCreateManyInput = {
+    id?: string
+    userId: string
+    prospectId: string
+    formInput: JsonNullValueInput | InputJsonValue
+    aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CallPrepBriefUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    formInput?: JsonNullValueInput | InputJsonValue
+    aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CallPrepBriefUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    prospectId?: StringFieldUpdateOperationsInput | string
+    formInput?: JsonNullValueInput | InputJsonValue
+    aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -21934,6 +24836,18 @@ export namespace Prisma {
     none?: CallSimulationWhereInput
   }
 
+  export type ProspectListRelationFilter = {
+    every?: ProspectWhereInput
+    some?: ProspectWhereInput
+    none?: ProspectWhereInput
+  }
+
+  export type CallPrepBriefListRelationFilter = {
+    every?: CallPrepBriefWhereInput
+    some?: CallPrepBriefWhereInput
+    none?: CallPrepBriefWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -21964,6 +24878,14 @@ export namespace Prisma {
   }
 
   export type CallSimulationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProspectOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CallPrepBriefOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -22807,6 +25729,92 @@ export namespace Prisma {
     _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
+  export type EnumProspectSourceFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProspectSource | EnumProspectSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.ProspectSource[] | ListEnumProspectSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProspectSource[] | ListEnumProspectSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumProspectSourceFilter<$PrismaModel> | $Enums.ProspectSource
+  }
+
+  export type ProspectUserIdLinkedinProfileUrlCompoundUniqueInput = {
+    userId: string
+    linkedinProfileUrl: string
+  }
+
+  export type ProspectCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    linkedinProfileUrl?: SortOrder
+    customData?: SortOrder
+    source?: SortOrder
+    linkedinData?: SortOrder
+    aiAnalysis?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProspectMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    linkedinProfileUrl?: SortOrder
+    source?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProspectMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    linkedinProfileUrl?: SortOrder
+    source?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumProspectSourceWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProspectSource | EnumProspectSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.ProspectSource[] | ListEnumProspectSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProspectSource[] | ListEnumProspectSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumProspectSourceWithAggregatesFilter<$PrismaModel> | $Enums.ProspectSource
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumProspectSourceFilter<$PrismaModel>
+    _max?: NestedEnumProspectSourceFilter<$PrismaModel>
+  }
+
+  export type ProspectScalarRelationFilter = {
+    is?: ProspectWhereInput
+    isNot?: ProspectWhereInput
+  }
+
+  export type CallPrepBriefCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    prospectId?: SortOrder
+    formInput?: SortOrder
+    aiCallPrep?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CallPrepBriefMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    prospectId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CallPrepBriefMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    prospectId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type SessionCreateNestedManyWithoutUserInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -22862,6 +25870,20 @@ export namespace Prisma {
     connect?: CallSimulationWhereUniqueInput | CallSimulationWhereUniqueInput[]
   }
 
+  export type ProspectCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProspectCreateWithoutUserInput, ProspectUncheckedCreateWithoutUserInput> | ProspectCreateWithoutUserInput[] | ProspectUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProspectCreateOrConnectWithoutUserInput | ProspectCreateOrConnectWithoutUserInput[]
+    createMany?: ProspectCreateManyUserInputEnvelope
+    connect?: ProspectWhereUniqueInput | ProspectWhereUniqueInput[]
+  }
+
+  export type CallPrepBriefCreateNestedManyWithoutUserInput = {
+    create?: XOR<CallPrepBriefCreateWithoutUserInput, CallPrepBriefUncheckedCreateWithoutUserInput> | CallPrepBriefCreateWithoutUserInput[] | CallPrepBriefUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CallPrepBriefCreateOrConnectWithoutUserInput | CallPrepBriefCreateOrConnectWithoutUserInput[]
+    createMany?: CallPrepBriefCreateManyUserInputEnvelope
+    connect?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
+  }
+
   export type SessionUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -22915,6 +25937,20 @@ export namespace Prisma {
     connectOrCreate?: CallSimulationCreateOrConnectWithoutUserInput | CallSimulationCreateOrConnectWithoutUserInput[]
     createMany?: CallSimulationCreateManyUserInputEnvelope
     connect?: CallSimulationWhereUniqueInput | CallSimulationWhereUniqueInput[]
+  }
+
+  export type ProspectUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProspectCreateWithoutUserInput, ProspectUncheckedCreateWithoutUserInput> | ProspectCreateWithoutUserInput[] | ProspectUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProspectCreateOrConnectWithoutUserInput | ProspectCreateOrConnectWithoutUserInput[]
+    createMany?: ProspectCreateManyUserInputEnvelope
+    connect?: ProspectWhereUniqueInput | ProspectWhereUniqueInput[]
+  }
+
+  export type CallPrepBriefUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<CallPrepBriefCreateWithoutUserInput, CallPrepBriefUncheckedCreateWithoutUserInput> | CallPrepBriefCreateWithoutUserInput[] | CallPrepBriefUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CallPrepBriefCreateOrConnectWithoutUserInput | CallPrepBriefCreateOrConnectWithoutUserInput[]
+    createMany?: CallPrepBriefCreateManyUserInputEnvelope
+    connect?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -23049,6 +26085,34 @@ export namespace Prisma {
     deleteMany?: CallSimulationScalarWhereInput | CallSimulationScalarWhereInput[]
   }
 
+  export type ProspectUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProspectCreateWithoutUserInput, ProspectUncheckedCreateWithoutUserInput> | ProspectCreateWithoutUserInput[] | ProspectUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProspectCreateOrConnectWithoutUserInput | ProspectCreateOrConnectWithoutUserInput[]
+    upsert?: ProspectUpsertWithWhereUniqueWithoutUserInput | ProspectUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProspectCreateManyUserInputEnvelope
+    set?: ProspectWhereUniqueInput | ProspectWhereUniqueInput[]
+    disconnect?: ProspectWhereUniqueInput | ProspectWhereUniqueInput[]
+    delete?: ProspectWhereUniqueInput | ProspectWhereUniqueInput[]
+    connect?: ProspectWhereUniqueInput | ProspectWhereUniqueInput[]
+    update?: ProspectUpdateWithWhereUniqueWithoutUserInput | ProspectUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProspectUpdateManyWithWhereWithoutUserInput | ProspectUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProspectScalarWhereInput | ProspectScalarWhereInput[]
+  }
+
+  export type CallPrepBriefUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CallPrepBriefCreateWithoutUserInput, CallPrepBriefUncheckedCreateWithoutUserInput> | CallPrepBriefCreateWithoutUserInput[] | CallPrepBriefUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CallPrepBriefCreateOrConnectWithoutUserInput | CallPrepBriefCreateOrConnectWithoutUserInput[]
+    upsert?: CallPrepBriefUpsertWithWhereUniqueWithoutUserInput | CallPrepBriefUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CallPrepBriefCreateManyUserInputEnvelope
+    set?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
+    disconnect?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
+    delete?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
+    connect?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
+    update?: CallPrepBriefUpdateWithWhereUniqueWithoutUserInput | CallPrepBriefUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CallPrepBriefUpdateManyWithWhereWithoutUserInput | CallPrepBriefUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CallPrepBriefScalarWhereInput | CallPrepBriefScalarWhereInput[]
+  }
+
   export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -23155,6 +26219,34 @@ export namespace Prisma {
     update?: CallSimulationUpdateWithWhereUniqueWithoutUserInput | CallSimulationUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: CallSimulationUpdateManyWithWhereWithoutUserInput | CallSimulationUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: CallSimulationScalarWhereInput | CallSimulationScalarWhereInput[]
+  }
+
+  export type ProspectUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProspectCreateWithoutUserInput, ProspectUncheckedCreateWithoutUserInput> | ProspectCreateWithoutUserInput[] | ProspectUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProspectCreateOrConnectWithoutUserInput | ProspectCreateOrConnectWithoutUserInput[]
+    upsert?: ProspectUpsertWithWhereUniqueWithoutUserInput | ProspectUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProspectCreateManyUserInputEnvelope
+    set?: ProspectWhereUniqueInput | ProspectWhereUniqueInput[]
+    disconnect?: ProspectWhereUniqueInput | ProspectWhereUniqueInput[]
+    delete?: ProspectWhereUniqueInput | ProspectWhereUniqueInput[]
+    connect?: ProspectWhereUniqueInput | ProspectWhereUniqueInput[]
+    update?: ProspectUpdateWithWhereUniqueWithoutUserInput | ProspectUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProspectUpdateManyWithWhereWithoutUserInput | ProspectUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProspectScalarWhereInput | ProspectScalarWhereInput[]
+  }
+
+  export type CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CallPrepBriefCreateWithoutUserInput, CallPrepBriefUncheckedCreateWithoutUserInput> | CallPrepBriefCreateWithoutUserInput[] | CallPrepBriefUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CallPrepBriefCreateOrConnectWithoutUserInput | CallPrepBriefCreateOrConnectWithoutUserInput[]
+    upsert?: CallPrepBriefUpsertWithWhereUniqueWithoutUserInput | CallPrepBriefUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CallPrepBriefCreateManyUserInputEnvelope
+    set?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
+    disconnect?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
+    delete?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
+    connect?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
+    update?: CallPrepBriefUpdateWithWhereUniqueWithoutUserInput | CallPrepBriefUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CallPrepBriefUpdateManyWithWhereWithoutUserInput | CallPrepBriefUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CallPrepBriefScalarWhereInput | CallPrepBriefScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutSessionsInput = {
@@ -23403,6 +26495,94 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutCallSimulationsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCallSimulationsInput, UserUpdateWithoutCallSimulationsInput>, UserUncheckedUpdateWithoutCallSimulationsInput>
+  }
+
+  export type UserCreateNestedOneWithoutProspectsInput = {
+    create?: XOR<UserCreateWithoutProspectsInput, UserUncheckedCreateWithoutProspectsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProspectsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type CallPrepBriefCreateNestedManyWithoutProspectInput = {
+    create?: XOR<CallPrepBriefCreateWithoutProspectInput, CallPrepBriefUncheckedCreateWithoutProspectInput> | CallPrepBriefCreateWithoutProspectInput[] | CallPrepBriefUncheckedCreateWithoutProspectInput[]
+    connectOrCreate?: CallPrepBriefCreateOrConnectWithoutProspectInput | CallPrepBriefCreateOrConnectWithoutProspectInput[]
+    createMany?: CallPrepBriefCreateManyProspectInputEnvelope
+    connect?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
+  }
+
+  export type CallPrepBriefUncheckedCreateNestedManyWithoutProspectInput = {
+    create?: XOR<CallPrepBriefCreateWithoutProspectInput, CallPrepBriefUncheckedCreateWithoutProspectInput> | CallPrepBriefCreateWithoutProspectInput[] | CallPrepBriefUncheckedCreateWithoutProspectInput[]
+    connectOrCreate?: CallPrepBriefCreateOrConnectWithoutProspectInput | CallPrepBriefCreateOrConnectWithoutProspectInput[]
+    createMany?: CallPrepBriefCreateManyProspectInputEnvelope
+    connect?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
+  }
+
+  export type EnumProspectSourceFieldUpdateOperationsInput = {
+    set?: $Enums.ProspectSource
+  }
+
+  export type UserUpdateOneRequiredWithoutProspectsNestedInput = {
+    create?: XOR<UserCreateWithoutProspectsInput, UserUncheckedCreateWithoutProspectsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProspectsInput
+    upsert?: UserUpsertWithoutProspectsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProspectsInput, UserUpdateWithoutProspectsInput>, UserUncheckedUpdateWithoutProspectsInput>
+  }
+
+  export type CallPrepBriefUpdateManyWithoutProspectNestedInput = {
+    create?: XOR<CallPrepBriefCreateWithoutProspectInput, CallPrepBriefUncheckedCreateWithoutProspectInput> | CallPrepBriefCreateWithoutProspectInput[] | CallPrepBriefUncheckedCreateWithoutProspectInput[]
+    connectOrCreate?: CallPrepBriefCreateOrConnectWithoutProspectInput | CallPrepBriefCreateOrConnectWithoutProspectInput[]
+    upsert?: CallPrepBriefUpsertWithWhereUniqueWithoutProspectInput | CallPrepBriefUpsertWithWhereUniqueWithoutProspectInput[]
+    createMany?: CallPrepBriefCreateManyProspectInputEnvelope
+    set?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
+    disconnect?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
+    delete?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
+    connect?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
+    update?: CallPrepBriefUpdateWithWhereUniqueWithoutProspectInput | CallPrepBriefUpdateWithWhereUniqueWithoutProspectInput[]
+    updateMany?: CallPrepBriefUpdateManyWithWhereWithoutProspectInput | CallPrepBriefUpdateManyWithWhereWithoutProspectInput[]
+    deleteMany?: CallPrepBriefScalarWhereInput | CallPrepBriefScalarWhereInput[]
+  }
+
+  export type CallPrepBriefUncheckedUpdateManyWithoutProspectNestedInput = {
+    create?: XOR<CallPrepBriefCreateWithoutProspectInput, CallPrepBriefUncheckedCreateWithoutProspectInput> | CallPrepBriefCreateWithoutProspectInput[] | CallPrepBriefUncheckedCreateWithoutProspectInput[]
+    connectOrCreate?: CallPrepBriefCreateOrConnectWithoutProspectInput | CallPrepBriefCreateOrConnectWithoutProspectInput[]
+    upsert?: CallPrepBriefUpsertWithWhereUniqueWithoutProspectInput | CallPrepBriefUpsertWithWhereUniqueWithoutProspectInput[]
+    createMany?: CallPrepBriefCreateManyProspectInputEnvelope
+    set?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
+    disconnect?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
+    delete?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
+    connect?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
+    update?: CallPrepBriefUpdateWithWhereUniqueWithoutProspectInput | CallPrepBriefUpdateWithWhereUniqueWithoutProspectInput[]
+    updateMany?: CallPrepBriefUpdateManyWithWhereWithoutProspectInput | CallPrepBriefUpdateManyWithWhereWithoutProspectInput[]
+    deleteMany?: CallPrepBriefScalarWhereInput | CallPrepBriefScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutCallPrepBriefsInput = {
+    create?: XOR<UserCreateWithoutCallPrepBriefsInput, UserUncheckedCreateWithoutCallPrepBriefsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCallPrepBriefsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ProspectCreateNestedOneWithoutCallPrepBriefsInput = {
+    create?: XOR<ProspectCreateWithoutCallPrepBriefsInput, ProspectUncheckedCreateWithoutCallPrepBriefsInput>
+    connectOrCreate?: ProspectCreateOrConnectWithoutCallPrepBriefsInput
+    connect?: ProspectWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutCallPrepBriefsNestedInput = {
+    create?: XOR<UserCreateWithoutCallPrepBriefsInput, UserUncheckedCreateWithoutCallPrepBriefsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCallPrepBriefsInput
+    upsert?: UserUpsertWithoutCallPrepBriefsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCallPrepBriefsInput, UserUpdateWithoutCallPrepBriefsInput>, UserUncheckedUpdateWithoutCallPrepBriefsInput>
+  }
+
+  export type ProspectUpdateOneRequiredWithoutCallPrepBriefsNestedInput = {
+    create?: XOR<ProspectCreateWithoutCallPrepBriefsInput, ProspectUncheckedCreateWithoutCallPrepBriefsInput>
+    connectOrCreate?: ProspectCreateOrConnectWithoutCallPrepBriefsInput
+    upsert?: ProspectUpsertWithoutCallPrepBriefsInput
+    connect?: ProspectWhereUniqueInput
+    update?: XOR<XOR<ProspectUpdateToOneWithWhereWithoutCallPrepBriefsInput, ProspectUpdateWithoutCallPrepBriefsInput>, ProspectUncheckedUpdateWithoutCallPrepBriefsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -23681,6 +26861,23 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type NestedEnumProspectSourceFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProspectSource | EnumProspectSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.ProspectSource[] | ListEnumProspectSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProspectSource[] | ListEnumProspectSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumProspectSourceFilter<$PrismaModel> | $Enums.ProspectSource
+  }
+
+  export type NestedEnumProspectSourceWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProspectSource | EnumProspectSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.ProspectSource[] | ListEnumProspectSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProspectSource[] | ListEnumProspectSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumProspectSourceWithAggregatesFilter<$PrismaModel> | $Enums.ProspectSource
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumProspectSourceFilter<$PrismaModel>
+    _max?: NestedEnumProspectSourceFilter<$PrismaModel>
+  }
+
   export type SessionCreateWithoutUserInput = {
     id: string
     expiresAt: Date | string
@@ -23929,6 +27126,70 @@ export namespace Prisma {
 
   export type CallSimulationCreateManyUserInputEnvelope = {
     data: CallSimulationCreateManyUserInput | CallSimulationCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProspectCreateWithoutUserInput = {
+    id?: string
+    name: string
+    linkedinProfileUrl?: string | null
+    customData?: NullableJsonNullValueInput | InputJsonValue
+    source?: $Enums.ProspectSource
+    linkedinData?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutProspectInput
+  }
+
+  export type ProspectUncheckedCreateWithoutUserInput = {
+    id?: string
+    name: string
+    linkedinProfileUrl?: string | null
+    customData?: NullableJsonNullValueInput | InputJsonValue
+    source?: $Enums.ProspectSource
+    linkedinData?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutProspectInput
+  }
+
+  export type ProspectCreateOrConnectWithoutUserInput = {
+    where: ProspectWhereUniqueInput
+    create: XOR<ProspectCreateWithoutUserInput, ProspectUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProspectCreateManyUserInputEnvelope = {
+    data: ProspectCreateManyUserInput | ProspectCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CallPrepBriefCreateWithoutUserInput = {
+    id?: string
+    formInput: JsonNullValueInput | InputJsonValue
+    aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    prospect: ProspectCreateNestedOneWithoutCallPrepBriefsInput
+  }
+
+  export type CallPrepBriefUncheckedCreateWithoutUserInput = {
+    id?: string
+    prospectId: string
+    formInput: JsonNullValueInput | InputJsonValue
+    aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CallPrepBriefCreateOrConnectWithoutUserInput = {
+    where: CallPrepBriefWhereUniqueInput
+    create: XOR<CallPrepBriefCreateWithoutUserInput, CallPrepBriefUncheckedCreateWithoutUserInput>
+  }
+
+  export type CallPrepBriefCreateManyUserInputEnvelope = {
+    data: CallPrepBriefCreateManyUserInput | CallPrepBriefCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -24186,6 +27447,67 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"CallSimulation"> | Date | string
   }
 
+  export type ProspectUpsertWithWhereUniqueWithoutUserInput = {
+    where: ProspectWhereUniqueInput
+    update: XOR<ProspectUpdateWithoutUserInput, ProspectUncheckedUpdateWithoutUserInput>
+    create: XOR<ProspectCreateWithoutUserInput, ProspectUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProspectUpdateWithWhereUniqueWithoutUserInput = {
+    where: ProspectWhereUniqueInput
+    data: XOR<ProspectUpdateWithoutUserInput, ProspectUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ProspectUpdateManyWithWhereWithoutUserInput = {
+    where: ProspectScalarWhereInput
+    data: XOR<ProspectUpdateManyMutationInput, ProspectUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ProspectScalarWhereInput = {
+    AND?: ProspectScalarWhereInput | ProspectScalarWhereInput[]
+    OR?: ProspectScalarWhereInput[]
+    NOT?: ProspectScalarWhereInput | ProspectScalarWhereInput[]
+    id?: StringFilter<"Prospect"> | string
+    userId?: StringFilter<"Prospect"> | string
+    name?: StringFilter<"Prospect"> | string
+    linkedinProfileUrl?: StringNullableFilter<"Prospect"> | string | null
+    customData?: JsonNullableFilter<"Prospect">
+    source?: EnumProspectSourceFilter<"Prospect"> | $Enums.ProspectSource
+    linkedinData?: JsonNullableFilter<"Prospect">
+    aiAnalysis?: JsonNullableFilter<"Prospect">
+    createdAt?: DateTimeFilter<"Prospect"> | Date | string
+    updatedAt?: DateTimeFilter<"Prospect"> | Date | string
+  }
+
+  export type CallPrepBriefUpsertWithWhereUniqueWithoutUserInput = {
+    where: CallPrepBriefWhereUniqueInput
+    update: XOR<CallPrepBriefUpdateWithoutUserInput, CallPrepBriefUncheckedUpdateWithoutUserInput>
+    create: XOR<CallPrepBriefCreateWithoutUserInput, CallPrepBriefUncheckedCreateWithoutUserInput>
+  }
+
+  export type CallPrepBriefUpdateWithWhereUniqueWithoutUserInput = {
+    where: CallPrepBriefWhereUniqueInput
+    data: XOR<CallPrepBriefUpdateWithoutUserInput, CallPrepBriefUncheckedUpdateWithoutUserInput>
+  }
+
+  export type CallPrepBriefUpdateManyWithWhereWithoutUserInput = {
+    where: CallPrepBriefScalarWhereInput
+    data: XOR<CallPrepBriefUpdateManyMutationInput, CallPrepBriefUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type CallPrepBriefScalarWhereInput = {
+    AND?: CallPrepBriefScalarWhereInput | CallPrepBriefScalarWhereInput[]
+    OR?: CallPrepBriefScalarWhereInput[]
+    NOT?: CallPrepBriefScalarWhereInput | CallPrepBriefScalarWhereInput[]
+    id?: StringFilter<"CallPrepBrief"> | string
+    userId?: StringFilter<"CallPrepBrief"> | string
+    prospectId?: StringFilter<"CallPrepBrief"> | string
+    formInput?: JsonFilter<"CallPrepBrief">
+    aiCallPrep?: JsonNullableFilter<"CallPrepBrief">
+    createdAt?: DateTimeFilter<"CallPrepBrief"> | Date | string
+    updatedAt?: DateTimeFilter<"CallPrepBrief"> | Date | string
+  }
+
   export type UserCreateWithoutSessionsInput = {
     id?: string
     email: string
@@ -24207,6 +27529,8 @@ export namespace Prisma {
     passkeys?: PasskeyCreateNestedManyWithoutUserInput
     profile?: UserProfileCreateNestedOneWithoutUserInput
     callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
+    prospects?: ProspectCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -24230,6 +27554,8 @@ export namespace Prisma {
     passkeys?: PasskeyUncheckedCreateNestedManyWithoutUserInput
     profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
     callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
+    prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -24269,6 +27595,8 @@ export namespace Prisma {
     passkeys?: PasskeyUpdateManyWithoutUserNestedInput
     profile?: UserProfileUpdateOneWithoutUserNestedInput
     callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -24292,6 +27620,8 @@ export namespace Prisma {
     passkeys?: PasskeyUncheckedUpdateManyWithoutUserNestedInput
     profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
     callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAccountsInput = {
@@ -24315,6 +27645,8 @@ export namespace Prisma {
     passkeys?: PasskeyCreateNestedManyWithoutUserInput
     profile?: UserProfileCreateNestedOneWithoutUserInput
     callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
+    prospects?: ProspectCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -24338,6 +27670,8 @@ export namespace Prisma {
     passkeys?: PasskeyUncheckedCreateNestedManyWithoutUserInput
     profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
     callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
+    prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -24377,6 +27711,8 @@ export namespace Prisma {
     passkeys?: PasskeyUpdateManyWithoutUserNestedInput
     profile?: UserProfileUpdateOneWithoutUserNestedInput
     callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -24400,6 +27736,8 @@ export namespace Prisma {
     passkeys?: PasskeyUncheckedUpdateManyWithoutUserNestedInput
     profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
     callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type MemberCreateWithoutOrganizationInput = {
@@ -24532,6 +27870,8 @@ export namespace Prisma {
     passkeys?: PasskeyCreateNestedManyWithoutUserInput
     profile?: UserProfileCreateNestedOneWithoutUserInput
     callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
+    prospects?: ProspectCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMembersInput = {
@@ -24555,6 +27895,8 @@ export namespace Prisma {
     passkeys?: PasskeyUncheckedCreateNestedManyWithoutUserInput
     profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
     callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
+    prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMembersInput = {
@@ -24625,6 +27967,8 @@ export namespace Prisma {
     passkeys?: PasskeyUpdateManyWithoutUserNestedInput
     profile?: UserProfileUpdateOneWithoutUserNestedInput
     callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMembersInput = {
@@ -24648,6 +27992,8 @@ export namespace Prisma {
     passkeys?: PasskeyUncheckedUpdateManyWithoutUserNestedInput
     profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
     callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type OrganizationCreateWithoutInvitationsInput = {
@@ -24696,6 +28042,8 @@ export namespace Prisma {
     passkeys?: PasskeyCreateNestedManyWithoutUserInput
     profile?: UserProfileCreateNestedOneWithoutUserInput
     callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
+    prospects?: ProspectCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutInvitationsInput = {
@@ -24719,6 +28067,8 @@ export namespace Prisma {
     passkeys?: PasskeyUncheckedCreateNestedManyWithoutUserInput
     profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
     callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
+    prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutInvitationsInput = {
@@ -24789,6 +28139,8 @@ export namespace Prisma {
     passkeys?: PasskeyUpdateManyWithoutUserNestedInput
     profile?: UserProfileUpdateOneWithoutUserNestedInput
     callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutInvitationsInput = {
@@ -24812,6 +28164,8 @@ export namespace Prisma {
     passkeys?: PasskeyUncheckedUpdateManyWithoutUserNestedInput
     profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
     callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutTwofactorsInput = {
@@ -24835,6 +28189,8 @@ export namespace Prisma {
     passkeys?: PasskeyCreateNestedManyWithoutUserInput
     profile?: UserProfileCreateNestedOneWithoutUserInput
     callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
+    prospects?: ProspectCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTwofactorsInput = {
@@ -24858,6 +28214,8 @@ export namespace Prisma {
     passkeys?: PasskeyUncheckedCreateNestedManyWithoutUserInput
     profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
     callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
+    prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTwofactorsInput = {
@@ -24897,6 +28255,8 @@ export namespace Prisma {
     passkeys?: PasskeyUpdateManyWithoutUserNestedInput
     profile?: UserProfileUpdateOneWithoutUserNestedInput
     callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTwofactorsInput = {
@@ -24920,6 +28280,8 @@ export namespace Prisma {
     passkeys?: PasskeyUncheckedUpdateManyWithoutUserNestedInput
     profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
     callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPasskeysInput = {
@@ -24943,6 +28305,8 @@ export namespace Prisma {
     twofactors?: TwoFactorCreateNestedManyWithoutUserInput
     profile?: UserProfileCreateNestedOneWithoutUserInput
     callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
+    prospects?: ProspectCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPasskeysInput = {
@@ -24966,6 +28330,8 @@ export namespace Prisma {
     twofactors?: TwoFactorUncheckedCreateNestedManyWithoutUserInput
     profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
     callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
+    prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPasskeysInput = {
@@ -25005,6 +28371,8 @@ export namespace Prisma {
     twofactors?: TwoFactorUpdateManyWithoutUserNestedInput
     profile?: UserProfileUpdateOneWithoutUserNestedInput
     callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPasskeysInput = {
@@ -25028,6 +28396,8 @@ export namespace Prisma {
     twofactors?: TwoFactorUncheckedUpdateManyWithoutUserNestedInput
     profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
     callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutProfileInput = {
@@ -25051,6 +28421,8 @@ export namespace Prisma {
     twofactors?: TwoFactorCreateNestedManyWithoutUserInput
     passkeys?: PasskeyCreateNestedManyWithoutUserInput
     callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
+    prospects?: ProspectCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProfileInput = {
@@ -25074,6 +28446,8 @@ export namespace Prisma {
     twofactors?: TwoFactorUncheckedCreateNestedManyWithoutUserInput
     passkeys?: PasskeyUncheckedCreateNestedManyWithoutUserInput
     callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
+    prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProfileInput = {
@@ -25113,6 +28487,8 @@ export namespace Prisma {
     twofactors?: TwoFactorUpdateManyWithoutUserNestedInput
     passkeys?: PasskeyUpdateManyWithoutUserNestedInput
     callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProfileInput = {
@@ -25136,6 +28512,8 @@ export namespace Prisma {
     twofactors?: TwoFactorUncheckedUpdateManyWithoutUserNestedInput
     passkeys?: PasskeyUncheckedUpdateManyWithoutUserNestedInput
     callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutCallSimulationsInput = {
@@ -25159,6 +28537,8 @@ export namespace Prisma {
     twofactors?: TwoFactorCreateNestedManyWithoutUserInput
     passkeys?: PasskeyCreateNestedManyWithoutUserInput
     profile?: UserProfileCreateNestedOneWithoutUserInput
+    prospects?: ProspectCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCallSimulationsInput = {
@@ -25182,6 +28562,8 @@ export namespace Prisma {
     twofactors?: TwoFactorUncheckedCreateNestedManyWithoutUserInput
     passkeys?: PasskeyUncheckedCreateNestedManyWithoutUserInput
     profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCallSimulationsInput = {
@@ -25221,6 +28603,8 @@ export namespace Prisma {
     twofactors?: TwoFactorUpdateManyWithoutUserNestedInput
     passkeys?: PasskeyUpdateManyWithoutUserNestedInput
     profile?: UserProfileUpdateOneWithoutUserNestedInput
+    prospects?: ProspectUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCallSimulationsInput = {
@@ -25244,6 +28628,352 @@ export namespace Prisma {
     twofactors?: TwoFactorUncheckedUpdateManyWithoutUserNestedInput
     passkeys?: PasskeyUncheckedUpdateManyWithoutUserNestedInput
     profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutProspectsInput = {
+    id?: string
+    email: string
+    name?: string | null
+    emailVerified: boolean
+    image?: string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    twoFactorEnabled?: boolean | null
+    role?: string | null
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    stripeCustomerId?: string | null
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    members?: MemberCreateNestedManyWithoutUserInput
+    invitations?: InvitationCreateNestedManyWithoutUserInput
+    twofactors?: TwoFactorCreateNestedManyWithoutUserInput
+    passkeys?: PasskeyCreateNestedManyWithoutUserInput
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutProspectsInput = {
+    id?: string
+    email: string
+    name?: string | null
+    emailVerified: boolean
+    image?: string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    twoFactorEnabled?: boolean | null
+    role?: string | null
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    stripeCustomerId?: string | null
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
+    twofactors?: TwoFactorUncheckedCreateNestedManyWithoutUserInput
+    passkeys?: PasskeyUncheckedCreateNestedManyWithoutUserInput
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutProspectsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutProspectsInput, UserUncheckedCreateWithoutProspectsInput>
+  }
+
+  export type CallPrepBriefCreateWithoutProspectInput = {
+    id?: string
+    formInput: JsonNullValueInput | InputJsonValue
+    aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutCallPrepBriefsInput
+  }
+
+  export type CallPrepBriefUncheckedCreateWithoutProspectInput = {
+    id?: string
+    userId: string
+    formInput: JsonNullValueInput | InputJsonValue
+    aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CallPrepBriefCreateOrConnectWithoutProspectInput = {
+    where: CallPrepBriefWhereUniqueInput
+    create: XOR<CallPrepBriefCreateWithoutProspectInput, CallPrepBriefUncheckedCreateWithoutProspectInput>
+  }
+
+  export type CallPrepBriefCreateManyProspectInputEnvelope = {
+    data: CallPrepBriefCreateManyProspectInput | CallPrepBriefCreateManyProspectInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutProspectsInput = {
+    update: XOR<UserUpdateWithoutProspectsInput, UserUncheckedUpdateWithoutProspectsInput>
+    create: XOR<UserCreateWithoutProspectsInput, UserUncheckedCreateWithoutProspectsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutProspectsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutProspectsInput, UserUncheckedUpdateWithoutProspectsInput>
+  }
+
+  export type UserUpdateWithoutProspectsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    twoFactorEnabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    members?: MemberUpdateManyWithoutUserNestedInput
+    invitations?: InvitationUpdateManyWithoutUserNestedInput
+    twofactors?: TwoFactorUpdateManyWithoutUserNestedInput
+    passkeys?: PasskeyUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutProspectsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    twoFactorEnabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
+    twofactors?: TwoFactorUncheckedUpdateManyWithoutUserNestedInput
+    passkeys?: PasskeyUncheckedUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type CallPrepBriefUpsertWithWhereUniqueWithoutProspectInput = {
+    where: CallPrepBriefWhereUniqueInput
+    update: XOR<CallPrepBriefUpdateWithoutProspectInput, CallPrepBriefUncheckedUpdateWithoutProspectInput>
+    create: XOR<CallPrepBriefCreateWithoutProspectInput, CallPrepBriefUncheckedCreateWithoutProspectInput>
+  }
+
+  export type CallPrepBriefUpdateWithWhereUniqueWithoutProspectInput = {
+    where: CallPrepBriefWhereUniqueInput
+    data: XOR<CallPrepBriefUpdateWithoutProspectInput, CallPrepBriefUncheckedUpdateWithoutProspectInput>
+  }
+
+  export type CallPrepBriefUpdateManyWithWhereWithoutProspectInput = {
+    where: CallPrepBriefScalarWhereInput
+    data: XOR<CallPrepBriefUpdateManyMutationInput, CallPrepBriefUncheckedUpdateManyWithoutProspectInput>
+  }
+
+  export type UserCreateWithoutCallPrepBriefsInput = {
+    id?: string
+    email: string
+    name?: string | null
+    emailVerified: boolean
+    image?: string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    twoFactorEnabled?: boolean | null
+    role?: string | null
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    stripeCustomerId?: string | null
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    members?: MemberCreateNestedManyWithoutUserInput
+    invitations?: InvitationCreateNestedManyWithoutUserInput
+    twofactors?: TwoFactorCreateNestedManyWithoutUserInput
+    passkeys?: PasskeyCreateNestedManyWithoutUserInput
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
+    prospects?: ProspectCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutCallPrepBriefsInput = {
+    id?: string
+    email: string
+    name?: string | null
+    emailVerified: boolean
+    image?: string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    twoFactorEnabled?: boolean | null
+    role?: string | null
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    stripeCustomerId?: string | null
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
+    twofactors?: TwoFactorUncheckedCreateNestedManyWithoutUserInput
+    passkeys?: PasskeyUncheckedCreateNestedManyWithoutUserInput
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
+    prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutCallPrepBriefsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCallPrepBriefsInput, UserUncheckedCreateWithoutCallPrepBriefsInput>
+  }
+
+  export type ProspectCreateWithoutCallPrepBriefsInput = {
+    id?: string
+    name: string
+    linkedinProfileUrl?: string | null
+    customData?: NullableJsonNullValueInput | InputJsonValue
+    source?: $Enums.ProspectSource
+    linkedinData?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutProspectsInput
+  }
+
+  export type ProspectUncheckedCreateWithoutCallPrepBriefsInput = {
+    id?: string
+    userId: string
+    name: string
+    linkedinProfileUrl?: string | null
+    customData?: NullableJsonNullValueInput | InputJsonValue
+    source?: $Enums.ProspectSource
+    linkedinData?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProspectCreateOrConnectWithoutCallPrepBriefsInput = {
+    where: ProspectWhereUniqueInput
+    create: XOR<ProspectCreateWithoutCallPrepBriefsInput, ProspectUncheckedCreateWithoutCallPrepBriefsInput>
+  }
+
+  export type UserUpsertWithoutCallPrepBriefsInput = {
+    update: XOR<UserUpdateWithoutCallPrepBriefsInput, UserUncheckedUpdateWithoutCallPrepBriefsInput>
+    create: XOR<UserCreateWithoutCallPrepBriefsInput, UserUncheckedCreateWithoutCallPrepBriefsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCallPrepBriefsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCallPrepBriefsInput, UserUncheckedUpdateWithoutCallPrepBriefsInput>
+  }
+
+  export type UserUpdateWithoutCallPrepBriefsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    twoFactorEnabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    members?: MemberUpdateManyWithoutUserNestedInput
+    invitations?: InvitationUpdateManyWithoutUserNestedInput
+    twofactors?: TwoFactorUpdateManyWithoutUserNestedInput
+    passkeys?: PasskeyUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCallPrepBriefsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    twoFactorEnabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
+    twofactors?: TwoFactorUncheckedUpdateManyWithoutUserNestedInput
+    passkeys?: PasskeyUncheckedUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ProspectUpsertWithoutCallPrepBriefsInput = {
+    update: XOR<ProspectUpdateWithoutCallPrepBriefsInput, ProspectUncheckedUpdateWithoutCallPrepBriefsInput>
+    create: XOR<ProspectCreateWithoutCallPrepBriefsInput, ProspectUncheckedCreateWithoutCallPrepBriefsInput>
+    where?: ProspectWhereInput
+  }
+
+  export type ProspectUpdateToOneWithWhereWithoutCallPrepBriefsInput = {
+    where?: ProspectWhereInput
+    data: XOR<ProspectUpdateWithoutCallPrepBriefsInput, ProspectUncheckedUpdateWithoutCallPrepBriefsInput>
+  }
+
+  export type ProspectUpdateWithoutCallPrepBriefsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    linkedinProfileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    customData?: NullableJsonNullValueInput | InputJsonValue
+    source?: EnumProspectSourceFieldUpdateOperationsInput | $Enums.ProspectSource
+    linkedinData?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutProspectsNestedInput
+  }
+
+  export type ProspectUncheckedUpdateWithoutCallPrepBriefsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    linkedinProfileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    customData?: NullableJsonNullValueInput | InputJsonValue
+    source?: EnumProspectSourceFieldUpdateOperationsInput | $Enums.ProspectSource
+    linkedinData?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionCreateManyUserInput = {
@@ -25315,6 +29045,27 @@ export namespace Prisma {
     transcript?: NullableJsonNullValueInput | InputJsonValue
     duration: number
     feedback?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProspectCreateManyUserInput = {
+    id?: string
+    name: string
+    linkedinProfileUrl?: string | null
+    customData?: NullableJsonNullValueInput | InputJsonValue
+    source?: $Enums.ProspectSource
+    linkedinData?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CallPrepBriefCreateManyUserInput = {
+    id?: string
+    prospectId: string
+    formInput: JsonNullValueInput | InputJsonValue
+    aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -25538,6 +29289,71 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ProspectUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    linkedinProfileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    customData?: NullableJsonNullValueInput | InputJsonValue
+    source?: EnumProspectSourceFieldUpdateOperationsInput | $Enums.ProspectSource
+    linkedinData?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    callPrepBriefs?: CallPrepBriefUpdateManyWithoutProspectNestedInput
+  }
+
+  export type ProspectUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    linkedinProfileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    customData?: NullableJsonNullValueInput | InputJsonValue
+    source?: EnumProspectSourceFieldUpdateOperationsInput | $Enums.ProspectSource
+    linkedinData?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutProspectNestedInput
+  }
+
+  export type ProspectUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    linkedinProfileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    customData?: NullableJsonNullValueInput | InputJsonValue
+    source?: EnumProspectSourceFieldUpdateOperationsInput | $Enums.ProspectSource
+    linkedinData?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CallPrepBriefUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    formInput?: JsonNullValueInput | InputJsonValue
+    aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    prospect?: ProspectUpdateOneRequiredWithoutCallPrepBriefsNestedInput
+  }
+
+  export type CallPrepBriefUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prospectId?: StringFieldUpdateOperationsInput | string
+    formInput?: JsonNullValueInput | InputJsonValue
+    aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CallPrepBriefUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prospectId?: StringFieldUpdateOperationsInput | string
+    formInput?: JsonNullValueInput | InputJsonValue
+    aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type MemberCreateManyOrganizationInput = {
     id: string
     userId: string
@@ -25600,6 +29416,42 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     inviterId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CallPrepBriefCreateManyProspectInput = {
+    id?: string
+    userId: string
+    formInput: JsonNullValueInput | InputJsonValue
+    aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CallPrepBriefUpdateWithoutProspectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    formInput?: JsonNullValueInput | InputJsonValue
+    aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCallPrepBriefsNestedInput
+  }
+
+  export type CallPrepBriefUncheckedUpdateWithoutProspectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    formInput?: JsonNullValueInput | InputJsonValue
+    aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CallPrepBriefUncheckedUpdateManyWithoutProspectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    formInput?: JsonNullValueInput | InputJsonValue
+    aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

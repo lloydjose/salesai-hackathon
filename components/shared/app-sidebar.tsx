@@ -39,13 +39,8 @@ const data = {
       icon: Bot,
     },
     {
-      title: "Call Prep Brief",
+      title: "Pre Call Planner",
       url: "/dashboard/pre-call-planner",
-      icon: Bot,
-    },
-    {
-      title: "Lead Fit Score",
-      url: "/dashboard/lead-fit-score",
       icon: Bot,
     }
   ],

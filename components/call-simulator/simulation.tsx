@@ -8,7 +8,7 @@ import { Terminal } from "lucide-react";
 import { useVapiController } from "@/hooks/use-vapi-controller";
 import { SimulationControls } from "./simulation-controls";
 import { SimulationView } from "./simulation-view";
-import { SimulationData, PersonaDetails } from "@/lib/call-simulator/types";
+import { SimulationData, PersonaDetails } from "@/lib/ai/types";
 
 interface SimulationCallUIProps {
   simulationId: string;

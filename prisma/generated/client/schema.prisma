@@ -36,6 +36,8 @@ model User {
   passkeys         Passkey[]
   profile          UserProfile?
   callSimulations  CallSimulation[]
+  prospects        Prospect[]
+  callPrepBriefs   CallPrepBrief[]
 
   @@map("user")
 }
@@ -248,4 +250,51 @@ model CallSimulation {
   updatedAt      DateTime @updatedAt
 
   @@map("callSimulation")
+}
+
+// Enum for Prospect Source
+enum ProspectSource {
+  MANUAL
+  LINKEDIN
+  CRM
+  OTHER
+}
+
+model Prospect {
+  id     String @id @default(cuid())
+  userId String // Foreign key to User who owns/added this prospect
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name               String
+  linkedinProfileUrl String?        @unique // Make unique to avoid duplicates?
+  customData         Json? // For any manually added notes or structured data
+  source             ProspectSource @default(MANUAL)
+  linkedinData       Json? // Raw data scraped/fetched from LinkedIn (if source is LINKEDIN)
+  aiAnalysis         Json? // AI-generated analysis based on available data (linkedinData or customData)
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+
+  // Relations
+  callPrepBriefs CallPrepBrief[] // Prep briefs created *for* this prospect
+
+  @@unique([userId, linkedinProfileUrl])
+  @@map("prospect")
+}
+
+// Call Prep linked to a specific Prospect
+model CallPrepBrief {
+  id     String @id @default(cuid())
+  userId String // Foreign key to User who created this brief
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  prospectId String // Foreign key to Prospect 
+  prospect   Prospect @relation(fields: [prospectId], references: [id], onDelete: Cascade)
+
+  formInput  Json // User input/configuration for the call prep
+  aiCallPrep Json? // AI-generated preparation brief (talking points, questions, etc.)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("callPrepBrief")
 }

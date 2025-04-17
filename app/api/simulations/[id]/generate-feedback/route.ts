@@ -3,8 +3,8 @@ import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { generateObject } from 'ai';
 import { openai } from '@ai-sdk/openai';
-import { salesCallAnalysisSchema } from '@/lib/call-simulator/schemas';
-import { generateFeedbackPrompt } from '@/lib/call-simulator/utils';
+import { salesCallAnalysisSchema } from '@/lib/ai/schemas';
+import { generateFeedbackPrompt } from '@/lib/ai/utils';
 import { headers } from 'next/headers';
 import { z } from 'zod';
 
@@ -27,7 +27,7 @@ export async function POST(
 ) {
   try {
     const routeParams = await params; // *** Await params ***
-    console.log("[API generate-feedback] Received request for ID:", params.id);
+    console.log("[API generate-feedback] Received request for ID:", routeParams.id);
     const headerData = await headers(); 
     const session = await auth.api.getSession({ headers: headerData });
 

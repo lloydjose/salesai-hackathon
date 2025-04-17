@@ -15,7 +15,7 @@ import {
     AlertDialogTrigger 
 } from "@/components/ui/alert-dialog"
 import { Phone, PhoneOff, Loader2, BarChartHorizontalBig } from "lucide-react";
-import { formatTime } from "@/lib/call-simulator/utils";
+import { formatTime } from "@/lib/ai/utils";
 import { cn } from "@/lib/utils";
 
 interface SimulationControlsProps {

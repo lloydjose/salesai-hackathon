@@ -1,5 +1,3 @@
-// lib/call-simulator/types.ts
-
 export interface PersonaDetails {
     arroganceLevel: string;
     objectionLevel: string;

@@ -298,6 +298,29 @@ exports.Prisma.CallSimulationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ProspectScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  linkedinProfileUrl: 'linkedinProfileUrl',
+  customData: 'customData',
+  source: 'source',
+  linkedinData: 'linkedinData',
+  aiAnalysis: 'aiAnalysis',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CallPrepBriefScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  prospectId: 'prospectId',
+  formInput: 'formInput',
+  aiCallPrep: 'aiCallPrep',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -327,7 +350,12 @@ exports.Prisma.JsonNullValueFilter = {
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
 };
-
+exports.ProspectSource = exports.$Enums.ProspectSource = {
+  MANUAL: 'MANUAL',
+  LINKEDIN: 'LINKEDIN',
+  CRM: 'CRM',
+  OTHER: 'OTHER'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',
@@ -344,7 +372,9 @@ exports.Prisma.ModelName = {
   OauthConsent: 'OauthConsent',
   Subscription: 'Subscription',
   UserProfile: 'UserProfile',
-  CallSimulation: 'CallSimulation'
+  CallSimulation: 'CallSimulation',
+  Prospect: 'Prospect',
+  CallPrepBrief: 'CallPrepBrief'
 };
 
 /**

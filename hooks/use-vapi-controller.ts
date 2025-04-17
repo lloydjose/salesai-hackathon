@@ -4,8 +4,8 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Vapi from '@vapi-ai/web';
 import { toast } from 'sonner';
-import { generateSystemPrompt } from '@/lib/call-simulator/utils'; 
-import { PersonaDetails } from '@/lib/call-simulator/types'; 
+import { generateSystemPrompt } from '@/lib/ai/utils'; 
+import { PersonaDetails } from '@/lib/ai/types'; 
 
 export function useVapiController(
     simulationId: string | null, 

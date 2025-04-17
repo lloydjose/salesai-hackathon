@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { SimulationFeedback } from '@/components/call-simulator/simulation-feedback';
-import { SimulationData } from '@/lib/call-simulator/types';
+import { SimulationData } from '@/lib/ai/types';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Terminal, Loader2 } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
