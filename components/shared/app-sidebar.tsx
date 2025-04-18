@@ -51,11 +51,6 @@ const data = {
       icon: Bot,
     },
     {
-      title: "Objection Trainer",
-      url: "/dashboard/objection-trainer",
-      icon: UsersIcon,
-    },
-    {
       title: "Conversation Intelligence",
       url: "/dashboard/conversation-intelligence",
       icon: Bot,
@@ -68,13 +63,8 @@ const data = {
   ],
   deals: [
     {
-      title: "Deal Insights",
-      url: "/dashboard/deal-insights",
-      icon: Bot,
-    },
-    {
       title: "Playbook Builder",
-      url: "/dashboard/playbook-builder",
+      url: "/dashboard",
       icon: Workflow,
     },
   ],
@@ -92,13 +82,8 @@ const data = {
   ],
   navSecondary: [
     {
-      title: "Support",
-      url: "/support",
-      icon: LifeBuoy,
-    },
-    {
       title: "Suggest Features",
-      url: "/suggest",
+      url: "/",
       icon: Send,
     },
   ],

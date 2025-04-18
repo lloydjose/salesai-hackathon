@@ -9,31 +9,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 
-const footerNav = {
-  product: [
-    { name: 'Features', href: '/features' },
-    { name: 'Pricing', href: '/pricing' },
-    { name: 'Integrations', href: '#' }, // Placeholder links
-    { name: 'Demo', href: '#' },
-  ],
-  company: [
-    { name: 'About Us', href: '/about' },
-    { name: 'Careers', href: '#' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '#' },
-  ],
-  resources: [
-    { name: 'Help Center', href: '#' },
-    { name: 'API Documentation', href: '#' },
-    { name: 'Case Studies', href: '#' },
-    { name: 'Guides', href: '#' },
-  ],
-  legal: [
-    { name: 'Privacy Policy', href: '/privacy' },
-    { name: 'Terms of Service', href: '/terms' },
-    { name: 'Cookie Policy', href: '#' },
-  ],
-};
+// Simplified footer navigation
+const footerLinks = [
+  { name: 'Home', href: '/' },
+  { name: 'Product', href: '/product' },
+  { name: 'Pricing', href: '/pricing' },
+];
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -79,55 +60,17 @@ export default function Footer() {
 
         <Separator className="bg-border/50" />
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-8">
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4">Product</h4>
-            <ul role="list" className="space-y-3">
-              {footerNav.product.map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4">Company</h4>
-            <ul role="list" className="space-y-3">
-              {footerNav.company.map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4">Resources</h4>
-            <ul role="list" className="space-y-3">
-              {footerNav.resources.map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4">Legal</h4>
-            <ul role="list" className="space-y-3">
-              {footerNav.legal.map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+        {/* Updated Horizontal Footer Links Section */}
+        <div className="flex flex-row justify-center items-center gap-6 md:gap-12 py-8">
+          {footerLinks.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className="text-xs md:text-sm uppercase font-bold text-muted-foreground hover:text-primary transition-colors"
+            >
+              {item.name}
+            </Link>
+          ))}
         </div>
 
         <Separator className="bg-border/50" />

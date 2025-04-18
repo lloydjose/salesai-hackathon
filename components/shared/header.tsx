@@ -12,27 +12,19 @@ import { useTheme } from "next-themes"
 import { useSession } from "@/lib/auth-client"
 import Image from "next/image"
 
-// Navigation structure with dropdowns
+// Updated Navigation structure
 const navigationItems = [
   {
     name: "Home",
     path: "/",
   },
   {
-    name: "Features",
-    path: "/features",
+    name: "Product",
+    path: "/product",
   },
   {
     name: "Pricing",
     path: "/pricing",
-  },
-  {
-    name: "Blog",
-    path: "/blog",
-  },
-  {
-    name: "About",
-    path: "/about",
   },
 ]
 
