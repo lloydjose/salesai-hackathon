@@ -12,6 +12,8 @@ const archivo = Archivo({
 	display: 'swap',
 });
 
+const url = process.env.NEXT_PUBLIC_APP_URL || "https://localhost:3000";
+
 const spectral = Spectral({
 	subsets: ["latin"],
 	weight: ["300"],
@@ -25,8 +27,8 @@ export const metadata = createMetadata({
 		template: "%s | Scalaro",
 		default: "Scalaro",
 	},
-	description: "The most comprehensive authentication library for typescript",
-	metadataBase: new URL("https://demo.better-auth.com"),
+	description: "Scalaro is a sales intelligence platform that helps you analyze your prospects and get prepared to sell them.",
+	metadataBase: new URL(url),
 });
 
 export default function RootLayout({
