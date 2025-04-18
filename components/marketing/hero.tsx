@@ -188,20 +188,20 @@ export default function Hero() {
         )}
 
         {/* Ratings - Adjusted spacing for mobile */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-4 md:mb-4 text-center px-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 py-4 text-sm text-gray-600 dark:text-gray-400 text-center px-4">
           <div className="flex items-center mb-1 sm:mb-0">
             {[...Array(5)].map((_, i) => (
               <Star key={i} className="h-4 w-4 fill-current text-yellow-400" />
             ))}
           </div>
           <span>
-            Top Sellers In Your Industry Use <span className="font-semibold text-black dark:text-white">Scalar</span>
+            Top Sellers In Your Industry Use <span className="font-semibold text-black dark:text-white">Scalaro</span>
           </span>
         </div>
 
 		{/* Nextjs badge */}
         <div className="flex justify-center"> {/* Centered, minimal bottom margin */}
-           <span className="text-[12px] font-medium bg-muted/50 text-muted-foreground/80 border border-border/50 rounded px-1.5 py-0.5 mb-4 md:mb-4"> 
+           <span className="text-[12px] font-medium bg-muted/50 text-muted-foreground/80 border border-border/50 rounded px-1.5 pb-4"> 
                 Built For Next.js Global Hackathon
            </span>
         </div>
