@@ -1,7 +1,7 @@
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
-import { headers } from "next/headers";
+import type { NextRequest } from 'next/server';
 import { z } from 'zod';
 
 // Add Schema for validating PATCH request body
@@ -13,23 +13,19 @@ const updateSimulationSchema = z.object({
 
 // GET handler to fetch a specific simulation by ID
 export async function GET(
-  req: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    // Await headers() and params as they are now async
-    const headerData = await headers(); 
-    const routeParams = await params; // Await params here
+    const { id: simulationId } = await params;
 
     const session = await auth.api.getSession({
-      headers: headerData, // Pass awaited headers
+      headers: request.headers,
     });
 
     if (!session?.user?.id) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
-
-    const simulationId = routeParams.id; // Use awaited params
 
     if (!simulationId) {
       return new NextResponse("Simulation ID is required", { status: 400 });
@@ -38,11 +34,11 @@ export async function GET(
     const simulation = await prisma.callSimulation.findUnique({
       where: {
         id: simulationId,
-        userId: session.user.id, // Ensure the user owns this simulation
+        userId: session.user.id,
       },
       include: {
         user: {
-          select: { name: true, image: true }, // Select only needed user fields
+          select: { name: true, image: true },
         },
       },
     });
@@ -51,32 +47,30 @@ export async function GET(
       return new NextResponse("Simulation not found", { status: 404 });
     }
     
-    // Directly use personaDetails from Prisma (assuming it parses JSON correctly)
-    const personaDetails = (simulation.personaDetails || {}) as any; // Cast to any or define type
+    const personaDetails = (simulation.personaDetails || {}) as any;
 
-    // Ensure the response includes all necessary data for the feedback page
     const responseData = {
         id: simulation.id,
         user: {
             name: simulation.user.name,
             image: simulation.user.image,
         },
-        // prospect: { // Redundant if personaDetails is included below
-        //     name: personaDetails?.prospectName || 'Prospect', 
-        // },
         personaDetails: personaDetails, 
         callStatus: simulation.callStatus,
-        duration: simulation.duration, // *** Add duration ***
-        transcript: simulation.transcript || [], // *** Add transcript (default to empty array) ***
-        createdAt: simulation.createdAt, // Might be useful for display
-        feedback: simulation.feedback || null, // *** Add feedback (default to null) ***
+        duration: simulation.duration,
+        transcript: simulation.transcript || [],
+        createdAt: simulation.createdAt,
+        feedback: simulation.feedback || null,
     };
 
     return NextResponse.json(responseData);
 
   } catch (error) {
-    // Use routeParams here as well if needed for logging
-    const idForError = await params.id || 'unknown';
+    let idForError = 'unknown';
+    try {
+      const awaitedParams = await params;
+      idForError = awaitedParams?.id || 'unknown';
+    } catch { /* Ignore if awaiting params fails here */ }
     console.error(`[SIMULATIONS_GET_${idForError}]`, error);
     return new NextResponse("Internal Error", { status: 500 });
   }
@@ -84,29 +78,25 @@ export async function GET(
 
 // Add PATCH handler to update simulation results
 export async function PATCH(
-  request: Request,
-  { params }: { params: { id: string } } // Use params.id here
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    // Await headers and params first
-    const headerData = await headers();
-    const routeParams = await params; // *** Await params ***
+    const { id: simulationId } = await params;
 
     const session = await auth.api.getSession({
-      headers: headerData, // Pass awaited headers
+      headers: request.headers,
     });
     if (!session?.user?.id) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
-    const simulationId = routeParams.id; // Use id from awaited/assigned params
     if (!simulationId) {
         return NextResponse.json({ message: 'Simulation ID is required' }, { status: 400 });
     }
 
     const body = await request.json();
 
-    // Validate request body
     const validation = updateSimulationSchema.safeParse(body);
     if (!validation.success) {
         console.error("[API SIMULATION PATCH] Validation Error:", validation.error.errors);
@@ -115,23 +105,21 @@ export async function PATCH(
     
     const { duration, transcript, callStatus } = validation.data;
 
-    // Check if simulation exists and belongs to the user
     const existingSimulation = await prisma.callSimulation.findUnique({
-        where: { id: simulationId, userId: session.user.id } // Use simulationId from params.id
+        where: { id: simulationId, userId: session.user.id }
     });
 
     if (!existingSimulation) {
          return NextResponse.json({ message: 'Simulation not found or access denied' }, { status: 404 });
     }
 
-    // Update the simulation
     const updatedSimulation = await prisma.callSimulation.update({
       where: {
-        id: simulationId, // Use simulationId from params.id
+        id: simulationId,
       },
       data: {
         duration,
-        transcript, // Prisma handles JSON type
+        transcript,
         callStatus,
       },
     });
@@ -140,7 +128,6 @@ export async function PATCH(
 
   } catch (error) {
     console.error("[API SIMULATION PATCH] Error updating simulation:", error);
-     // Handle potential Prisma errors (e.g., record not found if check failed somehow)
      if (error instanceof Error && 'code' in error && error.code === 'P2025') {
          return NextResponse.json({ message: 'Simulation not found during update' }, { status: 404 });
      }

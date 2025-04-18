@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server'; // Import NextRequest
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { generateObject } from 'ai';
@@ -7,12 +8,13 @@ import { advancedProspectMessagingSchema } from '@/lib/ai/schemas';
 import { generateProfileInsightsprompt } from '@/lib/ai/utils';
 
 export async function POST(
-  request: Request, // Use the request object for headers
-  { params }: { params: { id: string } }
+  request: NextRequest, // Use NextRequest
+  { params }: { params: Promise<{ id: string }> } // Use Promise for params
 ) {
   try {
-    const routeParams = await params; // Await params here
-    console.log(`[API analyze] Received request for ID: ${routeParams.id}`); // Use awaited params
+    const { id: prospectId } = await params; // Await params before accessing id
+    
+    console.log(`[API analyze] Received request for ID: ${prospectId}`); // Use awaited/destructured id
     // Get headers from the request object directly
     const session = await auth.api.getSession({ headers: request.headers });
 
@@ -21,7 +23,7 @@ export async function POST(
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
-    const prospectId = routeParams.id; // Use awaited params
+    // const prospectId = routeParams.id; // Already destructured above
     if (!prospectId) {
       console.log("[API analyze] Prospect ID missing.");
       return NextResponse.json({ message: 'Prospect ID is required' }, { status: 400 });

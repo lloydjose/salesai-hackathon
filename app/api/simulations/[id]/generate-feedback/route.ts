@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { generateObject } from 'ai';
 import { openai } from '@ai-sdk/openai';
 import { salesCallAnalysisSchema } from '@/lib/ai/schemas';
 import { generateFeedbackPrompt } from '@/lib/ai/utils';
-import { headers } from 'next/headers';
 // eslint-disable-next-line
 import { z } from 'zod';
 
@@ -23,21 +23,19 @@ function formatTranscriptForPrompt(transcript: any[] | null): string {
 
 
 export async function POST(
-  request: Request, // Note: request object isn't used here, but required by Next.js
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const routeParams = await params; // *** Await params ***
-    console.log("[API generate-feedback] Received request for ID:", routeParams.id);
-    const headerData = await headers(); 
-    const session = await auth.api.getSession({ headers: headerData });
+    const { id: simulationId } = await params;
+    console.log("[API generate-feedback] Received request for ID:", simulationId);
+    const session = await auth.api.getSession({ headers: request.headers });
 
     if (!session?.user?.id) {
       console.log("[API generate-feedback] Unauthorized access attempt.");
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
-    const simulationId = routeParams.id; // Use awaited params
     if (!simulationId) {
       console.log("[API generate-feedback] Simulation ID missing.");
       return NextResponse.json({ message: 'Simulation ID is required' }, { status: 400 });

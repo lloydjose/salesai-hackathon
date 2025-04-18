@@ -72,7 +72,7 @@ export const VideoPanel = ({
       )}
       {/* Name Tag and Mic Indicator Overlay */}
       <div className="absolute bottom-1 left-1 sm:bottom-2 sm:left-2 z-10 flex items-center gap-1.5 bg-black/60 text-white px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-md">
-         {isUser && isMicActive && isMainView && <AudioVisualizer stream={stream} />} 
+         {isUser && isMicActive && isMainView && stream && <AudioVisualizer stream={stream} />} 
          <p className={cn(
             "font-medium",
             isMainView ? "text-sm" : "text-[10px] sm:text-xs"

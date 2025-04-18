@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server'; // Import NextRequest
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { AssemblyAI } from 'assemblyai';
@@ -14,28 +15,23 @@ const assemblyClient = new AssemblyAI({
     apiKey: process.env.ASSEMBLYAI_API_KEY!,
 });
 
-// Define the expected shape for context type inference
-interface RouteContext {
-    // Expect params to have an id that might be a string
-    params: { id?: string }; 
-}
-
-// Remove Zod schema for params
-// const paramsSchema = z.object({ ... });
+// Remove the RouteContext interface
+// interface RouteContext {
+//     params: { id?: string }; 
+// }
 
 // Define expected statuses from AssemblyAI
 type AssemblyAIStatus = 'queued' | 'processing' | 'completed' | 'error';
 
 export async function GET(
-    request: Request,
-    context: RouteContext // Use the interface for context type
+    request: NextRequest, // Use NextRequest
+    { params }: { params: Promise<{ id: string }> } // Use Promise for params
 ) {
     try {
-        // Attempt to await context.params based on the error message
-        const params = await context.params;
-        const analysisId = params?.id; // Access id from the awaited object
-
-        // Perform the simple type check on the potentially awaited result
+        // Await params before accessing id
+        const { id: analysisId } = await params;
+        
+        // Perform the simple type check on the now definitely string result
         if (typeof analysisId !== 'string') {
             console.error("[API Transcript Poll] Invalid or missing analysis ID parameter after await:", analysisId);
             return NextResponse.json({ message: 'Invalid or missing analysis ID parameter.' }, { status: 400 });

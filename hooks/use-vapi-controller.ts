@@ -6,11 +6,13 @@ import Vapi from '@vapi-ai/web';
 import { toast } from 'sonner';
 import { generateSystemPrompt } from '@/lib/ai/utils'; 
 import { PersonaDetails } from '@/lib/ai/types'; 
+import { useSession } from '@/lib/auth-client';
 
 export function useVapiController(
     simulationId: string | null, 
     personaDetails: PersonaDetails | null, 
 ) {
+  const { data: session } = useSession();
   const router = useRouter();
   const [isCallActive, setIsCallActive] = useState(false);
   const [callStatusMessage, setCallStatusMessage] = useState("Initializing...");
@@ -23,6 +25,9 @@ export function useVapiController(
   const elapsedTimeRef = useRef(0); 
   const timerIntervalRef = useRef<NodeJS.Timeout | null>(null); 
   const [displayElapsedTime, setDisplayElapsedTime] = useState(0);
+
+  // Ref to prevent multiple saves on call end
+  const callEndHandledRef = useRef<boolean>(false);
 
   // Initialize VAPI and Setup Listeners
   useEffect(() => {
@@ -99,17 +104,17 @@ export function useVapiController(
        setCallStatusMessage("Call Failed");
      };
 
-     vapiInstance.on("call-start", onCallStart);
-     vapiInstance.on("call-end", onCallEnd);
-     vapiInstance.on("speech-start", onSpeechStart);
-     vapiInstance.on("speech-end", onSpeechEnd);
-     vapiInstance.on("volume-level", onVolumeLevel);
-     vapiInstance.on("message", onMessage);
-     vapiInstance.on("error", onError);
+     vapiRef.current?.on("call-start", onCallStart);
+     vapiRef.current?.on("call-end", onCallEnd);
+     vapiRef.current?.on("speech-start", onSpeechStart);
+     vapiRef.current?.on("speech-end", onSpeechEnd);
+     vapiRef.current?.on("volume-level", onVolumeLevel);
+     vapiRef.current?.on("message", onMessage);
+     vapiRef.current?.on("error", onError);
 
     return () => {
       console.log("[useVapi] Cleaning up VAPI listeners");
-      vapiInstance.removeAllListeners();
+      vapiRef.current?.removeAllListeners();
       if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
     };
   }, []);
@@ -210,16 +215,18 @@ export function useVapiController(
       const systemPrompt = generateSystemPrompt(personaDetails);
       console.log("[useVapi] Generated System Prompt:", systemPrompt);
 
+      // Define the config inline, letting TS infer where possible but specifying literals
       const assistantConfig = {
-         transcriber: { provider: "deepgram", model: "nova-2", language: "en-US" },
-         model: { provider: "openai", model: "gpt-4o-mini", messages: [{ role: "system", content: systemPrompt }] },
-         voice: { provider: "playht", voiceId: "jennifer" },
+         transcriber: { provider: "deepgram" as const, model: "nova-2", language: "en-US" },
+         model: { provider: "openai" as const, model: "gpt-4o-mini", messages: [{ role: "system" as const, content: systemPrompt }] },
+         voice: { provider: "playht" as const, voiceId: "jennifer" },
          firstMessage: firstMessage, 
-         clientMessages: ["transcript"], 
+         clientMessages: ["transcript" as const], 
          recordingEnabled: true,
       };
       console.log("[useVapi] Starting VAPI with config:", assistantConfig);
-      vapi.start(assistantConfig);
+      // Type assertion might be needed if inference isn't enough
+      vapi.start(assistantConfig as any); // Use 'as any' as a temporary workaround if needed
     }
   }, [isCallActive, personaDetails, vapiRef]); // vapiRef added if needed
 

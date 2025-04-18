@@ -1,14 +1,14 @@
 import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
 export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const routeParams = await params; // Await params
-    const briefId = routeParams.id;
+    const { id: briefId } = await params;
 
     const session = await auth.api.getSession({ headers: request.headers });
     if (!session?.user?.id) {

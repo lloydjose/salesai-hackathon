@@ -1,21 +1,21 @@
 import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 // eslint-disable-next-line
 import { headers } from 'next/headers';
 
 export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const routeParams = await params;
+    const { id: prospectId } = await params;
     const session = await auth.api.getSession({ headers: request.headers });
     if (!session?.user?.id) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
     const userId = session.user.id;
-    const prospectId = routeParams.id;
 
     if (!prospectId) {
       return NextResponse.json({ message: 'Prospect ID is required' }, { status: 400 });

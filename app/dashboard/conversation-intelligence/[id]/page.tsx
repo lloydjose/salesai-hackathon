@@ -1,19 +1,18 @@
 import { AnalysisPageClient } from '@/components/conversation-intelligence/analysis-page-client';
 import { PageHeader } from '@/components/shared/page-header';
 
-// Define the expected params structure for the page props
+// Update props interface to reflect params being a Promise
 interface ConversationAnalysisPageProps {
-    params: {
+    params: Promise<{
         id: string;
-    };
+    }>;
     // searchParams might also be available if needed
 }
 
 // Make the Page component async
 export default async function ConversationAnalysisPage({ params }: ConversationAnalysisPageProps) {
-    // Explicitly await params based on the persistent error
-    const awaitedParams = await params;
-    const analysisId = awaitedParams.id;
+    // Await the params Promise before destructuring
+    const { id: analysisId } = await params;
 
     if (!analysisId) {
         // Handle the case where ID might be missing

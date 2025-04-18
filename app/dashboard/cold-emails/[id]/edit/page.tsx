@@ -1,16 +1,17 @@
 import { EmailEditView } from "@/components/cold-emails/email-edit-view";
 import { PageHeader } from "@/components/shared/page-header";
 
+// Update props interface to reflect params being a Promise
 interface EditColdEmailPageProps {
-    params: {
+    params: Promise<{
         id: string;
-    };
+    }>;
 }
 
 // Keep component async
 export default async function EditColdEmailPage({ params }: EditColdEmailPageProps) {
-    // Explicitly extract id
-    const { id } = params;
+    // Await the params Promise before destructuring
+    const { id } = await params;
 
     if (!id) {
         return <div>Error: Email ID is missing.</div>;

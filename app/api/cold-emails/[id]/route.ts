@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server'; // Ensure NextRequest is imported
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
@@ -6,17 +7,22 @@ import { z } from 'zod';
 // Schema to validate the ID parameter *directly*
 const idParamSchema = z.string({ required_error: "Email ID parameter is required." }).min(1, "Email ID cannot be empty.");
 
+// Define the interface for the route context (params)
+// interface RouteContext {
+//   params: {
+//     id: string;
+//   };
+// }
+
 export async function GET(
-    request: Request, 
-    context: { params: { id?: string } } // Use context object name
+  request: NextRequest, 
+  { params }: { params: Promise<{ id: string }> } // Use Promise for params
 ) {
   try {
-    // Await params from context before accessing
-    const params = context.params; 
-
+    const { id: potentialId } = await params; // Await params before accessing id
+    
     // Log the received params object and the specific id property
-    console.log(`[API ColdEmail GET /id] Received params object:`, params);
-    const potentialId = params?.id; // Extract the ID directly
+    // console.log(`[API ColdEmail GET /id] Received context.params:`, context.params); // context no longer exists
     console.log(`[API ColdEmail GET /id] Extracted potential ID: ${potentialId}, Type: ${typeof potentialId}`);
 
     // Validate the extracted ID string
@@ -64,9 +70,6 @@ export async function GET(
   }
 }
 
-// TODO: Add DELETE handler here later if needed (already in history page logic)
-// export async function DELETE(...) { ... }
-
 // Schema for PATCH request body validation
 const updateEmailSchema = z.object({
     editedContent: z.string().optional(),
@@ -75,15 +78,13 @@ const updateEmailSchema = z.object({
 });
 
 export async function PATCH(
-    request: Request,
-    context: { params: { id?: string } } // Use context object name
+  request: NextRequest, 
+  { params }: { params: Promise<{ id: string }> } // Use Promise for params
 ) {
     try {
-        // Await params from context before accessing
-        const params = context.params;
-
+        const { id: potentialId } = await params; // Await params before accessing id
+        
         // Validate extracted ID string
-        const potentialId = params?.id;
         const emailId = idParamSchema.parse(potentialId);
         console.log(`[API ColdEmail PATCH /${emailId}] Validated ID.`);
 
@@ -143,4 +144,4 @@ export async function PATCH(
         const errorMessage = error instanceof Error ? error.message : 'Unknown server error';
         return NextResponse.json({ message: 'Failed to update email', error: errorMessage }, { status: 500 });
     }
-} 
+}
