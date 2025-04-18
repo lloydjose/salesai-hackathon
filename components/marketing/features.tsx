@@ -50,7 +50,7 @@ function Feature() {
             <div className="relative w-full h-32 mb-4 overflow-hidden rounded-md">
               <Image 
                 src="/images/conversation-intelligence.webp"
-                alt="Conversation Intelligence Feature"
+                alt="Conversation Intelligence"
                 layout="fill" 
                 objectFit="cover"
               />
