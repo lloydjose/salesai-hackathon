@@ -1,13 +1,15 @@
 import type { Metadata } from "next/types";
 
+const url = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+
 export function createMetadata(override: Metadata): Metadata {
 	return {
 		...override,
 		openGraph: {
 			title: override.title ?? undefined,
 			description: override.description ?? undefined,
-			url: "https://demo.better-auth.com",
-			images: "https://demo.better-auth.com/og.png",
+			url: url,
+			images: "/og.png",
 			siteName: "Scalaro",
 			...override.openGraph,
 		},
@@ -16,7 +18,7 @@ export function createMetadata(override: Metadata): Metadata {
 			creator: "@beakcru",
 			title: override.title ?? undefined,
 			description: override.description ?? undefined,
-			images: "https://demo.better-auth.com/og.png",
+			images: "/og.png",
 			...override.twitter,
 		},
 	};

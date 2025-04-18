@@ -18,6 +18,8 @@ import { signIn } from "@/lib/auth-client";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
+const url = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+
 export default function SignIn() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -183,7 +185,7 @@ export default function SignIn() {
 					<p className="text-center text-xs text-neutral-500">
 						By Signing in, you agree to the{" "}
 						<Link
-							href="https://localhost:3000/terms-of-service"
+							href={`${url}/terms-of-service`}
 							className="underline"
 							target="_blank"
 						>

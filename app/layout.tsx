@@ -12,7 +12,7 @@ const archivo = Archivo({
 	display: 'swap',
 });
 
-const url = process.env.NEXT_PUBLIC_APP_URL || "https://localhost:3000";
+const url = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
 const spectral = Spectral({
 	subsets: ["latin"],
