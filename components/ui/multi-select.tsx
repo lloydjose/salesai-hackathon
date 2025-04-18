@@ -22,6 +22,8 @@ interface MultiSelectProps {
 
 export function MultiSelect({ options, selected, onChange, placeholder, className }: MultiSelectProps) {
   const [open, setOpen] = React.useState(false);
+  const inputId = React.useId();
+  const listboxId = React.useId();
 
   const handleUnselect = (value: string) => {
     onChange(selected.filter((item) => item !== value));
@@ -33,6 +35,10 @@ export function MultiSelect({ options, selected, onChange, placeholder, classNam
         <div
           role="combobox"
           aria-expanded={open}
+          aria-controls={listboxId}
+          aria-haspopup="listbox"
+          aria-owns={listboxId}
+          aria-labelledby={inputId}
           className={cn(
             "flex min-h-10 w-full flex-wrap items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
             className
@@ -51,7 +57,7 @@ export function MultiSelect({ options, selected, onChange, placeholder, classNam
               </Badge>
             ))}
             {selected.length === 0 && (
-              <span className="text-muted-foreground">{placeholder}</span>
+              <span className="text-muted-foreground" id={inputId}>{placeholder}</span>
             )}
           </div>
         </div>
@@ -60,10 +66,12 @@ export function MultiSelect({ options, selected, onChange, placeholder, classNam
         <Command>
           <CommandInput placeholder="Search..." />
           <CommandEmpty>No options found.</CommandEmpty>
-          <CommandGroup className="max-h-64 overflow-auto">
+          <CommandGroup id={listboxId} className="max-h-64 overflow-auto" role="listbox">
             {options.map((option) => (
               <CommandItem
                 key={option.value}
+                role="option"
+                aria-selected={selected.includes(option.value)}
                 onSelect={() => {
                   if (selected.includes(option.value)) {
                     handleUnselect(option.value);

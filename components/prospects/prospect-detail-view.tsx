@@ -51,7 +51,9 @@ export function ProspectDetailView({ prospectId }: ProspectDetailViewProps) {
         if (!isMounted) return;
         if (!response.ok) {
           let errorMessage = `Error fetching prospect: ${response.statusText}`;
-          try { const errorBody = await response.json(); errorMessage = errorBody.message || errorMessage; } catch (e) { /* Ignore */ }
+          try { const errorBody = await response.json(); errorMessage = errorBody.message || errorMessage; } catch (e) { 
+            console.error("[ProspectDetailView] Error fetching data:", e);
+          }
           throw new Error(errorMessage);
         }
         return response.json();

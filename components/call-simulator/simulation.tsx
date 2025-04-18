@@ -8,6 +8,7 @@ import { Terminal } from "lucide-react";
 import { useVapiController } from "@/hooks/use-vapi-controller";
 import { SimulationControls } from "./simulation-controls";
 import { SimulationView } from "./simulation-view";
+// eslint-disable-next-line
 import { SimulationData, PersonaDetails } from "@/lib/ai/types";
 
 interface SimulationCallUIProps {
@@ -27,6 +28,7 @@ export function SimulationCallUI({ simulationId }: SimulationCallUIProps) {
   const { 
     isCallActive,
     callStatusMessage,
+    // eslint-disable-next-line
     transcript, 
     vapiError,
     isAssistantSpeaking,
@@ -55,7 +57,9 @@ export function SimulationCallUI({ simulationId }: SimulationCallUIProps) {
         if (!isMounted) return;
         if (!response.ok) {
           let errorMessage = `Error: ${response.statusText}`;
-          try { const errorBody = await response.json(); errorMessage = errorBody.message || errorMessage; } catch (e) { /* Ignore */ }
+          try { const errorBody = await response.json(); errorMessage = errorBody.message || errorMessage; } catch (e) { 
+            console.error("[SimulationUI] Error fetching data:", e);
+          }
           throw new Error(errorMessage);
         }
         return response.json();
@@ -118,8 +122,8 @@ export function SimulationCallUI({ simulationId }: SimulationCallUIProps) {
   }
 
   // Prepare participant data for the view component
-  const userParticipant = { name: simulationData.user.name, image: simulationData.user.image };
-  const prospectParticipant = { name: simulationData.personaDetails.prospectName }; 
+  const userParticipant = { name: simulationData.user?.name ?? null, image: simulationData.user?.image ?? null };
+  const prospectParticipant = { name: simulationData.personaDetails?.prospectName ?? null }; 
 
   // Combine potential errors for display
   const currentError = dataError || vapiError;

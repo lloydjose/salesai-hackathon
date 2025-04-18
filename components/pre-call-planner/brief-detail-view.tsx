@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { PageHeader } from "@/components/shared/page-header";
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Terminal, Loader2, User, Building, Target, Mic, StickyNote, Tags, Flame, Sparkles, BrainCircuit, Lightbulb, MessageSquareQuote, Send } from 'lucide-react';
+import { Terminal, User, Building, Target, StickyNote, Flame, Sparkles, BrainCircuit, Lightbulb, MessageSquareQuote } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from "@/components/ui/badge";
@@ -78,7 +78,9 @@ export function BriefDetailView({ briefId }: BriefDetailViewProps) {
         if (!isMounted) return;
         if (!response.ok) {
           let errorMessage = `Error fetching brief: ${response.statusText}`;
-          try { const errorBody = await response.json(); errorMessage = errorBody.message || errorMessage; } catch (e) { /* Ignore */ }
+          try { const errorBody = await response.json(); errorMessage = errorBody.message || errorMessage; } catch (e) { 
+            console.error("[BriefDetailView] Error fetching data:", e);
+          }
           throw new Error(errorMessage);
         }
         return response.json();
@@ -259,7 +261,7 @@ export function BriefDetailView({ briefId }: BriefDetailViewProps) {
                          <h4 className="font-semibold flex items-center"><Lightbulb className="mr-2 h-4 w-4 text-yellow-500" /> Strategy & Hooks</h4>
                          <strong className="text-sm font-medium block">Strategic Hooks:</strong>
                          {renderList(aiCallPrep.strategicHooks)}
-                         <p className="text-sm pt-1"><strong className="font-medium">Opening Line Suggestion:</strong> <span className="text-muted-foreground italic">"{aiCallPrep.openingLineSuggestion}"</span></p>
+                         <p className="text-sm pt-1"><strong className="font-medium">Opening Line Suggestion:</strong> <span className="text-muted-foreground italic">&ldquo;{aiCallPrep.openingLineSuggestion}&ldquo;</span></p>
                          <p className="text-sm"><strong className="font-medium">Product Angle:</strong> <span className="text-muted-foreground">{aiCallPrep.productAngle}</span></p>
                     </div>
                      <Separator />

@@ -31,7 +31,9 @@ export function ProspectList() {
         if (!isMounted) return;
         if (!response.ok) {
            let errorMessage = `Error: ${response.statusText}`;
-           try { const errorBody = await response.json(); errorMessage = errorBody.message || errorMessage; } catch (e) { /* Ignore */ }
+           try { const errorBody = await response.json(); errorMessage = errorBody.message || errorMessage; } catch (e) { 
+            console.error("[ProspectList] Error fetching data:", e);
+           }
            throw new Error(errorMessage);
         }
         return response.json();
@@ -74,7 +76,7 @@ export function ProspectList() {
   if (prospects.length === 0) {
     return (
       <p className="text-center text-muted-foreground py-10">
-        No prospects added yet. Click "Add New Prospect" to get started.
+        No prospects added yet. Click &ldquo;Add New Prospect&ldquo; to get started.
       </p>
     );
   }

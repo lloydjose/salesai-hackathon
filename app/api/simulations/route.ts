@@ -1,7 +1,6 @@
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
-import { headers } from "next/headers";
 import { z } from "zod";
 
 // Schema for validating the incoming persona details
@@ -28,7 +27,7 @@ const createSimulationSchema = z.object({
 export async function POST(req: Request) {
   try {
     const session = await auth.api.getSession({
-      headers: await headers(),
+      headers: req.headers,
     });
 
     if (!session?.user?.id) {
@@ -58,5 +57,39 @@ export async function POST(req: Request) {
     
     console.error("[SIMULATIONS_POST]", error);
     return new NextResponse("Internal Error", { status: 500 });
+  }
+}
+
+export async function GET(request: Request) {
+  try {
+    const session = await auth.api.getSession({
+      headers: request.headers,
+    });
+
+    if (!session?.user?.id) {
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+    }
+
+    const simulations = await prisma.callSimulation.findMany({
+      where: {
+        userId: session.user.id,
+      },
+      select: {
+        id: true,
+        createdAt: true,
+        callStatus: true,
+        duration: true,
+        personaDetails: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+      take: 50,
+    });
+
+    return NextResponse.json(simulations);
+  } catch (error) {
+    console.error('Failed to fetch simulations:', error);
+    return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
   }
 } 

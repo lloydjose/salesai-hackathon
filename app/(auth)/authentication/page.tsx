@@ -42,6 +42,7 @@ function AuthenticationContent() {
 	const [activeForm, setActiveForm] = useState(
 		searchParams.get("type") === "sign-up" ? "sign-up" : "sign-in"
 	);
+	const initialEmailFromUrl = searchParams.get("email");
 	const [activeTestimonial, setActiveTestimonial] = useState(0);
 
 	useEffect(() => {
@@ -78,7 +79,7 @@ function AuthenticationContent() {
 				<div className="mb-0">
 					<Link href="/">
 						<Image
-							src="/logomain.svg"
+							src="/mainlogo.svg"
 							alt="Scalaro"
 							width={120}
 							height={30}
@@ -164,7 +165,7 @@ function AuthenticationContent() {
 						</>
 					) : (
 						<>
-							<SignUp />
+							<SignUp initialEmail={initialEmailFromUrl} />
 							<div className="text-center text-sm mt-6">
 								<span className="text-muted-foreground">Already have an account? </span>
 								<button

@@ -1,7 +1,6 @@
 "use client";
 
 import { VideoPanel } from "./video-panel";
-import { cn } from "@/lib/utils";
 
 // Define participant structure for clarity
 interface Participant {

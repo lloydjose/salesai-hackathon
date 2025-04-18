@@ -106,7 +106,7 @@ export function NavUser() {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               {!subscription && (
-                <DropdownMenuItem onClick={() => router.push("/dashboard/account")}>
+                <DropdownMenuItem onClick={() => router.push("/dashboard/account/billing")}>
                   <Sparkles className="mr-2 h-4 w-4" />
                   Upgrade to Pro
                 </DropdownMenuItem>

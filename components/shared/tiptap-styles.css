@@ -1,0 +1,90 @@
+.tiptap {
+  > * + * {
+    margin-top: 0.75em;
+  }
+
+  ul,
+  ol {
+    padding: 0 1rem;
+    /* Use Tailwind classes for margins if preferred */
+    margin: 1.25rem 1rem 1.25rem 0.4rem !important; 
+
+    li p {
+      margin-top: 0.25em;
+      margin-bottom: 0.25em;
+    }
+  }
+
+  /* Basic heading styles (Tailwind prose handles this better) */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.1;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  /* Basic code styles (Tailwind prose handles this better) */
+  code {
+    /* Example: use Tailwind classes like bg-muted text-muted-foreground px-1 py-0.5 rounded */
+    background-color: rgba(97, 97, 97, 0.1);
+    color: #616161;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.85rem;
+  }
+
+  /* Basic pre/code block styles (Tailwind prose handles this better) */
+  pre {
+    /* Example: use Tailwind classes like bg-foreground text-background rounded p-4 */
+    background: #0D0D0D;
+    color: #FFF;
+    font-family: 'JetBrainsMono', monospace;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin: 1.25rem 0;
+
+    code {
+      color: inherit;
+      padding: 0;
+      background: none;
+      font-size: 0.8rem;
+    }
+  }
+
+  /* Basic image styles (Tailwind prose handles this better) */
+  img {
+    max-width: 100%;
+    height: auto;
+    margin: 1.25rem 0;
+  }
+
+  /* Basic blockquote styles (Tailwind prose handles this better) */
+  blockquote {
+    /* Example: use Tailwind classes like border-l-4 pl-4 italic */
+    padding-left: 1rem;
+    border-left: 3px solid rgba(13, 13, 13, 0.1);
+    margin: 1.25rem 0;
+  }
+
+  /* Basic horizontal rule styles (Tailwind prose handles this better) */
+  hr {
+    border: none;
+    border-top: 1px solid rgba(13, 13, 13, 0.1);
+    margin: 2rem 0;
+  }
+}
+
+/* Placeholder styling */
+.tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: hsl(var(--muted-foreground)); /* Use theme variable */
+  pointer-events: none;
+  height: 0;
+}
+
+/* Ensure editor takes available space */
+.tiptap .ProseMirror {
+  height: 100%;
+  min-height: inherit; /* Inherit min-height from parent */
+} 

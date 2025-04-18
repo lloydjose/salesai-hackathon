@@ -8,13 +8,11 @@ import { z } from 'zod';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Loader2, Sparkles, AlertCircle } from 'lucide-react';
+import { Loader2, Sparkles } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 
 // Zod schema for form validation (client-side)
 const formSchema = z.object({
@@ -215,7 +213,7 @@ export function CreatePlanForm() {
                 <Textarea placeholder="Briefly describe the product/service angle, e.g., 'AI-powered data access layer for OT security'" {...field} disabled={isSubmitting} />
               </FormControl>
                <FormDescription>
-                Provide context if the AI needs to know what you're selling.
+                Provide context if the AI needs to know what you&apos;re selling.
               </FormDescription>
               <FormMessage />
             </FormItem>

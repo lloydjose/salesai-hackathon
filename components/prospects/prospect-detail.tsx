@@ -6,7 +6,6 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
 import { ExternalLink, Briefcase, GraduationCap, Info, Sparkles, MessageSquareQuote, BrainCircuit, Send, Lightbulb } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { Skeleton } from '@/components/ui/skeleton';
 import { AdvancedProspectMessaging } from '@/lib/ai/schemas';
 
@@ -187,6 +186,7 @@ export function ProspectDetail({ prospect, isAnalyzing, aiAnalysis }: ProspectDe
   // Ensure aiAnalysis from props is used if available, otherwise use from prospect data
   const analysisData = aiAnalysis || prospect.aiAnalysis;
 
+  // eslint-disable-next-line
   const { name, linkedinProfileUrl, linkedinData, customData, source, createdAt } = prospect;
   const profilePic = getProfilePicUrl(linkedinData);
   const jobTitle = getCurrentJobTitle(linkedinData) || (customData as any)?.jobTitle || 'No title available';

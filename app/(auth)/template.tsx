@@ -1,6 +1,5 @@
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { redirect } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 
@@ -14,10 +13,11 @@ export default async function AuthTemplate({
 			headers: await headers(),
 		});
 
+		console.log(session);
 		// If session exists, redirect to dashboard
-		if (session) {
-			redirect("/dashboard");
-		}
+		// if (session) {
+		// 	redirect("/dashboard");
+		// }
 
 		return children;
 	} catch (error) {

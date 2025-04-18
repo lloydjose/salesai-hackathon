@@ -56,7 +56,9 @@ export function BriefList() {
         if (!isMounted) return;
         if (!response.ok) {
            let errorMessage = `Error: ${response.statusText}`;
-           try { const errorBody = await response.json(); errorMessage = errorBody.message || errorMessage; } catch (e) { /* Ignore */ }
+           try { const errorBody = await response.json(); errorMessage = errorBody.message || errorMessage; } catch (e) { 
+            console.error("[BriefList] Error fetching data:", e);
+           }
            throw new Error(errorMessage);
         }
         return response.json();
@@ -98,7 +100,7 @@ export function BriefList() {
   if (briefs.length === 0) {
     return (
       <p className="text-center text-muted-foreground py-10">
-        No pre-call plans created yet. Click "Create New Plan" to get started.
+        No pre-call plans created yet. Click &ldquo;Create New Plan&ldquo; to get started.
       </p>
     );
   }

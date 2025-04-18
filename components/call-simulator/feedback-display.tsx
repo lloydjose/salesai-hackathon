@@ -37,7 +37,9 @@ export function FeedbackDisplay({ simulationId }: FeedbackDisplayProps) {
         if (!isMounted) return;
         if (!response.ok) {
           let errorMessage = `Error fetching data: ${response.statusText}`;
-          try { const errorBody = await response.json(); errorMessage = errorBody.message || errorMessage; } catch (e) { /* Ignore */ }
+          try { const errorBody = await response.json(); errorMessage = errorBody.message || errorMessage; } catch (e) { 
+            console.error("[FeedbackDisplay] Error fetching data:", e);
+          }
           throw new Error(errorMessage);
         }
         return response.json();

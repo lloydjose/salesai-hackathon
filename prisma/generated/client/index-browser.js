@@ -321,6 +321,32 @@ exports.Prisma.CallPrepBriefScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ConversationAnalysisScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  originalFilename: 'originalFilename',
+  storagePath: 'storagePath',
+  description: 'description',
+  status: 'status',
+  transcript: 'transcript',
+  aiAnalysis: 'aiAnalysis',
+  errorMessage: 'errorMessage',
+  assemblyAiTranscriptId: 'assemblyAiTranscriptId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ColdEmailScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  prospectId: 'prospectId',
+  userInput: 'userInput',
+  aiGeneratedEmail: 'aiGeneratedEmail',
+  editedContent: 'editedContent',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -357,6 +383,13 @@ exports.ProspectSource = exports.$Enums.ProspectSource = {
   OTHER: 'OTHER'
 };
 
+exports.AnalysisStatus = exports.$Enums.AnalysisStatus = {
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  COMPLETE: 'COMPLETE',
+  FAILED: 'FAILED'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   Session: 'Session',
@@ -374,7 +407,9 @@ exports.Prisma.ModelName = {
   UserProfile: 'UserProfile',
   CallSimulation: 'CallSimulation',
   Prospect: 'Prospect',
-  CallPrepBrief: 'CallPrepBrief'
+  CallPrepBrief: 'CallPrepBrief',
+  ConversationAnalysis: 'ConversationAnalysis',
+  ColdEmail: 'ColdEmail'
 };
 
 /**

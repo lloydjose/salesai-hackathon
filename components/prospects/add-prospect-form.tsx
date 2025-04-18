@@ -30,6 +30,7 @@ type LinkedinFormValues = z.infer<typeof linkedinSchema>;
 type ManualFormValues = z.infer<typeof manualSchema>;
 
 export function AddProspectForm() {
+  // eslint-disable-next-line
   const router = useRouter();
   const [sourceType, setSourceType] = useState<'linkedin' | 'manual'>('linkedin');
   const [isLoading, setIsLoading] = useState(false);

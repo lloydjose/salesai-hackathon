@@ -190,4 +190,116 @@ Based *only* on the LinkedIn data and the user's call context, generate a struct
 
 Return the structured data using the schema:
 `;
+};
+
+// --- New Function for Conversation Intelligence Analysis ---
+
+export const generateConversationInsightsPrompt = (
+    transcriptText: string,
+    description?: string | null // Optional user-provided context
+): string => {
+    // Basic checks
+    if (!transcriptText || transcriptText.trim().length === 0) {
+        return "Error: Transcript text is empty or invalid.";
+    }
+
+    // Construct the prompt
+    return `
+You are an expert AI Sales Coach specializing in conversation intelligence.
+
+**Objective:** Analyze the provided sales call transcript to generate a comprehensive performance report, including scoring, sentiment analysis, key moment identification, and actionable coaching feedback.
+
+**1. Call Context (Optional):**
+${description ? `- User Description: ${description}` : `- No additional context provided.`}
+
+**2. Call Transcript:**
+\`\`\`
+${transcriptText}
+\`\`\`
+
+**Instructions:**
+Based on the transcript and optional context, generate a structured Conversation Intelligence report using the provided schema. Ensure your analysis covers:
+- A concise summary.
+- An overall score (0-100) with a breakdown across key sales competencies.
+- A timeline of significant sentiment shifts.
+- The talk-to-listen ratio.
+- Detection and evaluation of objections.
+- Identification of the best line, missed opportunities, and closing effectiveness.
+- Concrete strengths, areas for improvement, and specific coaching tips.
+- Relevant tags summarizing the call.
+
+Provide objective, data-driven insights where possible, focusing on actionable feedback for the salesperson.
+Return the structured data using the schema:
+`;
+};
+
+// --- New Function for Cold Email Generation Prompt ---
+import { ColdEmailFormInput } from './types'; // Import the form input type
+
+// Helper to safely extract relevant prospect info
+const getProspectContext = (prospectData: any): string => {
+    if (!prospectData || typeof prospectData !== 'object') return "No prospect details provided.";
+    
+    let context = "Prospect Details:\n";
+    if (prospectData.name) context += `- Name: ${prospectData.name}\n`;
+    
+    // Attempt to get title/company from linkedinData if present
+    const profile = prospectData.linkedinData?.profile || prospectData.linkedinData;
+    if (profile?.headline) context += `- Headline: ${profile.headline}\n`;
+    if (profile?.location) context += `- Location: ${profile.location}\n`;
+    if (profile?.companyName) context += `- Company: ${profile.companyName}\n`;
+    // Add more relevant fields from your linkedinData structure if needed
+    // e.g., recent posts, shared connections (be careful with complexity)
+
+    if (context === "Prospect Details:\n") return "Prospect details available but no specific fields found.";
+    return context;
+}
+
+export const generateColdEmailPrompt = (
+    userInput: ColdEmailFormInput,
+    prospectData?: any | null, // Optional prospect data fetched from DB
+    senderName?: string | null, // Add sender name
+    senderTitle?: string | null // Add sender title
+): string => {
+    let recipientInfo = "";
+    if (userInput.prospectId && prospectData) {
+        recipientInfo = getProspectContext(prospectData);
+    } else {
+        recipientInfo = "Recipient Details (Manual Input):\n";
+        if (userInput.recipientName) recipientInfo += `- Name: ${userInput.recipientName}\n`;
+        if (userInput.recipientTitle) recipientInfo += `- Title: ${userInput.recipientTitle}\n`;
+        if (userInput.recipientCompany) recipientInfo += `- Company: ${userInput.recipientCompany}\n`;
+        if (recipientInfo === "Recipient Details (Manual Input):\n") recipientInfo = "No specific recipient details provided manually.";
+    }
+
+    let senderInfo = "Sender Information:\n";
+    senderInfo += `- Name: ${senderName || 'Unknown Sender'}\n`;
+    if (senderTitle) senderInfo += `- Title: ${senderTitle}\n`;
+
+    return `
+You are an expert cold email copywriter specializing in B2B sales outreach. Your goal is to generate a highly personalized, concise, and effective cold email based on the provided context.
+
+**Task:** Generate a structured cold email draft.
+
+**Sender Information:**
+${senderInfo}
+
+**Recipient Information:**
+${recipientInfo}
+
+**Email Context & Goal:**
+- **Subject Matter/Goal:** ${userInput.emailSubjectContext}
+- **Desired Style:** ${userInput.emailStyle}
+- **Psychological Angle:** ${userInput.psychologyAngle}
+${userInput.customInstructions ? `- **Additional Instructions:** ${userInput.customInstructions}\n` : ''}
+**Instructions:**
+1.  Craft the email components (subject, greeting, hook, value prop, optional connector, CTA, closing) according to the specified style and psychological angle.
+2.  **Personalize Heavily:** Use the recipient information (either from the prospect data or manual input) to make the opening hook and value proposition highly relevant.
+3.  **Be Concise:** Keep the email short and easy to scan.
+4.  **Strong CTA:** Ensure the Call To Action is clear, specific, and low-friction.
+5.  **Scoring:** Provide scores (1-10) for clarity, personalization, CTA strength, tone alignment, and overall effectiveness.
+6.  **Reasoning:** Briefly explain the rationale behind your key choices (e.g., why this opening hook, why this CTA).
+
+**Output Format:** Return ONLY the structured JSON object adhering strictly to the following schema:
+`;
 }; 

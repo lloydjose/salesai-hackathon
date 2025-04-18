@@ -18,10 +18,16 @@ import { signUp } from "@/lib/auth-client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
-export function SignUp() {
+// Define props interface
+interface SignUpProps {
+	initialEmail?: string | null; // Make prop optional
+}
+
+export function SignUp({ initialEmail }: SignUpProps) { // Destructure prop
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
-	const [email, setEmail] = useState("");
+	// Initialize email state with prop value or empty string
+	const [email, setEmail] = useState(initialEmail || "");
 	const [password, setPassword] = useState("");
 	const [passwordConfirmation, setPasswordConfirmation] = useState("");
 	const [image, setImage] = useState<File | null>(null);

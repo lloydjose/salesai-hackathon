@@ -38,6 +38,8 @@ model User {
   callSimulations  CallSimulation[]
   prospects          Prospect[]
   callPrepBriefs     CallPrepBrief[]
+  conversationAnalyses ConversationAnalysis[]
+  coldEmails         ColdEmail[]
 
   @@map("user")
 }
@@ -275,6 +277,7 @@ model Prospect {
 
   // Relations
   callPrepBriefs     CallPrepBrief[]    // Prep briefs created *for* this prospect
+  coldEmails         ColdEmail[]
 
   @@unique([userId, linkedinProfileUrl])
   @@map("prospect")
@@ -296,4 +299,55 @@ model CallPrepBrief {
   updatedAt          DateTime @updatedAt
 
   @@map("callPrepBrief")
+}
+
+// --- New Conversation Intelligence Models ---
+
+enum AnalysisStatus {
+  PENDING
+  PROCESSING
+  COMPLETE
+  FAILED
+}
+
+model ConversationAnalysis {
+  id                 String   @id @default(cuid())
+  userId             String   // Foreign key to User who uploaded
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  originalFilename   String  
+  storagePath        String  
+  description        String? 
+  status             AnalysisStatus @default(PENDING)
+  transcript         Json?
+  aiAnalysis         Json?
+  errorMessage       String?
+  assemblyAiTranscriptId String?
+
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@index([userId])
+  @@map("conversation_analysis")
+}
+
+// --- New Cold Email Generation Model ---
+
+model ColdEmail {
+  id               String    @id @default(cuid())
+  userId           String    // Foreign key to User who generated this
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  prospectId       String?   // Optional foreign key if generated for a specific prospect
+  prospect         Prospect? @relation(fields: [prospectId], references: [id], onDelete: Cascade) // Optional relation
+
+  userInput        Json      // Stores the form input provided by the user
+  aiGeneratedEmail Json?     // Stores the structured AI response (subject, body, score, etc.)
+  editedContent    String?   // Optional: To store user-edited content from WYSIWYG later
+
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  @@index([userId])
+  @@index([prospectId])
+  @@map("cold_email")
 }

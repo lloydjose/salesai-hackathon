@@ -58,7 +58,7 @@ import CopyButton from "@/components/ui/copy-button";
 import { Badge } from "@/components/ui/badge";
 import { useQuery } from "@tanstack/react-query";
 import { SubscriptionTierLabel } from "@/components/subscription/tier-labels";
-import { Component } from "@/components/account/change-plan";
+import Link from "next/link";
 import { Subscription } from "@better-auth/stripe";
 
 export default function UserCard(props: {
@@ -142,10 +142,11 @@ export default function UserCard(props: {
 								tier={subscription?.plan?.toLowerCase() as "starter"}
 							/>
 						</div>
-						<Component
-							currentPlan={subscription?.plan?.toLowerCase() as "starter"}
-							isTrial={subscription?.status === "trialing"}
-						/>
+						<Button variant="outline" size="sm" asChild>
+							<Link href="/dashboard/account/billing">
+								Manage Subscription
+							</Link>
+						</Button>
 					</div>
 				</div>
 

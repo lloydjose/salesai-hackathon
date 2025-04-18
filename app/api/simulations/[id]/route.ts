@@ -69,6 +69,7 @@ export async function GET(
         duration: simulation.duration, // *** Add duration ***
         transcript: simulation.transcript || [], // *** Add transcript (default to empty array) ***
         createdAt: simulation.createdAt, // Might be useful for display
+        feedback: simulation.feedback || null, // *** Add feedback (default to null) ***
     };
 
     return NextResponse.json(responseData);

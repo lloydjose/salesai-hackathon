@@ -108,4 +108,79 @@ export const salesCallPrepBriefSchema = z.object({
   CTARecommendation: z.string().describe("A recommended Call To Action for the end of the call, aligned with the objective."),
 }).describe("AI-generated pre-call planning brief providing actionable insights for engaging a specific prospect.");
 
-export type SalesCallPrepBrief = z.infer<typeof salesCallPrepBriefSchema>; 
+export type SalesCallPrepBrief = z.infer<typeof salesCallPrepBriefSchema>;
+
+// New Schema for Conversation Intelligence Insights
+export const salesCallConversationInsightsSchema = z.object({
+  callSummary: z.string().describe("A concise 1-paragraph overview summarizing the key topics, participants, and outcomes of the call."),
+
+  totalScore: z.number().min(0).max(100).describe("An overall performance score for the salesperson based on various metrics."),
+  scoreBreakdown: z.object({
+    rapportBuilding: z.number().min(0).max(10).describe("Score (0-10) for effectiveness in building rapport and connection."),
+    discoveryQuality: z.number().min(0).max(10).describe("Score (0-10) for the depth and quality of questions asked to understand needs."),
+    objectionHandling: z.number().min(0).max(10).describe("Score (0-10) for addressing prospect objections effectively."),
+    pitchEffectiveness: z.number().min(0).max(10).describe("Score (0-10) for clarity, relevance, and impact of the value proposition/pitch."),
+    closeAttempt: z.number().min(0).max(10).describe("Score (0-10) evaluating the attempt (or lack thereof) to gain commitment or define next steps."),
+    clarityAndConfidence: z.number().min(0).max(10).describe("Score (0-10) assessing the salesperson's vocal clarity and confidence."),
+    engagementLevel: z.number().min(0).max(10).describe("Score (0-10) estimating the prospect's engagement throughout the call."),
+    listeningRatio: z.number().min(0).max(10).describe("Score (0-10) reflecting the balance between salesperson talking and listening."),
+    personalization: z.number().min(0).max(10).describe("Score (0-10) for tailoring the conversation to the specific prospect."),
+    callControl: z.number().min(0).max(10).describe("Score (0-10) for guiding the conversation effectively towards the objective."),
+  }).describe("Breakdown of the total score across key sales competencies."),
+
+  sentimentTimeline: z.array(z.object({
+    timestamp: z.string().regex(/^\d{2}:\d{2}$/, { message: "Timestamp must be in MM:SS format" }).describe("Timestamp marker (e.g., \"01:23\") for the sentiment event."),
+    speaker: z.enum(['salesperson', 'prospect', 'both', 'unknown']).describe("Who exhibited the sentiment (or overall if 'both'/'unknown')."),
+    sentiment: z.enum(['positive', 'neutral', 'negative']).describe("The dominant sentiment detected around this timestamp."),
+  })).describe("Timeline mapping detected sentiment shifts during the call."),
+
+  talkRatio: z.object({
+    salespersonTalkTime: z.number().min(0).max(100).describe("Percentage of the call duration the salesperson was speaking."),
+    prospectTalkTime: z.number().min(0).max(100).describe("Percentage of the call duration the prospect was speaking."),
+  }).describe("Analysis of the talk-to-listen ratio between participants."),
+
+  objections: z.array(z.object({
+    timestamp: z.string().regex(/^\d{2}:\d{2}$/, { message: "Timestamp must be in MM:SS format" }).describe("Approximate timestamp (MM:SS) when the objection was raised."),
+    type: z.enum([
+      'price', 'timing', 'authority', 'need', 'trust', 'competition', 'budget', 'feature_gap', 'implementation', 'not_interested', 'other'
+    ]).describe("The category of the objection raised by the prospect."),
+    handledEffectively: z.boolean().describe("AI assessment of whether the salesperson's response effectively addressed the objection."),
+    repResponseSnippet: z.string().describe("A brief snippet of the salesperson's response to the objection."),
+  })).describe("Detected objections raised by the prospect and how they were handled."),
+
+  bestLine: z.string().describe("The most impactful or well-delivered line by the salesperson during the call."),
+  missedOpportunities: z.array(z.string()).describe("Key moments or cues where the salesperson could have asked a better question, pivoted, or capitalized on an opportunity but didn't."),
+  closingAttempted: z.boolean().describe("Whether the salesperson made a clear attempt to close or secure the next step."),
+  nextStepConfirmed: z.boolean().describe("Whether a concrete next step was agreed upon and confirmed by the prospect."),
+
+  strengths: z.array(z.string()).describe("Specific positive aspects or skills demonstrated by the salesperson."),
+  areasToImprove: z.array(z.string()).describe("Specific areas where the salesperson could improve their technique or approach."),
+  specificCoachingTips: z.array(z.string()).describe("Actionable coaching tips tailored to the salesperson based on this call."),
+
+  tags: z.array(z.string()).describe("Relevant tags summarizing the call content or characteristics (e.g., [\"product demo\", \"price objection handled\", \"high prospect engagement\"])."),
+}).describe("Comprehensive AI analysis of a sales call recording, providing scores, insights, and coaching.");
+
+export type SalesCallConversationInsights = z.infer<typeof salesCallConversationInsightsSchema>;
+
+// --- New Schema for Cold Email Generator Response --- 
+export const coldEmailGeneratorSchema = z.object({
+    subjectLine: z.string().describe("A compelling, personalized subject line (max ~60 chars)."),
+    greeting: z.string().describe("Appropriate greeting (e.g., 'Hi [Name],' or 'Dear [Mr./Ms. LastName],')."),
+    openingHook: z.string().describe("A personalized sentence referencing the prospect, their company, or a relevant trigger event to grab attention."),
+    valueProposition: z.string().describe("A concise explanation of the core benefit offered, tailored to the prospect's likely needs or context."),
+    bodyConnector: z.string().optional().describe("Optional sentence(s) bridging the hook/value prop to the CTA, providing context or social proof briefly."),
+    callToAction: z.string().describe("A clear, low-friction call-to-action (e.g., asking a question, suggesting a quick call time, offering a resource)."),
+    closing: z.string().describe("Professional closing (e.g., 'Best regards,', 'Sincerely,')."),
+    
+    emailScore: z.object({
+        clarity: z.number().min(1).max(10).describe("Score (1-10) for how clear and easy to understand the email is."),
+        personalization: z.number().min(1).max(10).describe("Score (1-10) for how well the email is tailored to the specific recipient."),
+        ctaStrength: z.number().min(1).max(10).describe("Score (1-10) for the effectiveness and clarity of the call-to-action."),
+        toneAlignment: z.number().min(1).max(10).describe("Score (1-10) assessing how well the tone matches the requested style."),
+        overall: z.number().min(1).max(10).describe("Overall estimated effectiveness score (1-10) of the generated email.")
+    }).describe("Scoring of the generated email's key components."),
+    
+    reasoning: z.string().describe("A brief explanation (1-2 sentences) of the key choices made in crafting the email (personalization angle, CTA choice, etc.).")
+}).describe("AI-generated structured cold email content with scoring.");
+
+export type ColdEmailGeneratorResult = z.infer<typeof coldEmailGeneratorSchema>; 

@@ -1,10 +1,24 @@
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme/theme-provider";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
 import { WrapperWithQuery } from "@/components/theme/wrapper";
 import { createMetadata } from "@/lib/metadata";
+import { Archivo, Spectral } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const archivo = Archivo({
+	subsets: ["latin"],
+	variable: "--font-sans",
+	display: 'swap',
+});
+
+const spectral = Spectral({
+	subsets: ["latin"],
+	weight: ["300"],
+	style: ["normal", "italic"],
+	variable: "--font-spectral",
+	display: 'swap',
+});
 
 export const metadata = createMetadata({
 	title: {
@@ -25,7 +39,7 @@ export default function RootLayout({
 			<head>
 				<link rel="icon" href="/favicon/favicon.ico" sizes="any" />
 			</head>
-			<body className={`${GeistSans.variable} ${GeistMono.variable} font-sans antialiased`}>
+			<body className={cn("min-h-screen bg-background font-sans antialiased", archivo.variable, spectral.variable)}>
 				<ThemeProvider attribute="class" defaultTheme="light">
 					<WrapperWithQuery>
 						{children}

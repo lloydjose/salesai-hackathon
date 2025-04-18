@@ -98,6 +98,16 @@ export type Prospect = $Result.DefaultSelection<Prisma.$ProspectPayload>
  * 
  */
 export type CallPrepBrief = $Result.DefaultSelection<Prisma.$CallPrepBriefPayload>
+/**
+ * Model ConversationAnalysis
+ * 
+ */
+export type ConversationAnalysis = $Result.DefaultSelection<Prisma.$ConversationAnalysisPayload>
+/**
+ * Model ColdEmail
+ * 
+ */
+export type ColdEmail = $Result.DefaultSelection<Prisma.$ColdEmailPayload>
 
 /**
  * Enums
@@ -112,11 +122,25 @@ export namespace $Enums {
 
 export type ProspectSource = (typeof ProspectSource)[keyof typeof ProspectSource]
 
+
+export const AnalysisStatus: {
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  COMPLETE: 'COMPLETE',
+  FAILED: 'FAILED'
+};
+
+export type AnalysisStatus = (typeof AnalysisStatus)[keyof typeof AnalysisStatus]
+
 }
 
 export type ProspectSource = $Enums.ProspectSource
 
 export const ProspectSource: typeof $Enums.ProspectSource
+
+export type AnalysisStatus = $Enums.AnalysisStatus
+
+export const AnalysisStatus: typeof $Enums.AnalysisStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -412,6 +436,26 @@ export class PrismaClient<
     * ```
     */
   get callPrepBrief(): Prisma.CallPrepBriefDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.conversationAnalysis`: Exposes CRUD operations for the **ConversationAnalysis** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ConversationAnalyses
+    * const conversationAnalyses = await prisma.conversationAnalysis.findMany()
+    * ```
+    */
+  get conversationAnalysis(): Prisma.ConversationAnalysisDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.coldEmail`: Exposes CRUD operations for the **ColdEmail** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ColdEmails
+    * const coldEmails = await prisma.coldEmail.findMany()
+    * ```
+    */
+  get coldEmail(): Prisma.ColdEmailDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -868,7 +912,9 @@ export namespace Prisma {
     UserProfile: 'UserProfile',
     CallSimulation: 'CallSimulation',
     Prospect: 'Prospect',
-    CallPrepBrief: 'CallPrepBrief'
+    CallPrepBrief: 'CallPrepBrief',
+    ConversationAnalysis: 'ConversationAnalysis',
+    ColdEmail: 'ColdEmail'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -887,7 +933,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "account" | "verification" | "organization" | "member" | "invitation" | "twoFactor" | "passkey" | "oauthApplication" | "oauthAccessToken" | "oauthConsent" | "subscription" | "userProfile" | "callSimulation" | "prospect" | "callPrepBrief"
+      modelProps: "user" | "session" | "account" | "verification" | "organization" | "member" | "invitation" | "twoFactor" | "passkey" | "oauthApplication" | "oauthAccessToken" | "oauthConsent" | "subscription" | "userProfile" | "callSimulation" | "prospect" | "callPrepBrief" | "conversationAnalysis" | "coldEmail"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2149,6 +2195,154 @@ export namespace Prisma {
           }
         }
       }
+      ConversationAnalysis: {
+        payload: Prisma.$ConversationAnalysisPayload<ExtArgs>
+        fields: Prisma.ConversationAnalysisFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ConversationAnalysisFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationAnalysisPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ConversationAnalysisFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationAnalysisPayload>
+          }
+          findFirst: {
+            args: Prisma.ConversationAnalysisFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationAnalysisPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ConversationAnalysisFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationAnalysisPayload>
+          }
+          findMany: {
+            args: Prisma.ConversationAnalysisFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationAnalysisPayload>[]
+          }
+          create: {
+            args: Prisma.ConversationAnalysisCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationAnalysisPayload>
+          }
+          createMany: {
+            args: Prisma.ConversationAnalysisCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ConversationAnalysisCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationAnalysisPayload>[]
+          }
+          delete: {
+            args: Prisma.ConversationAnalysisDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationAnalysisPayload>
+          }
+          update: {
+            args: Prisma.ConversationAnalysisUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationAnalysisPayload>
+          }
+          deleteMany: {
+            args: Prisma.ConversationAnalysisDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ConversationAnalysisUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ConversationAnalysisUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationAnalysisPayload>[]
+          }
+          upsert: {
+            args: Prisma.ConversationAnalysisUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConversationAnalysisPayload>
+          }
+          aggregate: {
+            args: Prisma.ConversationAnalysisAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateConversationAnalysis>
+          }
+          groupBy: {
+            args: Prisma.ConversationAnalysisGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ConversationAnalysisGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ConversationAnalysisCountArgs<ExtArgs>
+            result: $Utils.Optional<ConversationAnalysisCountAggregateOutputType> | number
+          }
+        }
+      }
+      ColdEmail: {
+        payload: Prisma.$ColdEmailPayload<ExtArgs>
+        fields: Prisma.ColdEmailFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ColdEmailFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ColdEmailPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ColdEmailFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ColdEmailPayload>
+          }
+          findFirst: {
+            args: Prisma.ColdEmailFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ColdEmailPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ColdEmailFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ColdEmailPayload>
+          }
+          findMany: {
+            args: Prisma.ColdEmailFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ColdEmailPayload>[]
+          }
+          create: {
+            args: Prisma.ColdEmailCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ColdEmailPayload>
+          }
+          createMany: {
+            args: Prisma.ColdEmailCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ColdEmailCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ColdEmailPayload>[]
+          }
+          delete: {
+            args: Prisma.ColdEmailDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ColdEmailPayload>
+          }
+          update: {
+            args: Prisma.ColdEmailUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ColdEmailPayload>
+          }
+          deleteMany: {
+            args: Prisma.ColdEmailDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ColdEmailUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ColdEmailUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ColdEmailPayload>[]
+          }
+          upsert: {
+            args: Prisma.ColdEmailUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ColdEmailPayload>
+          }
+          aggregate: {
+            args: Prisma.ColdEmailAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateColdEmail>
+          }
+          groupBy: {
+            args: Prisma.ColdEmailGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ColdEmailGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ColdEmailCountArgs<ExtArgs>
+            result: $Utils.Optional<ColdEmailCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2250,6 +2444,8 @@ export namespace Prisma {
     callSimulation?: CallSimulationOmit
     prospect?: ProspectOmit
     callPrepBrief?: CallPrepBriefOmit
+    conversationAnalysis?: ConversationAnalysisOmit
+    coldEmail?: ColdEmailOmit
   }
 
   /* Types for Logging */
@@ -2353,6 +2549,8 @@ export namespace Prisma {
     callSimulations: number
     prospects: number
     callPrepBriefs: number
+    conversationAnalyses: number
+    coldEmails: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2365,6 +2563,8 @@ export namespace Prisma {
     callSimulations?: boolean | UserCountOutputTypeCountCallSimulationsArgs
     prospects?: boolean | UserCountOutputTypeCountProspectsArgs
     callPrepBriefs?: boolean | UserCountOutputTypeCountCallPrepBriefsArgs
+    conversationAnalyses?: boolean | UserCountOutputTypeCountConversationAnalysesArgs
+    coldEmails?: boolean | UserCountOutputTypeCountColdEmailsArgs
   }
 
   // Custom InputTypes
@@ -2441,6 +2641,20 @@ export namespace Prisma {
     where?: CallPrepBriefWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountConversationAnalysesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ConversationAnalysisWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountColdEmailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ColdEmailWhereInput
+  }
+
 
   /**
    * Count Type OrganizationCountOutputType
@@ -2488,10 +2702,12 @@ export namespace Prisma {
 
   export type ProspectCountOutputType = {
     callPrepBriefs: number
+    coldEmails: number
   }
 
   export type ProspectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     callPrepBriefs?: boolean | ProspectCountOutputTypeCountCallPrepBriefsArgs
+    coldEmails?: boolean | ProspectCountOutputTypeCountColdEmailsArgs
   }
 
   // Custom InputTypes
@@ -2510,6 +2726,13 @@ export namespace Prisma {
    */
   export type ProspectCountOutputTypeCountCallPrepBriefsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CallPrepBriefWhereInput
+  }
+
+  /**
+   * ProspectCountOutputType without action
+   */
+  export type ProspectCountOutputTypeCountColdEmailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ColdEmailWhereInput
   }
 
 
@@ -2755,6 +2978,8 @@ export namespace Prisma {
     callSimulations?: boolean | User$callSimulationsArgs<ExtArgs>
     prospects?: boolean | User$prospectsArgs<ExtArgs>
     callPrepBriefs?: boolean | User$callPrepBriefsArgs<ExtArgs>
+    conversationAnalyses?: boolean | User$conversationAnalysesArgs<ExtArgs>
+    coldEmails?: boolean | User$coldEmailsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2818,6 +3043,8 @@ export namespace Prisma {
     callSimulations?: boolean | User$callSimulationsArgs<ExtArgs>
     prospects?: boolean | User$prospectsArgs<ExtArgs>
     callPrepBriefs?: boolean | User$callPrepBriefsArgs<ExtArgs>
+    conversationAnalyses?: boolean | User$conversationAnalysesArgs<ExtArgs>
+    coldEmails?: boolean | User$coldEmailsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2836,6 +3063,8 @@ export namespace Prisma {
       callSimulations: Prisma.$CallSimulationPayload<ExtArgs>[]
       prospects: Prisma.$ProspectPayload<ExtArgs>[]
       callPrepBriefs: Prisma.$CallPrepBriefPayload<ExtArgs>[]
+      conversationAnalyses: Prisma.$ConversationAnalysisPayload<ExtArgs>[]
+      coldEmails: Prisma.$ColdEmailPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3255,6 +3484,8 @@ export namespace Prisma {
     callSimulations<T extends User$callSimulationsArgs<ExtArgs> = {}>(args?: Subset<T, User$callSimulationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CallSimulationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     prospects<T extends User$prospectsArgs<ExtArgs> = {}>(args?: Subset<T, User$prospectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProspectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     callPrepBriefs<T extends User$callPrepBriefsArgs<ExtArgs> = {}>(args?: Subset<T, User$callPrepBriefsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CallPrepBriefPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    conversationAnalyses<T extends User$conversationAnalysesArgs<ExtArgs> = {}>(args?: Subset<T, User$conversationAnalysesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConversationAnalysisPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    coldEmails<T extends User$coldEmailsArgs<ExtArgs> = {}>(args?: Subset<T, User$coldEmailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ColdEmailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3917,6 +4148,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CallPrepBriefScalarFieldEnum | CallPrepBriefScalarFieldEnum[]
+  }
+
+  /**
+   * User.conversationAnalyses
+   */
+  export type User$conversationAnalysesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationAnalysis
+     */
+    select?: ConversationAnalysisSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationAnalysis
+     */
+    omit?: ConversationAnalysisOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationAnalysisInclude<ExtArgs> | null
+    where?: ConversationAnalysisWhereInput
+    orderBy?: ConversationAnalysisOrderByWithRelationInput | ConversationAnalysisOrderByWithRelationInput[]
+    cursor?: ConversationAnalysisWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ConversationAnalysisScalarFieldEnum | ConversationAnalysisScalarFieldEnum[]
+  }
+
+  /**
+   * User.coldEmails
+   */
+  export type User$coldEmailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ColdEmail
+     */
+    select?: ColdEmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ColdEmail
+     */
+    omit?: ColdEmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ColdEmailInclude<ExtArgs> | null
+    where?: ColdEmailWhereInput
+    orderBy?: ColdEmailOrderByWithRelationInput | ColdEmailOrderByWithRelationInput[]
+    cursor?: ColdEmailWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ColdEmailScalarFieldEnum | ColdEmailScalarFieldEnum[]
   }
 
   /**
@@ -19502,6 +19781,7 @@ export namespace Prisma {
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     callPrepBriefs?: boolean | Prospect$callPrepBriefsArgs<ExtArgs>
+    coldEmails?: boolean | Prospect$coldEmailsArgs<ExtArgs>
     _count?: boolean | ProspectCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["prospect"]>
 
@@ -19550,6 +19830,7 @@ export namespace Prisma {
   export type ProspectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     callPrepBriefs?: boolean | Prospect$callPrepBriefsArgs<ExtArgs>
+    coldEmails?: boolean | Prospect$coldEmailsArgs<ExtArgs>
     _count?: boolean | ProspectCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProspectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -19564,6 +19845,7 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
       callPrepBriefs: Prisma.$CallPrepBriefPayload<ExtArgs>[]
+      coldEmails: Prisma.$ColdEmailPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -19972,6 +20254,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     callPrepBriefs<T extends Prospect$callPrepBriefsArgs<ExtArgs> = {}>(args?: Subset<T, Prospect$callPrepBriefsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CallPrepBriefPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    coldEmails<T extends Prospect$coldEmailsArgs<ExtArgs> = {}>(args?: Subset<T, Prospect$coldEmailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ColdEmailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -20428,6 +20711,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CallPrepBriefScalarFieldEnum | CallPrepBriefScalarFieldEnum[]
+  }
+
+  /**
+   * Prospect.coldEmails
+   */
+  export type Prospect$coldEmailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ColdEmail
+     */
+    select?: ColdEmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ColdEmail
+     */
+    omit?: ColdEmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ColdEmailInclude<ExtArgs> | null
+    where?: ColdEmailWhereInput
+    orderBy?: ColdEmailOrderByWithRelationInput | ColdEmailOrderByWithRelationInput[]
+    cursor?: ColdEmailWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ColdEmailScalarFieldEnum | ColdEmailScalarFieldEnum[]
   }
 
   /**
@@ -21534,6 +21841,2263 @@ export namespace Prisma {
 
 
   /**
+   * Model ConversationAnalysis
+   */
+
+  export type AggregateConversationAnalysis = {
+    _count: ConversationAnalysisCountAggregateOutputType | null
+    _min: ConversationAnalysisMinAggregateOutputType | null
+    _max: ConversationAnalysisMaxAggregateOutputType | null
+  }
+
+  export type ConversationAnalysisMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    originalFilename: string | null
+    storagePath: string | null
+    description: string | null
+    status: $Enums.AnalysisStatus | null
+    errorMessage: string | null
+    assemblyAiTranscriptId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ConversationAnalysisMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    originalFilename: string | null
+    storagePath: string | null
+    description: string | null
+    status: $Enums.AnalysisStatus | null
+    errorMessage: string | null
+    assemblyAiTranscriptId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ConversationAnalysisCountAggregateOutputType = {
+    id: number
+    userId: number
+    originalFilename: number
+    storagePath: number
+    description: number
+    status: number
+    transcript: number
+    aiAnalysis: number
+    errorMessage: number
+    assemblyAiTranscriptId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ConversationAnalysisMinAggregateInputType = {
+    id?: true
+    userId?: true
+    originalFilename?: true
+    storagePath?: true
+    description?: true
+    status?: true
+    errorMessage?: true
+    assemblyAiTranscriptId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ConversationAnalysisMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    originalFilename?: true
+    storagePath?: true
+    description?: true
+    status?: true
+    errorMessage?: true
+    assemblyAiTranscriptId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ConversationAnalysisCountAggregateInputType = {
+    id?: true
+    userId?: true
+    originalFilename?: true
+    storagePath?: true
+    description?: true
+    status?: true
+    transcript?: true
+    aiAnalysis?: true
+    errorMessage?: true
+    assemblyAiTranscriptId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ConversationAnalysisAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ConversationAnalysis to aggregate.
+     */
+    where?: ConversationAnalysisWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ConversationAnalyses to fetch.
+     */
+    orderBy?: ConversationAnalysisOrderByWithRelationInput | ConversationAnalysisOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ConversationAnalysisWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ConversationAnalyses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ConversationAnalyses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ConversationAnalyses
+    **/
+    _count?: true | ConversationAnalysisCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ConversationAnalysisMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ConversationAnalysisMaxAggregateInputType
+  }
+
+  export type GetConversationAnalysisAggregateType<T extends ConversationAnalysisAggregateArgs> = {
+        [P in keyof T & keyof AggregateConversationAnalysis]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateConversationAnalysis[P]>
+      : GetScalarType<T[P], AggregateConversationAnalysis[P]>
+  }
+
+
+
+
+  export type ConversationAnalysisGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ConversationAnalysisWhereInput
+    orderBy?: ConversationAnalysisOrderByWithAggregationInput | ConversationAnalysisOrderByWithAggregationInput[]
+    by: ConversationAnalysisScalarFieldEnum[] | ConversationAnalysisScalarFieldEnum
+    having?: ConversationAnalysisScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ConversationAnalysisCountAggregateInputType | true
+    _min?: ConversationAnalysisMinAggregateInputType
+    _max?: ConversationAnalysisMaxAggregateInputType
+  }
+
+  export type ConversationAnalysisGroupByOutputType = {
+    id: string
+    userId: string
+    originalFilename: string
+    storagePath: string
+    description: string | null
+    status: $Enums.AnalysisStatus
+    transcript: JsonValue | null
+    aiAnalysis: JsonValue | null
+    errorMessage: string | null
+    assemblyAiTranscriptId: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: ConversationAnalysisCountAggregateOutputType | null
+    _min: ConversationAnalysisMinAggregateOutputType | null
+    _max: ConversationAnalysisMaxAggregateOutputType | null
+  }
+
+  type GetConversationAnalysisGroupByPayload<T extends ConversationAnalysisGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ConversationAnalysisGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ConversationAnalysisGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ConversationAnalysisGroupByOutputType[P]>
+            : GetScalarType<T[P], ConversationAnalysisGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ConversationAnalysisSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    originalFilename?: boolean
+    storagePath?: boolean
+    description?: boolean
+    status?: boolean
+    transcript?: boolean
+    aiAnalysis?: boolean
+    errorMessage?: boolean
+    assemblyAiTranscriptId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["conversationAnalysis"]>
+
+  export type ConversationAnalysisSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    originalFilename?: boolean
+    storagePath?: boolean
+    description?: boolean
+    status?: boolean
+    transcript?: boolean
+    aiAnalysis?: boolean
+    errorMessage?: boolean
+    assemblyAiTranscriptId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["conversationAnalysis"]>
+
+  export type ConversationAnalysisSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    originalFilename?: boolean
+    storagePath?: boolean
+    description?: boolean
+    status?: boolean
+    transcript?: boolean
+    aiAnalysis?: boolean
+    errorMessage?: boolean
+    assemblyAiTranscriptId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["conversationAnalysis"]>
+
+  export type ConversationAnalysisSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    originalFilename?: boolean
+    storagePath?: boolean
+    description?: boolean
+    status?: boolean
+    transcript?: boolean
+    aiAnalysis?: boolean
+    errorMessage?: boolean
+    assemblyAiTranscriptId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ConversationAnalysisOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "originalFilename" | "storagePath" | "description" | "status" | "transcript" | "aiAnalysis" | "errorMessage" | "assemblyAiTranscriptId" | "createdAt" | "updatedAt", ExtArgs["result"]["conversationAnalysis"]>
+  export type ConversationAnalysisInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ConversationAnalysisIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ConversationAnalysisIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ConversationAnalysisPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ConversationAnalysis"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      originalFilename: string
+      storagePath: string
+      description: string | null
+      status: $Enums.AnalysisStatus
+      transcript: Prisma.JsonValue | null
+      aiAnalysis: Prisma.JsonValue | null
+      errorMessage: string | null
+      assemblyAiTranscriptId: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["conversationAnalysis"]>
+    composites: {}
+  }
+
+  type ConversationAnalysisGetPayload<S extends boolean | null | undefined | ConversationAnalysisDefaultArgs> = $Result.GetResult<Prisma.$ConversationAnalysisPayload, S>
+
+  type ConversationAnalysisCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ConversationAnalysisFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ConversationAnalysisCountAggregateInputType | true
+    }
+
+  export interface ConversationAnalysisDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ConversationAnalysis'], meta: { name: 'ConversationAnalysis' } }
+    /**
+     * Find zero or one ConversationAnalysis that matches the filter.
+     * @param {ConversationAnalysisFindUniqueArgs} args - Arguments to find a ConversationAnalysis
+     * @example
+     * // Get one ConversationAnalysis
+     * const conversationAnalysis = await prisma.conversationAnalysis.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ConversationAnalysisFindUniqueArgs>(args: SelectSubset<T, ConversationAnalysisFindUniqueArgs<ExtArgs>>): Prisma__ConversationAnalysisClient<$Result.GetResult<Prisma.$ConversationAnalysisPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ConversationAnalysis that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ConversationAnalysisFindUniqueOrThrowArgs} args - Arguments to find a ConversationAnalysis
+     * @example
+     * // Get one ConversationAnalysis
+     * const conversationAnalysis = await prisma.conversationAnalysis.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ConversationAnalysisFindUniqueOrThrowArgs>(args: SelectSubset<T, ConversationAnalysisFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ConversationAnalysisClient<$Result.GetResult<Prisma.$ConversationAnalysisPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ConversationAnalysis that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationAnalysisFindFirstArgs} args - Arguments to find a ConversationAnalysis
+     * @example
+     * // Get one ConversationAnalysis
+     * const conversationAnalysis = await prisma.conversationAnalysis.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ConversationAnalysisFindFirstArgs>(args?: SelectSubset<T, ConversationAnalysisFindFirstArgs<ExtArgs>>): Prisma__ConversationAnalysisClient<$Result.GetResult<Prisma.$ConversationAnalysisPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ConversationAnalysis that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationAnalysisFindFirstOrThrowArgs} args - Arguments to find a ConversationAnalysis
+     * @example
+     * // Get one ConversationAnalysis
+     * const conversationAnalysis = await prisma.conversationAnalysis.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ConversationAnalysisFindFirstOrThrowArgs>(args?: SelectSubset<T, ConversationAnalysisFindFirstOrThrowArgs<ExtArgs>>): Prisma__ConversationAnalysisClient<$Result.GetResult<Prisma.$ConversationAnalysisPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ConversationAnalyses that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationAnalysisFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ConversationAnalyses
+     * const conversationAnalyses = await prisma.conversationAnalysis.findMany()
+     * 
+     * // Get first 10 ConversationAnalyses
+     * const conversationAnalyses = await prisma.conversationAnalysis.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const conversationAnalysisWithIdOnly = await prisma.conversationAnalysis.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ConversationAnalysisFindManyArgs>(args?: SelectSubset<T, ConversationAnalysisFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConversationAnalysisPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ConversationAnalysis.
+     * @param {ConversationAnalysisCreateArgs} args - Arguments to create a ConversationAnalysis.
+     * @example
+     * // Create one ConversationAnalysis
+     * const ConversationAnalysis = await prisma.conversationAnalysis.create({
+     *   data: {
+     *     // ... data to create a ConversationAnalysis
+     *   }
+     * })
+     * 
+     */
+    create<T extends ConversationAnalysisCreateArgs>(args: SelectSubset<T, ConversationAnalysisCreateArgs<ExtArgs>>): Prisma__ConversationAnalysisClient<$Result.GetResult<Prisma.$ConversationAnalysisPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ConversationAnalyses.
+     * @param {ConversationAnalysisCreateManyArgs} args - Arguments to create many ConversationAnalyses.
+     * @example
+     * // Create many ConversationAnalyses
+     * const conversationAnalysis = await prisma.conversationAnalysis.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ConversationAnalysisCreateManyArgs>(args?: SelectSubset<T, ConversationAnalysisCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ConversationAnalyses and returns the data saved in the database.
+     * @param {ConversationAnalysisCreateManyAndReturnArgs} args - Arguments to create many ConversationAnalyses.
+     * @example
+     * // Create many ConversationAnalyses
+     * const conversationAnalysis = await prisma.conversationAnalysis.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ConversationAnalyses and only return the `id`
+     * const conversationAnalysisWithIdOnly = await prisma.conversationAnalysis.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ConversationAnalysisCreateManyAndReturnArgs>(args?: SelectSubset<T, ConversationAnalysisCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConversationAnalysisPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ConversationAnalysis.
+     * @param {ConversationAnalysisDeleteArgs} args - Arguments to delete one ConversationAnalysis.
+     * @example
+     * // Delete one ConversationAnalysis
+     * const ConversationAnalysis = await prisma.conversationAnalysis.delete({
+     *   where: {
+     *     // ... filter to delete one ConversationAnalysis
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ConversationAnalysisDeleteArgs>(args: SelectSubset<T, ConversationAnalysisDeleteArgs<ExtArgs>>): Prisma__ConversationAnalysisClient<$Result.GetResult<Prisma.$ConversationAnalysisPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ConversationAnalysis.
+     * @param {ConversationAnalysisUpdateArgs} args - Arguments to update one ConversationAnalysis.
+     * @example
+     * // Update one ConversationAnalysis
+     * const conversationAnalysis = await prisma.conversationAnalysis.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ConversationAnalysisUpdateArgs>(args: SelectSubset<T, ConversationAnalysisUpdateArgs<ExtArgs>>): Prisma__ConversationAnalysisClient<$Result.GetResult<Prisma.$ConversationAnalysisPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ConversationAnalyses.
+     * @param {ConversationAnalysisDeleteManyArgs} args - Arguments to filter ConversationAnalyses to delete.
+     * @example
+     * // Delete a few ConversationAnalyses
+     * const { count } = await prisma.conversationAnalysis.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ConversationAnalysisDeleteManyArgs>(args?: SelectSubset<T, ConversationAnalysisDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ConversationAnalyses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationAnalysisUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ConversationAnalyses
+     * const conversationAnalysis = await prisma.conversationAnalysis.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ConversationAnalysisUpdateManyArgs>(args: SelectSubset<T, ConversationAnalysisUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ConversationAnalyses and returns the data updated in the database.
+     * @param {ConversationAnalysisUpdateManyAndReturnArgs} args - Arguments to update many ConversationAnalyses.
+     * @example
+     * // Update many ConversationAnalyses
+     * const conversationAnalysis = await prisma.conversationAnalysis.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ConversationAnalyses and only return the `id`
+     * const conversationAnalysisWithIdOnly = await prisma.conversationAnalysis.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ConversationAnalysisUpdateManyAndReturnArgs>(args: SelectSubset<T, ConversationAnalysisUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConversationAnalysisPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ConversationAnalysis.
+     * @param {ConversationAnalysisUpsertArgs} args - Arguments to update or create a ConversationAnalysis.
+     * @example
+     * // Update or create a ConversationAnalysis
+     * const conversationAnalysis = await prisma.conversationAnalysis.upsert({
+     *   create: {
+     *     // ... data to create a ConversationAnalysis
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ConversationAnalysis we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ConversationAnalysisUpsertArgs>(args: SelectSubset<T, ConversationAnalysisUpsertArgs<ExtArgs>>): Prisma__ConversationAnalysisClient<$Result.GetResult<Prisma.$ConversationAnalysisPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ConversationAnalyses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationAnalysisCountArgs} args - Arguments to filter ConversationAnalyses to count.
+     * @example
+     * // Count the number of ConversationAnalyses
+     * const count = await prisma.conversationAnalysis.count({
+     *   where: {
+     *     // ... the filter for the ConversationAnalyses we want to count
+     *   }
+     * })
+    **/
+    count<T extends ConversationAnalysisCountArgs>(
+      args?: Subset<T, ConversationAnalysisCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ConversationAnalysisCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ConversationAnalysis.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationAnalysisAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ConversationAnalysisAggregateArgs>(args: Subset<T, ConversationAnalysisAggregateArgs>): Prisma.PrismaPromise<GetConversationAnalysisAggregateType<T>>
+
+    /**
+     * Group by ConversationAnalysis.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConversationAnalysisGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ConversationAnalysisGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ConversationAnalysisGroupByArgs['orderBy'] }
+        : { orderBy?: ConversationAnalysisGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ConversationAnalysisGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetConversationAnalysisGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ConversationAnalysis model
+   */
+  readonly fields: ConversationAnalysisFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ConversationAnalysis.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ConversationAnalysisClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ConversationAnalysis model
+   */
+  interface ConversationAnalysisFieldRefs {
+    readonly id: FieldRef<"ConversationAnalysis", 'String'>
+    readonly userId: FieldRef<"ConversationAnalysis", 'String'>
+    readonly originalFilename: FieldRef<"ConversationAnalysis", 'String'>
+    readonly storagePath: FieldRef<"ConversationAnalysis", 'String'>
+    readonly description: FieldRef<"ConversationAnalysis", 'String'>
+    readonly status: FieldRef<"ConversationAnalysis", 'AnalysisStatus'>
+    readonly transcript: FieldRef<"ConversationAnalysis", 'Json'>
+    readonly aiAnalysis: FieldRef<"ConversationAnalysis", 'Json'>
+    readonly errorMessage: FieldRef<"ConversationAnalysis", 'String'>
+    readonly assemblyAiTranscriptId: FieldRef<"ConversationAnalysis", 'String'>
+    readonly createdAt: FieldRef<"ConversationAnalysis", 'DateTime'>
+    readonly updatedAt: FieldRef<"ConversationAnalysis", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ConversationAnalysis findUnique
+   */
+  export type ConversationAnalysisFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationAnalysis
+     */
+    select?: ConversationAnalysisSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationAnalysis
+     */
+    omit?: ConversationAnalysisOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationAnalysisInclude<ExtArgs> | null
+    /**
+     * Filter, which ConversationAnalysis to fetch.
+     */
+    where: ConversationAnalysisWhereUniqueInput
+  }
+
+  /**
+   * ConversationAnalysis findUniqueOrThrow
+   */
+  export type ConversationAnalysisFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationAnalysis
+     */
+    select?: ConversationAnalysisSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationAnalysis
+     */
+    omit?: ConversationAnalysisOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationAnalysisInclude<ExtArgs> | null
+    /**
+     * Filter, which ConversationAnalysis to fetch.
+     */
+    where: ConversationAnalysisWhereUniqueInput
+  }
+
+  /**
+   * ConversationAnalysis findFirst
+   */
+  export type ConversationAnalysisFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationAnalysis
+     */
+    select?: ConversationAnalysisSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationAnalysis
+     */
+    omit?: ConversationAnalysisOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationAnalysisInclude<ExtArgs> | null
+    /**
+     * Filter, which ConversationAnalysis to fetch.
+     */
+    where?: ConversationAnalysisWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ConversationAnalyses to fetch.
+     */
+    orderBy?: ConversationAnalysisOrderByWithRelationInput | ConversationAnalysisOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ConversationAnalyses.
+     */
+    cursor?: ConversationAnalysisWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ConversationAnalyses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ConversationAnalyses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ConversationAnalyses.
+     */
+    distinct?: ConversationAnalysisScalarFieldEnum | ConversationAnalysisScalarFieldEnum[]
+  }
+
+  /**
+   * ConversationAnalysis findFirstOrThrow
+   */
+  export type ConversationAnalysisFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationAnalysis
+     */
+    select?: ConversationAnalysisSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationAnalysis
+     */
+    omit?: ConversationAnalysisOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationAnalysisInclude<ExtArgs> | null
+    /**
+     * Filter, which ConversationAnalysis to fetch.
+     */
+    where?: ConversationAnalysisWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ConversationAnalyses to fetch.
+     */
+    orderBy?: ConversationAnalysisOrderByWithRelationInput | ConversationAnalysisOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ConversationAnalyses.
+     */
+    cursor?: ConversationAnalysisWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ConversationAnalyses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ConversationAnalyses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ConversationAnalyses.
+     */
+    distinct?: ConversationAnalysisScalarFieldEnum | ConversationAnalysisScalarFieldEnum[]
+  }
+
+  /**
+   * ConversationAnalysis findMany
+   */
+  export type ConversationAnalysisFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationAnalysis
+     */
+    select?: ConversationAnalysisSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationAnalysis
+     */
+    omit?: ConversationAnalysisOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationAnalysisInclude<ExtArgs> | null
+    /**
+     * Filter, which ConversationAnalyses to fetch.
+     */
+    where?: ConversationAnalysisWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ConversationAnalyses to fetch.
+     */
+    orderBy?: ConversationAnalysisOrderByWithRelationInput | ConversationAnalysisOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ConversationAnalyses.
+     */
+    cursor?: ConversationAnalysisWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ConversationAnalyses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ConversationAnalyses.
+     */
+    skip?: number
+    distinct?: ConversationAnalysisScalarFieldEnum | ConversationAnalysisScalarFieldEnum[]
+  }
+
+  /**
+   * ConversationAnalysis create
+   */
+  export type ConversationAnalysisCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationAnalysis
+     */
+    select?: ConversationAnalysisSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationAnalysis
+     */
+    omit?: ConversationAnalysisOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationAnalysisInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ConversationAnalysis.
+     */
+    data: XOR<ConversationAnalysisCreateInput, ConversationAnalysisUncheckedCreateInput>
+  }
+
+  /**
+   * ConversationAnalysis createMany
+   */
+  export type ConversationAnalysisCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ConversationAnalyses.
+     */
+    data: ConversationAnalysisCreateManyInput | ConversationAnalysisCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ConversationAnalysis createManyAndReturn
+   */
+  export type ConversationAnalysisCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationAnalysis
+     */
+    select?: ConversationAnalysisSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationAnalysis
+     */
+    omit?: ConversationAnalysisOmit<ExtArgs> | null
+    /**
+     * The data used to create many ConversationAnalyses.
+     */
+    data: ConversationAnalysisCreateManyInput | ConversationAnalysisCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationAnalysisIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ConversationAnalysis update
+   */
+  export type ConversationAnalysisUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationAnalysis
+     */
+    select?: ConversationAnalysisSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationAnalysis
+     */
+    omit?: ConversationAnalysisOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationAnalysisInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ConversationAnalysis.
+     */
+    data: XOR<ConversationAnalysisUpdateInput, ConversationAnalysisUncheckedUpdateInput>
+    /**
+     * Choose, which ConversationAnalysis to update.
+     */
+    where: ConversationAnalysisWhereUniqueInput
+  }
+
+  /**
+   * ConversationAnalysis updateMany
+   */
+  export type ConversationAnalysisUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ConversationAnalyses.
+     */
+    data: XOR<ConversationAnalysisUpdateManyMutationInput, ConversationAnalysisUncheckedUpdateManyInput>
+    /**
+     * Filter which ConversationAnalyses to update
+     */
+    where?: ConversationAnalysisWhereInput
+    /**
+     * Limit how many ConversationAnalyses to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ConversationAnalysis updateManyAndReturn
+   */
+  export type ConversationAnalysisUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationAnalysis
+     */
+    select?: ConversationAnalysisSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationAnalysis
+     */
+    omit?: ConversationAnalysisOmit<ExtArgs> | null
+    /**
+     * The data used to update ConversationAnalyses.
+     */
+    data: XOR<ConversationAnalysisUpdateManyMutationInput, ConversationAnalysisUncheckedUpdateManyInput>
+    /**
+     * Filter which ConversationAnalyses to update
+     */
+    where?: ConversationAnalysisWhereInput
+    /**
+     * Limit how many ConversationAnalyses to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationAnalysisIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ConversationAnalysis upsert
+   */
+  export type ConversationAnalysisUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationAnalysis
+     */
+    select?: ConversationAnalysisSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationAnalysis
+     */
+    omit?: ConversationAnalysisOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationAnalysisInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ConversationAnalysis to update in case it exists.
+     */
+    where: ConversationAnalysisWhereUniqueInput
+    /**
+     * In case the ConversationAnalysis found by the `where` argument doesn't exist, create a new ConversationAnalysis with this data.
+     */
+    create: XOR<ConversationAnalysisCreateInput, ConversationAnalysisUncheckedCreateInput>
+    /**
+     * In case the ConversationAnalysis was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ConversationAnalysisUpdateInput, ConversationAnalysisUncheckedUpdateInput>
+  }
+
+  /**
+   * ConversationAnalysis delete
+   */
+  export type ConversationAnalysisDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationAnalysis
+     */
+    select?: ConversationAnalysisSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationAnalysis
+     */
+    omit?: ConversationAnalysisOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationAnalysisInclude<ExtArgs> | null
+    /**
+     * Filter which ConversationAnalysis to delete.
+     */
+    where: ConversationAnalysisWhereUniqueInput
+  }
+
+  /**
+   * ConversationAnalysis deleteMany
+   */
+  export type ConversationAnalysisDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ConversationAnalyses to delete
+     */
+    where?: ConversationAnalysisWhereInput
+    /**
+     * Limit how many ConversationAnalyses to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ConversationAnalysis without action
+   */
+  export type ConversationAnalysisDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ConversationAnalysis
+     */
+    select?: ConversationAnalysisSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ConversationAnalysis
+     */
+    omit?: ConversationAnalysisOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConversationAnalysisInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ColdEmail
+   */
+
+  export type AggregateColdEmail = {
+    _count: ColdEmailCountAggregateOutputType | null
+    _min: ColdEmailMinAggregateOutputType | null
+    _max: ColdEmailMaxAggregateOutputType | null
+  }
+
+  export type ColdEmailMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    prospectId: string | null
+    editedContent: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ColdEmailMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    prospectId: string | null
+    editedContent: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ColdEmailCountAggregateOutputType = {
+    id: number
+    userId: number
+    prospectId: number
+    userInput: number
+    aiGeneratedEmail: number
+    editedContent: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ColdEmailMinAggregateInputType = {
+    id?: true
+    userId?: true
+    prospectId?: true
+    editedContent?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ColdEmailMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    prospectId?: true
+    editedContent?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ColdEmailCountAggregateInputType = {
+    id?: true
+    userId?: true
+    prospectId?: true
+    userInput?: true
+    aiGeneratedEmail?: true
+    editedContent?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ColdEmailAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ColdEmail to aggregate.
+     */
+    where?: ColdEmailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ColdEmails to fetch.
+     */
+    orderBy?: ColdEmailOrderByWithRelationInput | ColdEmailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ColdEmailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ColdEmails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ColdEmails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ColdEmails
+    **/
+    _count?: true | ColdEmailCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ColdEmailMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ColdEmailMaxAggregateInputType
+  }
+
+  export type GetColdEmailAggregateType<T extends ColdEmailAggregateArgs> = {
+        [P in keyof T & keyof AggregateColdEmail]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateColdEmail[P]>
+      : GetScalarType<T[P], AggregateColdEmail[P]>
+  }
+
+
+
+
+  export type ColdEmailGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ColdEmailWhereInput
+    orderBy?: ColdEmailOrderByWithAggregationInput | ColdEmailOrderByWithAggregationInput[]
+    by: ColdEmailScalarFieldEnum[] | ColdEmailScalarFieldEnum
+    having?: ColdEmailScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ColdEmailCountAggregateInputType | true
+    _min?: ColdEmailMinAggregateInputType
+    _max?: ColdEmailMaxAggregateInputType
+  }
+
+  export type ColdEmailGroupByOutputType = {
+    id: string
+    userId: string
+    prospectId: string | null
+    userInput: JsonValue
+    aiGeneratedEmail: JsonValue | null
+    editedContent: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: ColdEmailCountAggregateOutputType | null
+    _min: ColdEmailMinAggregateOutputType | null
+    _max: ColdEmailMaxAggregateOutputType | null
+  }
+
+  type GetColdEmailGroupByPayload<T extends ColdEmailGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ColdEmailGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ColdEmailGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ColdEmailGroupByOutputType[P]>
+            : GetScalarType<T[P], ColdEmailGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ColdEmailSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    prospectId?: boolean
+    userInput?: boolean
+    aiGeneratedEmail?: boolean
+    editedContent?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    prospect?: boolean | ColdEmail$prospectArgs<ExtArgs>
+  }, ExtArgs["result"]["coldEmail"]>
+
+  export type ColdEmailSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    prospectId?: boolean
+    userInput?: boolean
+    aiGeneratedEmail?: boolean
+    editedContent?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    prospect?: boolean | ColdEmail$prospectArgs<ExtArgs>
+  }, ExtArgs["result"]["coldEmail"]>
+
+  export type ColdEmailSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    prospectId?: boolean
+    userInput?: boolean
+    aiGeneratedEmail?: boolean
+    editedContent?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    prospect?: boolean | ColdEmail$prospectArgs<ExtArgs>
+  }, ExtArgs["result"]["coldEmail"]>
+
+  export type ColdEmailSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    prospectId?: boolean
+    userInput?: boolean
+    aiGeneratedEmail?: boolean
+    editedContent?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ColdEmailOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "prospectId" | "userInput" | "aiGeneratedEmail" | "editedContent" | "createdAt" | "updatedAt", ExtArgs["result"]["coldEmail"]>
+  export type ColdEmailInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    prospect?: boolean | ColdEmail$prospectArgs<ExtArgs>
+  }
+  export type ColdEmailIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    prospect?: boolean | ColdEmail$prospectArgs<ExtArgs>
+  }
+  export type ColdEmailIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    prospect?: boolean | ColdEmail$prospectArgs<ExtArgs>
+  }
+
+  export type $ColdEmailPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ColdEmail"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      prospect: Prisma.$ProspectPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      prospectId: string | null
+      userInput: Prisma.JsonValue
+      aiGeneratedEmail: Prisma.JsonValue | null
+      editedContent: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["coldEmail"]>
+    composites: {}
+  }
+
+  type ColdEmailGetPayload<S extends boolean | null | undefined | ColdEmailDefaultArgs> = $Result.GetResult<Prisma.$ColdEmailPayload, S>
+
+  type ColdEmailCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ColdEmailFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ColdEmailCountAggregateInputType | true
+    }
+
+  export interface ColdEmailDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ColdEmail'], meta: { name: 'ColdEmail' } }
+    /**
+     * Find zero or one ColdEmail that matches the filter.
+     * @param {ColdEmailFindUniqueArgs} args - Arguments to find a ColdEmail
+     * @example
+     * // Get one ColdEmail
+     * const coldEmail = await prisma.coldEmail.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ColdEmailFindUniqueArgs>(args: SelectSubset<T, ColdEmailFindUniqueArgs<ExtArgs>>): Prisma__ColdEmailClient<$Result.GetResult<Prisma.$ColdEmailPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ColdEmail that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ColdEmailFindUniqueOrThrowArgs} args - Arguments to find a ColdEmail
+     * @example
+     * // Get one ColdEmail
+     * const coldEmail = await prisma.coldEmail.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ColdEmailFindUniqueOrThrowArgs>(args: SelectSubset<T, ColdEmailFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ColdEmailClient<$Result.GetResult<Prisma.$ColdEmailPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ColdEmail that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ColdEmailFindFirstArgs} args - Arguments to find a ColdEmail
+     * @example
+     * // Get one ColdEmail
+     * const coldEmail = await prisma.coldEmail.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ColdEmailFindFirstArgs>(args?: SelectSubset<T, ColdEmailFindFirstArgs<ExtArgs>>): Prisma__ColdEmailClient<$Result.GetResult<Prisma.$ColdEmailPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ColdEmail that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ColdEmailFindFirstOrThrowArgs} args - Arguments to find a ColdEmail
+     * @example
+     * // Get one ColdEmail
+     * const coldEmail = await prisma.coldEmail.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ColdEmailFindFirstOrThrowArgs>(args?: SelectSubset<T, ColdEmailFindFirstOrThrowArgs<ExtArgs>>): Prisma__ColdEmailClient<$Result.GetResult<Prisma.$ColdEmailPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ColdEmails that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ColdEmailFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ColdEmails
+     * const coldEmails = await prisma.coldEmail.findMany()
+     * 
+     * // Get first 10 ColdEmails
+     * const coldEmails = await prisma.coldEmail.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const coldEmailWithIdOnly = await prisma.coldEmail.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ColdEmailFindManyArgs>(args?: SelectSubset<T, ColdEmailFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ColdEmailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ColdEmail.
+     * @param {ColdEmailCreateArgs} args - Arguments to create a ColdEmail.
+     * @example
+     * // Create one ColdEmail
+     * const ColdEmail = await prisma.coldEmail.create({
+     *   data: {
+     *     // ... data to create a ColdEmail
+     *   }
+     * })
+     * 
+     */
+    create<T extends ColdEmailCreateArgs>(args: SelectSubset<T, ColdEmailCreateArgs<ExtArgs>>): Prisma__ColdEmailClient<$Result.GetResult<Prisma.$ColdEmailPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ColdEmails.
+     * @param {ColdEmailCreateManyArgs} args - Arguments to create many ColdEmails.
+     * @example
+     * // Create many ColdEmails
+     * const coldEmail = await prisma.coldEmail.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ColdEmailCreateManyArgs>(args?: SelectSubset<T, ColdEmailCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ColdEmails and returns the data saved in the database.
+     * @param {ColdEmailCreateManyAndReturnArgs} args - Arguments to create many ColdEmails.
+     * @example
+     * // Create many ColdEmails
+     * const coldEmail = await prisma.coldEmail.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ColdEmails and only return the `id`
+     * const coldEmailWithIdOnly = await prisma.coldEmail.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ColdEmailCreateManyAndReturnArgs>(args?: SelectSubset<T, ColdEmailCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ColdEmailPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ColdEmail.
+     * @param {ColdEmailDeleteArgs} args - Arguments to delete one ColdEmail.
+     * @example
+     * // Delete one ColdEmail
+     * const ColdEmail = await prisma.coldEmail.delete({
+     *   where: {
+     *     // ... filter to delete one ColdEmail
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ColdEmailDeleteArgs>(args: SelectSubset<T, ColdEmailDeleteArgs<ExtArgs>>): Prisma__ColdEmailClient<$Result.GetResult<Prisma.$ColdEmailPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ColdEmail.
+     * @param {ColdEmailUpdateArgs} args - Arguments to update one ColdEmail.
+     * @example
+     * // Update one ColdEmail
+     * const coldEmail = await prisma.coldEmail.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ColdEmailUpdateArgs>(args: SelectSubset<T, ColdEmailUpdateArgs<ExtArgs>>): Prisma__ColdEmailClient<$Result.GetResult<Prisma.$ColdEmailPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ColdEmails.
+     * @param {ColdEmailDeleteManyArgs} args - Arguments to filter ColdEmails to delete.
+     * @example
+     * // Delete a few ColdEmails
+     * const { count } = await prisma.coldEmail.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ColdEmailDeleteManyArgs>(args?: SelectSubset<T, ColdEmailDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ColdEmails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ColdEmailUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ColdEmails
+     * const coldEmail = await prisma.coldEmail.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ColdEmailUpdateManyArgs>(args: SelectSubset<T, ColdEmailUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ColdEmails and returns the data updated in the database.
+     * @param {ColdEmailUpdateManyAndReturnArgs} args - Arguments to update many ColdEmails.
+     * @example
+     * // Update many ColdEmails
+     * const coldEmail = await prisma.coldEmail.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ColdEmails and only return the `id`
+     * const coldEmailWithIdOnly = await prisma.coldEmail.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ColdEmailUpdateManyAndReturnArgs>(args: SelectSubset<T, ColdEmailUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ColdEmailPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ColdEmail.
+     * @param {ColdEmailUpsertArgs} args - Arguments to update or create a ColdEmail.
+     * @example
+     * // Update or create a ColdEmail
+     * const coldEmail = await prisma.coldEmail.upsert({
+     *   create: {
+     *     // ... data to create a ColdEmail
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ColdEmail we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ColdEmailUpsertArgs>(args: SelectSubset<T, ColdEmailUpsertArgs<ExtArgs>>): Prisma__ColdEmailClient<$Result.GetResult<Prisma.$ColdEmailPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ColdEmails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ColdEmailCountArgs} args - Arguments to filter ColdEmails to count.
+     * @example
+     * // Count the number of ColdEmails
+     * const count = await prisma.coldEmail.count({
+     *   where: {
+     *     // ... the filter for the ColdEmails we want to count
+     *   }
+     * })
+    **/
+    count<T extends ColdEmailCountArgs>(
+      args?: Subset<T, ColdEmailCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ColdEmailCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ColdEmail.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ColdEmailAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ColdEmailAggregateArgs>(args: Subset<T, ColdEmailAggregateArgs>): Prisma.PrismaPromise<GetColdEmailAggregateType<T>>
+
+    /**
+     * Group by ColdEmail.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ColdEmailGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ColdEmailGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ColdEmailGroupByArgs['orderBy'] }
+        : { orderBy?: ColdEmailGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ColdEmailGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetColdEmailGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ColdEmail model
+   */
+  readonly fields: ColdEmailFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ColdEmail.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ColdEmailClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    prospect<T extends ColdEmail$prospectArgs<ExtArgs> = {}>(args?: Subset<T, ColdEmail$prospectArgs<ExtArgs>>): Prisma__ProspectClient<$Result.GetResult<Prisma.$ProspectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ColdEmail model
+   */
+  interface ColdEmailFieldRefs {
+    readonly id: FieldRef<"ColdEmail", 'String'>
+    readonly userId: FieldRef<"ColdEmail", 'String'>
+    readonly prospectId: FieldRef<"ColdEmail", 'String'>
+    readonly userInput: FieldRef<"ColdEmail", 'Json'>
+    readonly aiGeneratedEmail: FieldRef<"ColdEmail", 'Json'>
+    readonly editedContent: FieldRef<"ColdEmail", 'String'>
+    readonly createdAt: FieldRef<"ColdEmail", 'DateTime'>
+    readonly updatedAt: FieldRef<"ColdEmail", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ColdEmail findUnique
+   */
+  export type ColdEmailFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ColdEmail
+     */
+    select?: ColdEmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ColdEmail
+     */
+    omit?: ColdEmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ColdEmailInclude<ExtArgs> | null
+    /**
+     * Filter, which ColdEmail to fetch.
+     */
+    where: ColdEmailWhereUniqueInput
+  }
+
+  /**
+   * ColdEmail findUniqueOrThrow
+   */
+  export type ColdEmailFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ColdEmail
+     */
+    select?: ColdEmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ColdEmail
+     */
+    omit?: ColdEmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ColdEmailInclude<ExtArgs> | null
+    /**
+     * Filter, which ColdEmail to fetch.
+     */
+    where: ColdEmailWhereUniqueInput
+  }
+
+  /**
+   * ColdEmail findFirst
+   */
+  export type ColdEmailFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ColdEmail
+     */
+    select?: ColdEmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ColdEmail
+     */
+    omit?: ColdEmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ColdEmailInclude<ExtArgs> | null
+    /**
+     * Filter, which ColdEmail to fetch.
+     */
+    where?: ColdEmailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ColdEmails to fetch.
+     */
+    orderBy?: ColdEmailOrderByWithRelationInput | ColdEmailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ColdEmails.
+     */
+    cursor?: ColdEmailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ColdEmails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ColdEmails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ColdEmails.
+     */
+    distinct?: ColdEmailScalarFieldEnum | ColdEmailScalarFieldEnum[]
+  }
+
+  /**
+   * ColdEmail findFirstOrThrow
+   */
+  export type ColdEmailFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ColdEmail
+     */
+    select?: ColdEmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ColdEmail
+     */
+    omit?: ColdEmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ColdEmailInclude<ExtArgs> | null
+    /**
+     * Filter, which ColdEmail to fetch.
+     */
+    where?: ColdEmailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ColdEmails to fetch.
+     */
+    orderBy?: ColdEmailOrderByWithRelationInput | ColdEmailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ColdEmails.
+     */
+    cursor?: ColdEmailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ColdEmails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ColdEmails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ColdEmails.
+     */
+    distinct?: ColdEmailScalarFieldEnum | ColdEmailScalarFieldEnum[]
+  }
+
+  /**
+   * ColdEmail findMany
+   */
+  export type ColdEmailFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ColdEmail
+     */
+    select?: ColdEmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ColdEmail
+     */
+    omit?: ColdEmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ColdEmailInclude<ExtArgs> | null
+    /**
+     * Filter, which ColdEmails to fetch.
+     */
+    where?: ColdEmailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ColdEmails to fetch.
+     */
+    orderBy?: ColdEmailOrderByWithRelationInput | ColdEmailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ColdEmails.
+     */
+    cursor?: ColdEmailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ColdEmails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ColdEmails.
+     */
+    skip?: number
+    distinct?: ColdEmailScalarFieldEnum | ColdEmailScalarFieldEnum[]
+  }
+
+  /**
+   * ColdEmail create
+   */
+  export type ColdEmailCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ColdEmail
+     */
+    select?: ColdEmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ColdEmail
+     */
+    omit?: ColdEmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ColdEmailInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ColdEmail.
+     */
+    data: XOR<ColdEmailCreateInput, ColdEmailUncheckedCreateInput>
+  }
+
+  /**
+   * ColdEmail createMany
+   */
+  export type ColdEmailCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ColdEmails.
+     */
+    data: ColdEmailCreateManyInput | ColdEmailCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ColdEmail createManyAndReturn
+   */
+  export type ColdEmailCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ColdEmail
+     */
+    select?: ColdEmailSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ColdEmail
+     */
+    omit?: ColdEmailOmit<ExtArgs> | null
+    /**
+     * The data used to create many ColdEmails.
+     */
+    data: ColdEmailCreateManyInput | ColdEmailCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ColdEmailIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ColdEmail update
+   */
+  export type ColdEmailUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ColdEmail
+     */
+    select?: ColdEmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ColdEmail
+     */
+    omit?: ColdEmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ColdEmailInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ColdEmail.
+     */
+    data: XOR<ColdEmailUpdateInput, ColdEmailUncheckedUpdateInput>
+    /**
+     * Choose, which ColdEmail to update.
+     */
+    where: ColdEmailWhereUniqueInput
+  }
+
+  /**
+   * ColdEmail updateMany
+   */
+  export type ColdEmailUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ColdEmails.
+     */
+    data: XOR<ColdEmailUpdateManyMutationInput, ColdEmailUncheckedUpdateManyInput>
+    /**
+     * Filter which ColdEmails to update
+     */
+    where?: ColdEmailWhereInput
+    /**
+     * Limit how many ColdEmails to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ColdEmail updateManyAndReturn
+   */
+  export type ColdEmailUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ColdEmail
+     */
+    select?: ColdEmailSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ColdEmail
+     */
+    omit?: ColdEmailOmit<ExtArgs> | null
+    /**
+     * The data used to update ColdEmails.
+     */
+    data: XOR<ColdEmailUpdateManyMutationInput, ColdEmailUncheckedUpdateManyInput>
+    /**
+     * Filter which ColdEmails to update
+     */
+    where?: ColdEmailWhereInput
+    /**
+     * Limit how many ColdEmails to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ColdEmailIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ColdEmail upsert
+   */
+  export type ColdEmailUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ColdEmail
+     */
+    select?: ColdEmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ColdEmail
+     */
+    omit?: ColdEmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ColdEmailInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ColdEmail to update in case it exists.
+     */
+    where: ColdEmailWhereUniqueInput
+    /**
+     * In case the ColdEmail found by the `where` argument doesn't exist, create a new ColdEmail with this data.
+     */
+    create: XOR<ColdEmailCreateInput, ColdEmailUncheckedCreateInput>
+    /**
+     * In case the ColdEmail was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ColdEmailUpdateInput, ColdEmailUncheckedUpdateInput>
+  }
+
+  /**
+   * ColdEmail delete
+   */
+  export type ColdEmailDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ColdEmail
+     */
+    select?: ColdEmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ColdEmail
+     */
+    omit?: ColdEmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ColdEmailInclude<ExtArgs> | null
+    /**
+     * Filter which ColdEmail to delete.
+     */
+    where: ColdEmailWhereUniqueInput
+  }
+
+  /**
+   * ColdEmail deleteMany
+   */
+  export type ColdEmailDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ColdEmails to delete
+     */
+    where?: ColdEmailWhereInput
+    /**
+     * Limit how many ColdEmails to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ColdEmail.prospect
+   */
+  export type ColdEmail$prospectArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Prospect
+     */
+    select?: ProspectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Prospect
+     */
+    omit?: ProspectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProspectInclude<ExtArgs> | null
+    where?: ProspectWhereInput
+  }
+
+  /**
+   * ColdEmail without action
+   */
+  export type ColdEmailDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ColdEmail
+     */
+    select?: ColdEmailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ColdEmail
+     */
+    omit?: ColdEmailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ColdEmailInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -21802,6 +24366,38 @@ export namespace Prisma {
   export type CallPrepBriefScalarFieldEnum = (typeof CallPrepBriefScalarFieldEnum)[keyof typeof CallPrepBriefScalarFieldEnum]
 
 
+  export const ConversationAnalysisScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    originalFilename: 'originalFilename',
+    storagePath: 'storagePath',
+    description: 'description',
+    status: 'status',
+    transcript: 'transcript',
+    aiAnalysis: 'aiAnalysis',
+    errorMessage: 'errorMessage',
+    assemblyAiTranscriptId: 'assemblyAiTranscriptId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ConversationAnalysisScalarFieldEnum = (typeof ConversationAnalysisScalarFieldEnum)[keyof typeof ConversationAnalysisScalarFieldEnum]
+
+
+  export const ColdEmailScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    prospectId: 'prospectId',
+    userInput: 'userInput',
+    aiGeneratedEmail: 'aiGeneratedEmail',
+    editedContent: 'editedContent',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ColdEmailScalarFieldEnum = (typeof ColdEmailScalarFieldEnum)[keyof typeof ColdEmailScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -21944,6 +24540,20 @@ export namespace Prisma {
    */
   export type ListEnumProspectSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProspectSource[]'>
     
+
+
+  /**
+   * Reference to a field of type 'AnalysisStatus'
+   */
+  export type EnumAnalysisStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AnalysisStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'AnalysisStatus[]'
+   */
+  export type ListEnumAnalysisStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AnalysisStatus[]'>
+    
   /**
    * Deep Input Types
    */
@@ -21976,6 +24586,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationListRelationFilter
     prospects?: ProspectListRelationFilter
     callPrepBriefs?: CallPrepBriefListRelationFilter
+    conversationAnalyses?: ConversationAnalysisListRelationFilter
+    coldEmails?: ColdEmailListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -22002,6 +24614,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationOrderByRelationAggregateInput
     prospects?: ProspectOrderByRelationAggregateInput
     callPrepBriefs?: CallPrepBriefOrderByRelationAggregateInput
+    conversationAnalyses?: ConversationAnalysisOrderByRelationAggregateInput
+    coldEmails?: ColdEmailOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -22031,6 +24645,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationListRelationFilter
     prospects?: ProspectListRelationFilter
     callPrepBriefs?: CallPrepBriefListRelationFilter
+    conversationAnalyses?: ConversationAnalysisListRelationFilter
+    coldEmails?: ColdEmailListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -23124,6 +25740,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Prospect"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     callPrepBriefs?: CallPrepBriefListRelationFilter
+    coldEmails?: ColdEmailListRelationFilter
   }
 
   export type ProspectOrderByWithRelationInput = {
@@ -23139,6 +25756,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
     callPrepBriefs?: CallPrepBriefOrderByRelationAggregateInput
+    coldEmails?: ColdEmailOrderByRelationAggregateInput
   }
 
   export type ProspectWhereUniqueInput = Prisma.AtLeast<{
@@ -23158,6 +25776,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Prospect"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     callPrepBriefs?: CallPrepBriefListRelationFilter
+    coldEmails?: ColdEmailListRelationFilter
   }, "id" | "linkedinProfileUrl" | "userId_linkedinProfileUrl">
 
   export type ProspectOrderByWithAggregationInput = {
@@ -23260,6 +25879,169 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"CallPrepBrief"> | Date | string
   }
 
+  export type ConversationAnalysisWhereInput = {
+    AND?: ConversationAnalysisWhereInput | ConversationAnalysisWhereInput[]
+    OR?: ConversationAnalysisWhereInput[]
+    NOT?: ConversationAnalysisWhereInput | ConversationAnalysisWhereInput[]
+    id?: StringFilter<"ConversationAnalysis"> | string
+    userId?: StringFilter<"ConversationAnalysis"> | string
+    originalFilename?: StringFilter<"ConversationAnalysis"> | string
+    storagePath?: StringFilter<"ConversationAnalysis"> | string
+    description?: StringNullableFilter<"ConversationAnalysis"> | string | null
+    status?: EnumAnalysisStatusFilter<"ConversationAnalysis"> | $Enums.AnalysisStatus
+    transcript?: JsonNullableFilter<"ConversationAnalysis">
+    aiAnalysis?: JsonNullableFilter<"ConversationAnalysis">
+    errorMessage?: StringNullableFilter<"ConversationAnalysis"> | string | null
+    assemblyAiTranscriptId?: StringNullableFilter<"ConversationAnalysis"> | string | null
+    createdAt?: DateTimeFilter<"ConversationAnalysis"> | Date | string
+    updatedAt?: DateTimeFilter<"ConversationAnalysis"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type ConversationAnalysisOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    originalFilename?: SortOrder
+    storagePath?: SortOrder
+    description?: SortOrderInput | SortOrder
+    status?: SortOrder
+    transcript?: SortOrderInput | SortOrder
+    aiAnalysis?: SortOrderInput | SortOrder
+    errorMessage?: SortOrderInput | SortOrder
+    assemblyAiTranscriptId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type ConversationAnalysisWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ConversationAnalysisWhereInput | ConversationAnalysisWhereInput[]
+    OR?: ConversationAnalysisWhereInput[]
+    NOT?: ConversationAnalysisWhereInput | ConversationAnalysisWhereInput[]
+    userId?: StringFilter<"ConversationAnalysis"> | string
+    originalFilename?: StringFilter<"ConversationAnalysis"> | string
+    storagePath?: StringFilter<"ConversationAnalysis"> | string
+    description?: StringNullableFilter<"ConversationAnalysis"> | string | null
+    status?: EnumAnalysisStatusFilter<"ConversationAnalysis"> | $Enums.AnalysisStatus
+    transcript?: JsonNullableFilter<"ConversationAnalysis">
+    aiAnalysis?: JsonNullableFilter<"ConversationAnalysis">
+    errorMessage?: StringNullableFilter<"ConversationAnalysis"> | string | null
+    assemblyAiTranscriptId?: StringNullableFilter<"ConversationAnalysis"> | string | null
+    createdAt?: DateTimeFilter<"ConversationAnalysis"> | Date | string
+    updatedAt?: DateTimeFilter<"ConversationAnalysis"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type ConversationAnalysisOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    originalFilename?: SortOrder
+    storagePath?: SortOrder
+    description?: SortOrderInput | SortOrder
+    status?: SortOrder
+    transcript?: SortOrderInput | SortOrder
+    aiAnalysis?: SortOrderInput | SortOrder
+    errorMessage?: SortOrderInput | SortOrder
+    assemblyAiTranscriptId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ConversationAnalysisCountOrderByAggregateInput
+    _max?: ConversationAnalysisMaxOrderByAggregateInput
+    _min?: ConversationAnalysisMinOrderByAggregateInput
+  }
+
+  export type ConversationAnalysisScalarWhereWithAggregatesInput = {
+    AND?: ConversationAnalysisScalarWhereWithAggregatesInput | ConversationAnalysisScalarWhereWithAggregatesInput[]
+    OR?: ConversationAnalysisScalarWhereWithAggregatesInput[]
+    NOT?: ConversationAnalysisScalarWhereWithAggregatesInput | ConversationAnalysisScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ConversationAnalysis"> | string
+    userId?: StringWithAggregatesFilter<"ConversationAnalysis"> | string
+    originalFilename?: StringWithAggregatesFilter<"ConversationAnalysis"> | string
+    storagePath?: StringWithAggregatesFilter<"ConversationAnalysis"> | string
+    description?: StringNullableWithAggregatesFilter<"ConversationAnalysis"> | string | null
+    status?: EnumAnalysisStatusWithAggregatesFilter<"ConversationAnalysis"> | $Enums.AnalysisStatus
+    transcript?: JsonNullableWithAggregatesFilter<"ConversationAnalysis">
+    aiAnalysis?: JsonNullableWithAggregatesFilter<"ConversationAnalysis">
+    errorMessage?: StringNullableWithAggregatesFilter<"ConversationAnalysis"> | string | null
+    assemblyAiTranscriptId?: StringNullableWithAggregatesFilter<"ConversationAnalysis"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ConversationAnalysis"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ConversationAnalysis"> | Date | string
+  }
+
+  export type ColdEmailWhereInput = {
+    AND?: ColdEmailWhereInput | ColdEmailWhereInput[]
+    OR?: ColdEmailWhereInput[]
+    NOT?: ColdEmailWhereInput | ColdEmailWhereInput[]
+    id?: StringFilter<"ColdEmail"> | string
+    userId?: StringFilter<"ColdEmail"> | string
+    prospectId?: StringNullableFilter<"ColdEmail"> | string | null
+    userInput?: JsonFilter<"ColdEmail">
+    aiGeneratedEmail?: JsonNullableFilter<"ColdEmail">
+    editedContent?: StringNullableFilter<"ColdEmail"> | string | null
+    createdAt?: DateTimeFilter<"ColdEmail"> | Date | string
+    updatedAt?: DateTimeFilter<"ColdEmail"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    prospect?: XOR<ProspectNullableScalarRelationFilter, ProspectWhereInput> | null
+  }
+
+  export type ColdEmailOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    prospectId?: SortOrderInput | SortOrder
+    userInput?: SortOrder
+    aiGeneratedEmail?: SortOrderInput | SortOrder
+    editedContent?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    prospect?: ProspectOrderByWithRelationInput
+  }
+
+  export type ColdEmailWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ColdEmailWhereInput | ColdEmailWhereInput[]
+    OR?: ColdEmailWhereInput[]
+    NOT?: ColdEmailWhereInput | ColdEmailWhereInput[]
+    userId?: StringFilter<"ColdEmail"> | string
+    prospectId?: StringNullableFilter<"ColdEmail"> | string | null
+    userInput?: JsonFilter<"ColdEmail">
+    aiGeneratedEmail?: JsonNullableFilter<"ColdEmail">
+    editedContent?: StringNullableFilter<"ColdEmail"> | string | null
+    createdAt?: DateTimeFilter<"ColdEmail"> | Date | string
+    updatedAt?: DateTimeFilter<"ColdEmail"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    prospect?: XOR<ProspectNullableScalarRelationFilter, ProspectWhereInput> | null
+  }, "id">
+
+  export type ColdEmailOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    prospectId?: SortOrderInput | SortOrder
+    userInput?: SortOrder
+    aiGeneratedEmail?: SortOrderInput | SortOrder
+    editedContent?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ColdEmailCountOrderByAggregateInput
+    _max?: ColdEmailMaxOrderByAggregateInput
+    _min?: ColdEmailMinOrderByAggregateInput
+  }
+
+  export type ColdEmailScalarWhereWithAggregatesInput = {
+    AND?: ColdEmailScalarWhereWithAggregatesInput | ColdEmailScalarWhereWithAggregatesInput[]
+    OR?: ColdEmailScalarWhereWithAggregatesInput[]
+    NOT?: ColdEmailScalarWhereWithAggregatesInput | ColdEmailScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ColdEmail"> | string
+    userId?: StringWithAggregatesFilter<"ColdEmail"> | string
+    prospectId?: StringNullableWithAggregatesFilter<"ColdEmail"> | string | null
+    userInput?: JsonWithAggregatesFilter<"ColdEmail">
+    aiGeneratedEmail?: JsonNullableWithAggregatesFilter<"ColdEmail">
+    editedContent?: StringNullableWithAggregatesFilter<"ColdEmail"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ColdEmail"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ColdEmail"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -23284,6 +26066,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
     prospects?: ProspectCreateNestedManyWithoutUserInput
     callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -23310,6 +26094,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
     prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
     callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisUncheckedCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -23336,6 +26122,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
     prospects?: ProspectUpdateManyWithoutUserNestedInput
     callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -23362,6 +26150,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
     prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
     callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUncheckedUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -24577,6 +27367,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutProspectsInput
     callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutProspectInput
+    coldEmails?: ColdEmailCreateNestedManyWithoutProspectInput
   }
 
   export type ProspectUncheckedCreateInput = {
@@ -24591,6 +27382,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutProspectInput
+    coldEmails?: ColdEmailUncheckedCreateNestedManyWithoutProspectInput
   }
 
   export type ProspectUpdateInput = {
@@ -24605,6 +27397,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutProspectsNestedInput
     callPrepBriefs?: CallPrepBriefUpdateManyWithoutProspectNestedInput
+    coldEmails?: ColdEmailUpdateManyWithoutProspectNestedInput
   }
 
   export type ProspectUncheckedUpdateInput = {
@@ -24619,6 +27412,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutProspectNestedInput
+    coldEmails?: ColdEmailUncheckedUpdateManyWithoutProspectNestedInput
   }
 
   export type ProspectCreateManyInput = {
@@ -24723,6 +27517,185 @@ export namespace Prisma {
     prospectId?: StringFieldUpdateOperationsInput | string
     formInput?: JsonNullValueInput | InputJsonValue
     aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConversationAnalysisCreateInput = {
+    id?: string
+    originalFilename: string
+    storagePath: string
+    description?: string | null
+    status?: $Enums.AnalysisStatus
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: string | null
+    assemblyAiTranscriptId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutConversationAnalysesInput
+  }
+
+  export type ConversationAnalysisUncheckedCreateInput = {
+    id?: string
+    userId: string
+    originalFilename: string
+    storagePath: string
+    description?: string | null
+    status?: $Enums.AnalysisStatus
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: string | null
+    assemblyAiTranscriptId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ConversationAnalysisUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    originalFilename?: StringFieldUpdateOperationsInput | string
+    storagePath?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumAnalysisStatusFieldUpdateOperationsInput | $Enums.AnalysisStatus
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    assemblyAiTranscriptId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutConversationAnalysesNestedInput
+  }
+
+  export type ConversationAnalysisUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    originalFilename?: StringFieldUpdateOperationsInput | string
+    storagePath?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumAnalysisStatusFieldUpdateOperationsInput | $Enums.AnalysisStatus
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    assemblyAiTranscriptId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConversationAnalysisCreateManyInput = {
+    id?: string
+    userId: string
+    originalFilename: string
+    storagePath: string
+    description?: string | null
+    status?: $Enums.AnalysisStatus
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: string | null
+    assemblyAiTranscriptId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ConversationAnalysisUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    originalFilename?: StringFieldUpdateOperationsInput | string
+    storagePath?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumAnalysisStatusFieldUpdateOperationsInput | $Enums.AnalysisStatus
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    assemblyAiTranscriptId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConversationAnalysisUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    originalFilename?: StringFieldUpdateOperationsInput | string
+    storagePath?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumAnalysisStatusFieldUpdateOperationsInput | $Enums.AnalysisStatus
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    assemblyAiTranscriptId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ColdEmailCreateInput = {
+    id?: string
+    userInput: JsonNullValueInput | InputJsonValue
+    aiGeneratedEmail?: NullableJsonNullValueInput | InputJsonValue
+    editedContent?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutColdEmailsInput
+    prospect?: ProspectCreateNestedOneWithoutColdEmailsInput
+  }
+
+  export type ColdEmailUncheckedCreateInput = {
+    id?: string
+    userId: string
+    prospectId?: string | null
+    userInput: JsonNullValueInput | InputJsonValue
+    aiGeneratedEmail?: NullableJsonNullValueInput | InputJsonValue
+    editedContent?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ColdEmailUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userInput?: JsonNullValueInput | InputJsonValue
+    aiGeneratedEmail?: NullableJsonNullValueInput | InputJsonValue
+    editedContent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutColdEmailsNestedInput
+    prospect?: ProspectUpdateOneWithoutColdEmailsNestedInput
+  }
+
+  export type ColdEmailUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    prospectId?: NullableStringFieldUpdateOperationsInput | string | null
+    userInput?: JsonNullValueInput | InputJsonValue
+    aiGeneratedEmail?: NullableJsonNullValueInput | InputJsonValue
+    editedContent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ColdEmailCreateManyInput = {
+    id?: string
+    userId: string
+    prospectId?: string | null
+    userInput: JsonNullValueInput | InputJsonValue
+    aiGeneratedEmail?: NullableJsonNullValueInput | InputJsonValue
+    editedContent?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ColdEmailUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userInput?: JsonNullValueInput | InputJsonValue
+    aiGeneratedEmail?: NullableJsonNullValueInput | InputJsonValue
+    editedContent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ColdEmailUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    prospectId?: NullableStringFieldUpdateOperationsInput | string | null
+    userInput?: JsonNullValueInput | InputJsonValue
+    aiGeneratedEmail?: NullableJsonNullValueInput | InputJsonValue
+    editedContent?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -24848,6 +27821,18 @@ export namespace Prisma {
     none?: CallPrepBriefWhereInput
   }
 
+  export type ConversationAnalysisListRelationFilter = {
+    every?: ConversationAnalysisWhereInput
+    some?: ConversationAnalysisWhereInput
+    none?: ConversationAnalysisWhereInput
+  }
+
+  export type ColdEmailListRelationFilter = {
+    every?: ColdEmailWhereInput
+    some?: ColdEmailWhereInput
+    none?: ColdEmailWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -24886,6 +27871,14 @@ export namespace Prisma {
   }
 
   export type CallPrepBriefOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ConversationAnalysisOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ColdEmailOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -25815,6 +28808,98 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type EnumAnalysisStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.AnalysisStatus | EnumAnalysisStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AnalysisStatus[] | ListEnumAnalysisStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AnalysisStatus[] | ListEnumAnalysisStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAnalysisStatusFilter<$PrismaModel> | $Enums.AnalysisStatus
+  }
+
+  export type ConversationAnalysisCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    originalFilename?: SortOrder
+    storagePath?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    transcript?: SortOrder
+    aiAnalysis?: SortOrder
+    errorMessage?: SortOrder
+    assemblyAiTranscriptId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ConversationAnalysisMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    originalFilename?: SortOrder
+    storagePath?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    errorMessage?: SortOrder
+    assemblyAiTranscriptId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ConversationAnalysisMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    originalFilename?: SortOrder
+    storagePath?: SortOrder
+    description?: SortOrder
+    status?: SortOrder
+    errorMessage?: SortOrder
+    assemblyAiTranscriptId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumAnalysisStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AnalysisStatus | EnumAnalysisStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AnalysisStatus[] | ListEnumAnalysisStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AnalysisStatus[] | ListEnumAnalysisStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAnalysisStatusWithAggregatesFilter<$PrismaModel> | $Enums.AnalysisStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAnalysisStatusFilter<$PrismaModel>
+    _max?: NestedEnumAnalysisStatusFilter<$PrismaModel>
+  }
+
+  export type ProspectNullableScalarRelationFilter = {
+    is?: ProspectWhereInput | null
+    isNot?: ProspectWhereInput | null
+  }
+
+  export type ColdEmailCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    prospectId?: SortOrder
+    userInput?: SortOrder
+    aiGeneratedEmail?: SortOrder
+    editedContent?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ColdEmailMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    prospectId?: SortOrder
+    editedContent?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ColdEmailMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    prospectId?: SortOrder
+    editedContent?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type SessionCreateNestedManyWithoutUserInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -25884,6 +28969,20 @@ export namespace Prisma {
     connect?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
   }
 
+  export type ConversationAnalysisCreateNestedManyWithoutUserInput = {
+    create?: XOR<ConversationAnalysisCreateWithoutUserInput, ConversationAnalysisUncheckedCreateWithoutUserInput> | ConversationAnalysisCreateWithoutUserInput[] | ConversationAnalysisUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ConversationAnalysisCreateOrConnectWithoutUserInput | ConversationAnalysisCreateOrConnectWithoutUserInput[]
+    createMany?: ConversationAnalysisCreateManyUserInputEnvelope
+    connect?: ConversationAnalysisWhereUniqueInput | ConversationAnalysisWhereUniqueInput[]
+  }
+
+  export type ColdEmailCreateNestedManyWithoutUserInput = {
+    create?: XOR<ColdEmailCreateWithoutUserInput, ColdEmailUncheckedCreateWithoutUserInput> | ColdEmailCreateWithoutUserInput[] | ColdEmailUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ColdEmailCreateOrConnectWithoutUserInput | ColdEmailCreateOrConnectWithoutUserInput[]
+    createMany?: ColdEmailCreateManyUserInputEnvelope
+    connect?: ColdEmailWhereUniqueInput | ColdEmailWhereUniqueInput[]
+  }
+
   export type SessionUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -25951,6 +29050,20 @@ export namespace Prisma {
     connectOrCreate?: CallPrepBriefCreateOrConnectWithoutUserInput | CallPrepBriefCreateOrConnectWithoutUserInput[]
     createMany?: CallPrepBriefCreateManyUserInputEnvelope
     connect?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
+  }
+
+  export type ConversationAnalysisUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ConversationAnalysisCreateWithoutUserInput, ConversationAnalysisUncheckedCreateWithoutUserInput> | ConversationAnalysisCreateWithoutUserInput[] | ConversationAnalysisUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ConversationAnalysisCreateOrConnectWithoutUserInput | ConversationAnalysisCreateOrConnectWithoutUserInput[]
+    createMany?: ConversationAnalysisCreateManyUserInputEnvelope
+    connect?: ConversationAnalysisWhereUniqueInput | ConversationAnalysisWhereUniqueInput[]
+  }
+
+  export type ColdEmailUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ColdEmailCreateWithoutUserInput, ColdEmailUncheckedCreateWithoutUserInput> | ColdEmailCreateWithoutUserInput[] | ColdEmailUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ColdEmailCreateOrConnectWithoutUserInput | ColdEmailCreateOrConnectWithoutUserInput[]
+    createMany?: ColdEmailCreateManyUserInputEnvelope
+    connect?: ColdEmailWhereUniqueInput | ColdEmailWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -26113,6 +29226,34 @@ export namespace Prisma {
     deleteMany?: CallPrepBriefScalarWhereInput | CallPrepBriefScalarWhereInput[]
   }
 
+  export type ConversationAnalysisUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ConversationAnalysisCreateWithoutUserInput, ConversationAnalysisUncheckedCreateWithoutUserInput> | ConversationAnalysisCreateWithoutUserInput[] | ConversationAnalysisUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ConversationAnalysisCreateOrConnectWithoutUserInput | ConversationAnalysisCreateOrConnectWithoutUserInput[]
+    upsert?: ConversationAnalysisUpsertWithWhereUniqueWithoutUserInput | ConversationAnalysisUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ConversationAnalysisCreateManyUserInputEnvelope
+    set?: ConversationAnalysisWhereUniqueInput | ConversationAnalysisWhereUniqueInput[]
+    disconnect?: ConversationAnalysisWhereUniqueInput | ConversationAnalysisWhereUniqueInput[]
+    delete?: ConversationAnalysisWhereUniqueInput | ConversationAnalysisWhereUniqueInput[]
+    connect?: ConversationAnalysisWhereUniqueInput | ConversationAnalysisWhereUniqueInput[]
+    update?: ConversationAnalysisUpdateWithWhereUniqueWithoutUserInput | ConversationAnalysisUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ConversationAnalysisUpdateManyWithWhereWithoutUserInput | ConversationAnalysisUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ConversationAnalysisScalarWhereInput | ConversationAnalysisScalarWhereInput[]
+  }
+
+  export type ColdEmailUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ColdEmailCreateWithoutUserInput, ColdEmailUncheckedCreateWithoutUserInput> | ColdEmailCreateWithoutUserInput[] | ColdEmailUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ColdEmailCreateOrConnectWithoutUserInput | ColdEmailCreateOrConnectWithoutUserInput[]
+    upsert?: ColdEmailUpsertWithWhereUniqueWithoutUserInput | ColdEmailUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ColdEmailCreateManyUserInputEnvelope
+    set?: ColdEmailWhereUniqueInput | ColdEmailWhereUniqueInput[]
+    disconnect?: ColdEmailWhereUniqueInput | ColdEmailWhereUniqueInput[]
+    delete?: ColdEmailWhereUniqueInput | ColdEmailWhereUniqueInput[]
+    connect?: ColdEmailWhereUniqueInput | ColdEmailWhereUniqueInput[]
+    update?: ColdEmailUpdateWithWhereUniqueWithoutUserInput | ColdEmailUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ColdEmailUpdateManyWithWhereWithoutUserInput | ColdEmailUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ColdEmailScalarWhereInput | ColdEmailScalarWhereInput[]
+  }
+
   export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -26247,6 +29388,34 @@ export namespace Prisma {
     update?: CallPrepBriefUpdateWithWhereUniqueWithoutUserInput | CallPrepBriefUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: CallPrepBriefUpdateManyWithWhereWithoutUserInput | CallPrepBriefUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: CallPrepBriefScalarWhereInput | CallPrepBriefScalarWhereInput[]
+  }
+
+  export type ConversationAnalysisUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ConversationAnalysisCreateWithoutUserInput, ConversationAnalysisUncheckedCreateWithoutUserInput> | ConversationAnalysisCreateWithoutUserInput[] | ConversationAnalysisUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ConversationAnalysisCreateOrConnectWithoutUserInput | ConversationAnalysisCreateOrConnectWithoutUserInput[]
+    upsert?: ConversationAnalysisUpsertWithWhereUniqueWithoutUserInput | ConversationAnalysisUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ConversationAnalysisCreateManyUserInputEnvelope
+    set?: ConversationAnalysisWhereUniqueInput | ConversationAnalysisWhereUniqueInput[]
+    disconnect?: ConversationAnalysisWhereUniqueInput | ConversationAnalysisWhereUniqueInput[]
+    delete?: ConversationAnalysisWhereUniqueInput | ConversationAnalysisWhereUniqueInput[]
+    connect?: ConversationAnalysisWhereUniqueInput | ConversationAnalysisWhereUniqueInput[]
+    update?: ConversationAnalysisUpdateWithWhereUniqueWithoutUserInput | ConversationAnalysisUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ConversationAnalysisUpdateManyWithWhereWithoutUserInput | ConversationAnalysisUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ConversationAnalysisScalarWhereInput | ConversationAnalysisScalarWhereInput[]
+  }
+
+  export type ColdEmailUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ColdEmailCreateWithoutUserInput, ColdEmailUncheckedCreateWithoutUserInput> | ColdEmailCreateWithoutUserInput[] | ColdEmailUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ColdEmailCreateOrConnectWithoutUserInput | ColdEmailCreateOrConnectWithoutUserInput[]
+    upsert?: ColdEmailUpsertWithWhereUniqueWithoutUserInput | ColdEmailUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ColdEmailCreateManyUserInputEnvelope
+    set?: ColdEmailWhereUniqueInput | ColdEmailWhereUniqueInput[]
+    disconnect?: ColdEmailWhereUniqueInput | ColdEmailWhereUniqueInput[]
+    delete?: ColdEmailWhereUniqueInput | ColdEmailWhereUniqueInput[]
+    connect?: ColdEmailWhereUniqueInput | ColdEmailWhereUniqueInput[]
+    update?: ColdEmailUpdateWithWhereUniqueWithoutUserInput | ColdEmailUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ColdEmailUpdateManyWithWhereWithoutUserInput | ColdEmailUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ColdEmailScalarWhereInput | ColdEmailScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutSessionsInput = {
@@ -26510,11 +29679,25 @@ export namespace Prisma {
     connect?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
   }
 
+  export type ColdEmailCreateNestedManyWithoutProspectInput = {
+    create?: XOR<ColdEmailCreateWithoutProspectInput, ColdEmailUncheckedCreateWithoutProspectInput> | ColdEmailCreateWithoutProspectInput[] | ColdEmailUncheckedCreateWithoutProspectInput[]
+    connectOrCreate?: ColdEmailCreateOrConnectWithoutProspectInput | ColdEmailCreateOrConnectWithoutProspectInput[]
+    createMany?: ColdEmailCreateManyProspectInputEnvelope
+    connect?: ColdEmailWhereUniqueInput | ColdEmailWhereUniqueInput[]
+  }
+
   export type CallPrepBriefUncheckedCreateNestedManyWithoutProspectInput = {
     create?: XOR<CallPrepBriefCreateWithoutProspectInput, CallPrepBriefUncheckedCreateWithoutProspectInput> | CallPrepBriefCreateWithoutProspectInput[] | CallPrepBriefUncheckedCreateWithoutProspectInput[]
     connectOrCreate?: CallPrepBriefCreateOrConnectWithoutProspectInput | CallPrepBriefCreateOrConnectWithoutProspectInput[]
     createMany?: CallPrepBriefCreateManyProspectInputEnvelope
     connect?: CallPrepBriefWhereUniqueInput | CallPrepBriefWhereUniqueInput[]
+  }
+
+  export type ColdEmailUncheckedCreateNestedManyWithoutProspectInput = {
+    create?: XOR<ColdEmailCreateWithoutProspectInput, ColdEmailUncheckedCreateWithoutProspectInput> | ColdEmailCreateWithoutProspectInput[] | ColdEmailUncheckedCreateWithoutProspectInput[]
+    connectOrCreate?: ColdEmailCreateOrConnectWithoutProspectInput | ColdEmailCreateOrConnectWithoutProspectInput[]
+    createMany?: ColdEmailCreateManyProspectInputEnvelope
+    connect?: ColdEmailWhereUniqueInput | ColdEmailWhereUniqueInput[]
   }
 
   export type EnumProspectSourceFieldUpdateOperationsInput = {
@@ -26543,6 +29726,20 @@ export namespace Prisma {
     deleteMany?: CallPrepBriefScalarWhereInput | CallPrepBriefScalarWhereInput[]
   }
 
+  export type ColdEmailUpdateManyWithoutProspectNestedInput = {
+    create?: XOR<ColdEmailCreateWithoutProspectInput, ColdEmailUncheckedCreateWithoutProspectInput> | ColdEmailCreateWithoutProspectInput[] | ColdEmailUncheckedCreateWithoutProspectInput[]
+    connectOrCreate?: ColdEmailCreateOrConnectWithoutProspectInput | ColdEmailCreateOrConnectWithoutProspectInput[]
+    upsert?: ColdEmailUpsertWithWhereUniqueWithoutProspectInput | ColdEmailUpsertWithWhereUniqueWithoutProspectInput[]
+    createMany?: ColdEmailCreateManyProspectInputEnvelope
+    set?: ColdEmailWhereUniqueInput | ColdEmailWhereUniqueInput[]
+    disconnect?: ColdEmailWhereUniqueInput | ColdEmailWhereUniqueInput[]
+    delete?: ColdEmailWhereUniqueInput | ColdEmailWhereUniqueInput[]
+    connect?: ColdEmailWhereUniqueInput | ColdEmailWhereUniqueInput[]
+    update?: ColdEmailUpdateWithWhereUniqueWithoutProspectInput | ColdEmailUpdateWithWhereUniqueWithoutProspectInput[]
+    updateMany?: ColdEmailUpdateManyWithWhereWithoutProspectInput | ColdEmailUpdateManyWithWhereWithoutProspectInput[]
+    deleteMany?: ColdEmailScalarWhereInput | ColdEmailScalarWhereInput[]
+  }
+
   export type CallPrepBriefUncheckedUpdateManyWithoutProspectNestedInput = {
     create?: XOR<CallPrepBriefCreateWithoutProspectInput, CallPrepBriefUncheckedCreateWithoutProspectInput> | CallPrepBriefCreateWithoutProspectInput[] | CallPrepBriefUncheckedCreateWithoutProspectInput[]
     connectOrCreate?: CallPrepBriefCreateOrConnectWithoutProspectInput | CallPrepBriefCreateOrConnectWithoutProspectInput[]
@@ -26555,6 +29752,20 @@ export namespace Prisma {
     update?: CallPrepBriefUpdateWithWhereUniqueWithoutProspectInput | CallPrepBriefUpdateWithWhereUniqueWithoutProspectInput[]
     updateMany?: CallPrepBriefUpdateManyWithWhereWithoutProspectInput | CallPrepBriefUpdateManyWithWhereWithoutProspectInput[]
     deleteMany?: CallPrepBriefScalarWhereInput | CallPrepBriefScalarWhereInput[]
+  }
+
+  export type ColdEmailUncheckedUpdateManyWithoutProspectNestedInput = {
+    create?: XOR<ColdEmailCreateWithoutProspectInput, ColdEmailUncheckedCreateWithoutProspectInput> | ColdEmailCreateWithoutProspectInput[] | ColdEmailUncheckedCreateWithoutProspectInput[]
+    connectOrCreate?: ColdEmailCreateOrConnectWithoutProspectInput | ColdEmailCreateOrConnectWithoutProspectInput[]
+    upsert?: ColdEmailUpsertWithWhereUniqueWithoutProspectInput | ColdEmailUpsertWithWhereUniqueWithoutProspectInput[]
+    createMany?: ColdEmailCreateManyProspectInputEnvelope
+    set?: ColdEmailWhereUniqueInput | ColdEmailWhereUniqueInput[]
+    disconnect?: ColdEmailWhereUniqueInput | ColdEmailWhereUniqueInput[]
+    delete?: ColdEmailWhereUniqueInput | ColdEmailWhereUniqueInput[]
+    connect?: ColdEmailWhereUniqueInput | ColdEmailWhereUniqueInput[]
+    update?: ColdEmailUpdateWithWhereUniqueWithoutProspectInput | ColdEmailUpdateWithWhereUniqueWithoutProspectInput[]
+    updateMany?: ColdEmailUpdateManyWithWhereWithoutProspectInput | ColdEmailUpdateManyWithWhereWithoutProspectInput[]
+    deleteMany?: ColdEmailScalarWhereInput | ColdEmailScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutCallPrepBriefsInput = {
@@ -26583,6 +29794,54 @@ export namespace Prisma {
     upsert?: ProspectUpsertWithoutCallPrepBriefsInput
     connect?: ProspectWhereUniqueInput
     update?: XOR<XOR<ProspectUpdateToOneWithWhereWithoutCallPrepBriefsInput, ProspectUpdateWithoutCallPrepBriefsInput>, ProspectUncheckedUpdateWithoutCallPrepBriefsInput>
+  }
+
+  export type UserCreateNestedOneWithoutConversationAnalysesInput = {
+    create?: XOR<UserCreateWithoutConversationAnalysesInput, UserUncheckedCreateWithoutConversationAnalysesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutConversationAnalysesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EnumAnalysisStatusFieldUpdateOperationsInput = {
+    set?: $Enums.AnalysisStatus
+  }
+
+  export type UserUpdateOneRequiredWithoutConversationAnalysesNestedInput = {
+    create?: XOR<UserCreateWithoutConversationAnalysesInput, UserUncheckedCreateWithoutConversationAnalysesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutConversationAnalysesInput
+    upsert?: UserUpsertWithoutConversationAnalysesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutConversationAnalysesInput, UserUpdateWithoutConversationAnalysesInput>, UserUncheckedUpdateWithoutConversationAnalysesInput>
+  }
+
+  export type UserCreateNestedOneWithoutColdEmailsInput = {
+    create?: XOR<UserCreateWithoutColdEmailsInput, UserUncheckedCreateWithoutColdEmailsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutColdEmailsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ProspectCreateNestedOneWithoutColdEmailsInput = {
+    create?: XOR<ProspectCreateWithoutColdEmailsInput, ProspectUncheckedCreateWithoutColdEmailsInput>
+    connectOrCreate?: ProspectCreateOrConnectWithoutColdEmailsInput
+    connect?: ProspectWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutColdEmailsNestedInput = {
+    create?: XOR<UserCreateWithoutColdEmailsInput, UserUncheckedCreateWithoutColdEmailsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutColdEmailsInput
+    upsert?: UserUpsertWithoutColdEmailsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutColdEmailsInput, UserUpdateWithoutColdEmailsInput>, UserUncheckedUpdateWithoutColdEmailsInput>
+  }
+
+  export type ProspectUpdateOneWithoutColdEmailsNestedInput = {
+    create?: XOR<ProspectCreateWithoutColdEmailsInput, ProspectUncheckedCreateWithoutColdEmailsInput>
+    connectOrCreate?: ProspectCreateOrConnectWithoutColdEmailsInput
+    upsert?: ProspectUpsertWithoutColdEmailsInput
+    disconnect?: ProspectWhereInput | boolean
+    delete?: ProspectWhereInput | boolean
+    connect?: ProspectWhereUniqueInput
+    update?: XOR<XOR<ProspectUpdateToOneWithWhereWithoutColdEmailsInput, ProspectUpdateWithoutColdEmailsInput>, ProspectUncheckedUpdateWithoutColdEmailsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -26878,6 +30137,23 @@ export namespace Prisma {
     _max?: NestedEnumProspectSourceFilter<$PrismaModel>
   }
 
+  export type NestedEnumAnalysisStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.AnalysisStatus | EnumAnalysisStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AnalysisStatus[] | ListEnumAnalysisStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AnalysisStatus[] | ListEnumAnalysisStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAnalysisStatusFilter<$PrismaModel> | $Enums.AnalysisStatus
+  }
+
+  export type NestedEnumAnalysisStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AnalysisStatus | EnumAnalysisStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AnalysisStatus[] | ListEnumAnalysisStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AnalysisStatus[] | ListEnumAnalysisStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAnalysisStatusWithAggregatesFilter<$PrismaModel> | $Enums.AnalysisStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAnalysisStatusFilter<$PrismaModel>
+    _max?: NestedEnumAnalysisStatusFilter<$PrismaModel>
+  }
+
   export type SessionCreateWithoutUserInput = {
     id: string
     expiresAt: Date | string
@@ -27140,6 +30416,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutProspectInput
+    coldEmails?: ColdEmailCreateNestedManyWithoutProspectInput
   }
 
   export type ProspectUncheckedCreateWithoutUserInput = {
@@ -27153,6 +30430,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutProspectInput
+    coldEmails?: ColdEmailUncheckedCreateNestedManyWithoutProspectInput
   }
 
   export type ProspectCreateOrConnectWithoutUserInput = {
@@ -27190,6 +30468,74 @@ export namespace Prisma {
 
   export type CallPrepBriefCreateManyUserInputEnvelope = {
     data: CallPrepBriefCreateManyUserInput | CallPrepBriefCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ConversationAnalysisCreateWithoutUserInput = {
+    id?: string
+    originalFilename: string
+    storagePath: string
+    description?: string | null
+    status?: $Enums.AnalysisStatus
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: string | null
+    assemblyAiTranscriptId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ConversationAnalysisUncheckedCreateWithoutUserInput = {
+    id?: string
+    originalFilename: string
+    storagePath: string
+    description?: string | null
+    status?: $Enums.AnalysisStatus
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: string | null
+    assemblyAiTranscriptId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ConversationAnalysisCreateOrConnectWithoutUserInput = {
+    where: ConversationAnalysisWhereUniqueInput
+    create: XOR<ConversationAnalysisCreateWithoutUserInput, ConversationAnalysisUncheckedCreateWithoutUserInput>
+  }
+
+  export type ConversationAnalysisCreateManyUserInputEnvelope = {
+    data: ConversationAnalysisCreateManyUserInput | ConversationAnalysisCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ColdEmailCreateWithoutUserInput = {
+    id?: string
+    userInput: JsonNullValueInput | InputJsonValue
+    aiGeneratedEmail?: NullableJsonNullValueInput | InputJsonValue
+    editedContent?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    prospect?: ProspectCreateNestedOneWithoutColdEmailsInput
+  }
+
+  export type ColdEmailUncheckedCreateWithoutUserInput = {
+    id?: string
+    prospectId?: string | null
+    userInput: JsonNullValueInput | InputJsonValue
+    aiGeneratedEmail?: NullableJsonNullValueInput | InputJsonValue
+    editedContent?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ColdEmailCreateOrConnectWithoutUserInput = {
+    where: ColdEmailWhereUniqueInput
+    create: XOR<ColdEmailCreateWithoutUserInput, ColdEmailUncheckedCreateWithoutUserInput>
+  }
+
+  export type ColdEmailCreateManyUserInputEnvelope = {
+    data: ColdEmailCreateManyUserInput | ColdEmailCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -27508,6 +30854,70 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"CallPrepBrief"> | Date | string
   }
 
+  export type ConversationAnalysisUpsertWithWhereUniqueWithoutUserInput = {
+    where: ConversationAnalysisWhereUniqueInput
+    update: XOR<ConversationAnalysisUpdateWithoutUserInput, ConversationAnalysisUncheckedUpdateWithoutUserInput>
+    create: XOR<ConversationAnalysisCreateWithoutUserInput, ConversationAnalysisUncheckedCreateWithoutUserInput>
+  }
+
+  export type ConversationAnalysisUpdateWithWhereUniqueWithoutUserInput = {
+    where: ConversationAnalysisWhereUniqueInput
+    data: XOR<ConversationAnalysisUpdateWithoutUserInput, ConversationAnalysisUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ConversationAnalysisUpdateManyWithWhereWithoutUserInput = {
+    where: ConversationAnalysisScalarWhereInput
+    data: XOR<ConversationAnalysisUpdateManyMutationInput, ConversationAnalysisUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ConversationAnalysisScalarWhereInput = {
+    AND?: ConversationAnalysisScalarWhereInput | ConversationAnalysisScalarWhereInput[]
+    OR?: ConversationAnalysisScalarWhereInput[]
+    NOT?: ConversationAnalysisScalarWhereInput | ConversationAnalysisScalarWhereInput[]
+    id?: StringFilter<"ConversationAnalysis"> | string
+    userId?: StringFilter<"ConversationAnalysis"> | string
+    originalFilename?: StringFilter<"ConversationAnalysis"> | string
+    storagePath?: StringFilter<"ConversationAnalysis"> | string
+    description?: StringNullableFilter<"ConversationAnalysis"> | string | null
+    status?: EnumAnalysisStatusFilter<"ConversationAnalysis"> | $Enums.AnalysisStatus
+    transcript?: JsonNullableFilter<"ConversationAnalysis">
+    aiAnalysis?: JsonNullableFilter<"ConversationAnalysis">
+    errorMessage?: StringNullableFilter<"ConversationAnalysis"> | string | null
+    assemblyAiTranscriptId?: StringNullableFilter<"ConversationAnalysis"> | string | null
+    createdAt?: DateTimeFilter<"ConversationAnalysis"> | Date | string
+    updatedAt?: DateTimeFilter<"ConversationAnalysis"> | Date | string
+  }
+
+  export type ColdEmailUpsertWithWhereUniqueWithoutUserInput = {
+    where: ColdEmailWhereUniqueInput
+    update: XOR<ColdEmailUpdateWithoutUserInput, ColdEmailUncheckedUpdateWithoutUserInput>
+    create: XOR<ColdEmailCreateWithoutUserInput, ColdEmailUncheckedCreateWithoutUserInput>
+  }
+
+  export type ColdEmailUpdateWithWhereUniqueWithoutUserInput = {
+    where: ColdEmailWhereUniqueInput
+    data: XOR<ColdEmailUpdateWithoutUserInput, ColdEmailUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ColdEmailUpdateManyWithWhereWithoutUserInput = {
+    where: ColdEmailScalarWhereInput
+    data: XOR<ColdEmailUpdateManyMutationInput, ColdEmailUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ColdEmailScalarWhereInput = {
+    AND?: ColdEmailScalarWhereInput | ColdEmailScalarWhereInput[]
+    OR?: ColdEmailScalarWhereInput[]
+    NOT?: ColdEmailScalarWhereInput | ColdEmailScalarWhereInput[]
+    id?: StringFilter<"ColdEmail"> | string
+    userId?: StringFilter<"ColdEmail"> | string
+    prospectId?: StringNullableFilter<"ColdEmail"> | string | null
+    userInput?: JsonFilter<"ColdEmail">
+    aiGeneratedEmail?: JsonNullableFilter<"ColdEmail">
+    editedContent?: StringNullableFilter<"ColdEmail"> | string | null
+    createdAt?: DateTimeFilter<"ColdEmail"> | Date | string
+    updatedAt?: DateTimeFilter<"ColdEmail"> | Date | string
+  }
+
   export type UserCreateWithoutSessionsInput = {
     id?: string
     email: string
@@ -27531,6 +30941,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
     prospects?: ProspectCreateNestedManyWithoutUserInput
     callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -27556,6 +30968,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
     prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
     callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisUncheckedCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -27597,6 +31011,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
     prospects?: ProspectUpdateManyWithoutUserNestedInput
     callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -27622,6 +31038,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
     prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
     callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUncheckedUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAccountsInput = {
@@ -27647,6 +31065,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
     prospects?: ProspectCreateNestedManyWithoutUserInput
     callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -27672,6 +31092,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
     prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
     callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisUncheckedCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -27713,6 +31135,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
     prospects?: ProspectUpdateManyWithoutUserNestedInput
     callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -27738,6 +31162,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
     prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
     callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUncheckedUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type MemberCreateWithoutOrganizationInput = {
@@ -27872,6 +31298,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
     prospects?: ProspectCreateNestedManyWithoutUserInput
     callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMembersInput = {
@@ -27897,6 +31325,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
     prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
     callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisUncheckedCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMembersInput = {
@@ -27969,6 +31399,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
     prospects?: ProspectUpdateManyWithoutUserNestedInput
     callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMembersInput = {
@@ -27994,6 +31426,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
     prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
     callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUncheckedUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type OrganizationCreateWithoutInvitationsInput = {
@@ -28044,6 +31478,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
     prospects?: ProspectCreateNestedManyWithoutUserInput
     callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutInvitationsInput = {
@@ -28069,6 +31505,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
     prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
     callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisUncheckedCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutInvitationsInput = {
@@ -28141,6 +31579,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
     prospects?: ProspectUpdateManyWithoutUserNestedInput
     callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutInvitationsInput = {
@@ -28166,6 +31606,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
     prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
     callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUncheckedUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutTwofactorsInput = {
@@ -28191,6 +31633,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
     prospects?: ProspectCreateNestedManyWithoutUserInput
     callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTwofactorsInput = {
@@ -28216,6 +31660,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
     prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
     callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisUncheckedCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTwofactorsInput = {
@@ -28257,6 +31703,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
     prospects?: ProspectUpdateManyWithoutUserNestedInput
     callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTwofactorsInput = {
@@ -28282,6 +31730,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
     prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
     callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUncheckedUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPasskeysInput = {
@@ -28307,6 +31757,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
     prospects?: ProspectCreateNestedManyWithoutUserInput
     callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPasskeysInput = {
@@ -28332,6 +31784,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
     prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
     callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisUncheckedCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPasskeysInput = {
@@ -28373,6 +31827,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
     prospects?: ProspectUpdateManyWithoutUserNestedInput
     callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPasskeysInput = {
@@ -28398,6 +31854,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
     prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
     callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUncheckedUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutProfileInput = {
@@ -28423,6 +31881,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
     prospects?: ProspectCreateNestedManyWithoutUserInput
     callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProfileInput = {
@@ -28448,6 +31908,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
     prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
     callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisUncheckedCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProfileInput = {
@@ -28489,6 +31951,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
     prospects?: ProspectUpdateManyWithoutUserNestedInput
     callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProfileInput = {
@@ -28514,6 +31978,8 @@ export namespace Prisma {
     callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
     prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
     callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUncheckedUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutCallSimulationsInput = {
@@ -28539,6 +32005,8 @@ export namespace Prisma {
     profile?: UserProfileCreateNestedOneWithoutUserInput
     prospects?: ProspectCreateNestedManyWithoutUserInput
     callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCallSimulationsInput = {
@@ -28564,6 +32032,8 @@ export namespace Prisma {
     profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
     prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
     callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisUncheckedCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCallSimulationsInput = {
@@ -28605,6 +32075,8 @@ export namespace Prisma {
     profile?: UserProfileUpdateOneWithoutUserNestedInput
     prospects?: ProspectUpdateManyWithoutUserNestedInput
     callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCallSimulationsInput = {
@@ -28630,6 +32102,8 @@ export namespace Prisma {
     profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
     prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
     callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUncheckedUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutProspectsInput = {
@@ -28655,6 +32129,8 @@ export namespace Prisma {
     profile?: UserProfileCreateNestedOneWithoutUserInput
     callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
     callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProspectsInput = {
@@ -28680,6 +32156,8 @@ export namespace Prisma {
     profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
     callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
     callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisUncheckedCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProspectsInput = {
@@ -28712,6 +32190,36 @@ export namespace Prisma {
 
   export type CallPrepBriefCreateManyProspectInputEnvelope = {
     data: CallPrepBriefCreateManyProspectInput | CallPrepBriefCreateManyProspectInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ColdEmailCreateWithoutProspectInput = {
+    id?: string
+    userInput: JsonNullValueInput | InputJsonValue
+    aiGeneratedEmail?: NullableJsonNullValueInput | InputJsonValue
+    editedContent?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutColdEmailsInput
+  }
+
+  export type ColdEmailUncheckedCreateWithoutProspectInput = {
+    id?: string
+    userId: string
+    userInput: JsonNullValueInput | InputJsonValue
+    aiGeneratedEmail?: NullableJsonNullValueInput | InputJsonValue
+    editedContent?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ColdEmailCreateOrConnectWithoutProspectInput = {
+    where: ColdEmailWhereUniqueInput
+    create: XOR<ColdEmailCreateWithoutProspectInput, ColdEmailUncheckedCreateWithoutProspectInput>
+  }
+
+  export type ColdEmailCreateManyProspectInputEnvelope = {
+    data: ColdEmailCreateManyProspectInput | ColdEmailCreateManyProspectInput[]
     skipDuplicates?: boolean
   }
 
@@ -28749,6 +32257,8 @@ export namespace Prisma {
     profile?: UserProfileUpdateOneWithoutUserNestedInput
     callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
     callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProspectsInput = {
@@ -28774,6 +32284,8 @@ export namespace Prisma {
     profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
     callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
     callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUncheckedUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type CallPrepBriefUpsertWithWhereUniqueWithoutProspectInput = {
@@ -28790,6 +32302,22 @@ export namespace Prisma {
   export type CallPrepBriefUpdateManyWithWhereWithoutProspectInput = {
     where: CallPrepBriefScalarWhereInput
     data: XOR<CallPrepBriefUpdateManyMutationInput, CallPrepBriefUncheckedUpdateManyWithoutProspectInput>
+  }
+
+  export type ColdEmailUpsertWithWhereUniqueWithoutProspectInput = {
+    where: ColdEmailWhereUniqueInput
+    update: XOR<ColdEmailUpdateWithoutProspectInput, ColdEmailUncheckedUpdateWithoutProspectInput>
+    create: XOR<ColdEmailCreateWithoutProspectInput, ColdEmailUncheckedCreateWithoutProspectInput>
+  }
+
+  export type ColdEmailUpdateWithWhereUniqueWithoutProspectInput = {
+    where: ColdEmailWhereUniqueInput
+    data: XOR<ColdEmailUpdateWithoutProspectInput, ColdEmailUncheckedUpdateWithoutProspectInput>
+  }
+
+  export type ColdEmailUpdateManyWithWhereWithoutProspectInput = {
+    where: ColdEmailScalarWhereInput
+    data: XOR<ColdEmailUpdateManyMutationInput, ColdEmailUncheckedUpdateManyWithoutProspectInput>
   }
 
   export type UserCreateWithoutCallPrepBriefsInput = {
@@ -28815,6 +32343,8 @@ export namespace Prisma {
     profile?: UserProfileCreateNestedOneWithoutUserInput
     callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
     prospects?: ProspectCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCallPrepBriefsInput = {
@@ -28840,6 +32370,8 @@ export namespace Prisma {
     profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
     callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
     prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisUncheckedCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCallPrepBriefsInput = {
@@ -28858,6 +32390,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutProspectsInput
+    coldEmails?: ColdEmailCreateNestedManyWithoutProspectInput
   }
 
   export type ProspectUncheckedCreateWithoutCallPrepBriefsInput = {
@@ -28871,6 +32404,7 @@ export namespace Prisma {
     aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
+    coldEmails?: ColdEmailUncheckedCreateNestedManyWithoutProspectInput
   }
 
   export type ProspectCreateOrConnectWithoutCallPrepBriefsInput = {
@@ -28912,6 +32446,8 @@ export namespace Prisma {
     profile?: UserProfileUpdateOneWithoutUserNestedInput
     callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
     prospects?: ProspectUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCallPrepBriefsInput = {
@@ -28937,6 +32473,8 @@ export namespace Prisma {
     profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
     callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
     prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUncheckedUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProspectUpsertWithoutCallPrepBriefsInput = {
@@ -28961,6 +32499,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutProspectsNestedInput
+    coldEmails?: ColdEmailUpdateManyWithoutProspectNestedInput
   }
 
   export type ProspectUncheckedUpdateWithoutCallPrepBriefsInput = {
@@ -28974,6 +32513,327 @@ export namespace Prisma {
     aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    coldEmails?: ColdEmailUncheckedUpdateManyWithoutProspectNestedInput
+  }
+
+  export type UserCreateWithoutConversationAnalysesInput = {
+    id?: string
+    email: string
+    name?: string | null
+    emailVerified: boolean
+    image?: string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    twoFactorEnabled?: boolean | null
+    role?: string | null
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    stripeCustomerId?: string | null
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    members?: MemberCreateNestedManyWithoutUserInput
+    invitations?: InvitationCreateNestedManyWithoutUserInput
+    twofactors?: TwoFactorCreateNestedManyWithoutUserInput
+    passkeys?: PasskeyCreateNestedManyWithoutUserInput
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
+    prospects?: ProspectCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutConversationAnalysesInput = {
+    id?: string
+    email: string
+    name?: string | null
+    emailVerified: boolean
+    image?: string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    twoFactorEnabled?: boolean | null
+    role?: string | null
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    stripeCustomerId?: string | null
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
+    twofactors?: TwoFactorUncheckedCreateNestedManyWithoutUserInput
+    passkeys?: PasskeyUncheckedCreateNestedManyWithoutUserInput
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
+    prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
+    coldEmails?: ColdEmailUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutConversationAnalysesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutConversationAnalysesInput, UserUncheckedCreateWithoutConversationAnalysesInput>
+  }
+
+  export type UserUpsertWithoutConversationAnalysesInput = {
+    update: XOR<UserUpdateWithoutConversationAnalysesInput, UserUncheckedUpdateWithoutConversationAnalysesInput>
+    create: XOR<UserCreateWithoutConversationAnalysesInput, UserUncheckedCreateWithoutConversationAnalysesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutConversationAnalysesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutConversationAnalysesInput, UserUncheckedUpdateWithoutConversationAnalysesInput>
+  }
+
+  export type UserUpdateWithoutConversationAnalysesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    twoFactorEnabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    members?: MemberUpdateManyWithoutUserNestedInput
+    invitations?: InvitationUpdateManyWithoutUserNestedInput
+    twofactors?: TwoFactorUpdateManyWithoutUserNestedInput
+    passkeys?: PasskeyUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutConversationAnalysesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    twoFactorEnabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
+    twofactors?: TwoFactorUncheckedUpdateManyWithoutUserNestedInput
+    passkeys?: PasskeyUncheckedUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
+    coldEmails?: ColdEmailUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutColdEmailsInput = {
+    id?: string
+    email: string
+    name?: string | null
+    emailVerified: boolean
+    image?: string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    twoFactorEnabled?: boolean | null
+    role?: string | null
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    stripeCustomerId?: string | null
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    members?: MemberCreateNestedManyWithoutUserInput
+    invitations?: InvitationCreateNestedManyWithoutUserInput
+    twofactors?: TwoFactorCreateNestedManyWithoutUserInput
+    passkeys?: PasskeyCreateNestedManyWithoutUserInput
+    profile?: UserProfileCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationCreateNestedManyWithoutUserInput
+    prospects?: ProspectCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutColdEmailsInput = {
+    id?: string
+    email: string
+    name?: string | null
+    emailVerified: boolean
+    image?: string | null
+    createdAt: Date | string
+    updatedAt: Date | string
+    twoFactorEnabled?: boolean | null
+    role?: string | null
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    stripeCustomerId?: string | null
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    members?: MemberUncheckedCreateNestedManyWithoutUserInput
+    invitations?: InvitationUncheckedCreateNestedManyWithoutUserInput
+    twofactors?: TwoFactorUncheckedCreateNestedManyWithoutUserInput
+    passkeys?: PasskeyUncheckedCreateNestedManyWithoutUserInput
+    profile?: UserProfileUncheckedCreateNestedOneWithoutUserInput
+    callSimulations?: CallSimulationUncheckedCreateNestedManyWithoutUserInput
+    prospects?: ProspectUncheckedCreateNestedManyWithoutUserInput
+    callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutUserInput
+    conversationAnalyses?: ConversationAnalysisUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutColdEmailsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutColdEmailsInput, UserUncheckedCreateWithoutColdEmailsInput>
+  }
+
+  export type ProspectCreateWithoutColdEmailsInput = {
+    id?: string
+    name: string
+    linkedinProfileUrl?: string | null
+    customData?: NullableJsonNullValueInput | InputJsonValue
+    source?: $Enums.ProspectSource
+    linkedinData?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutProspectsInput
+    callPrepBriefs?: CallPrepBriefCreateNestedManyWithoutProspectInput
+  }
+
+  export type ProspectUncheckedCreateWithoutColdEmailsInput = {
+    id?: string
+    userId: string
+    name: string
+    linkedinProfileUrl?: string | null
+    customData?: NullableJsonNullValueInput | InputJsonValue
+    source?: $Enums.ProspectSource
+    linkedinData?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    callPrepBriefs?: CallPrepBriefUncheckedCreateNestedManyWithoutProspectInput
+  }
+
+  export type ProspectCreateOrConnectWithoutColdEmailsInput = {
+    where: ProspectWhereUniqueInput
+    create: XOR<ProspectCreateWithoutColdEmailsInput, ProspectUncheckedCreateWithoutColdEmailsInput>
+  }
+
+  export type UserUpsertWithoutColdEmailsInput = {
+    update: XOR<UserUpdateWithoutColdEmailsInput, UserUncheckedUpdateWithoutColdEmailsInput>
+    create: XOR<UserCreateWithoutColdEmailsInput, UserUncheckedCreateWithoutColdEmailsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutColdEmailsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutColdEmailsInput, UserUncheckedUpdateWithoutColdEmailsInput>
+  }
+
+  export type UserUpdateWithoutColdEmailsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    twoFactorEnabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    members?: MemberUpdateManyWithoutUserNestedInput
+    invitations?: InvitationUpdateManyWithoutUserNestedInput
+    twofactors?: TwoFactorUpdateManyWithoutUserNestedInput
+    passkeys?: PasskeyUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutColdEmailsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    twoFactorEnabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    members?: MemberUncheckedUpdateManyWithoutUserNestedInput
+    invitations?: InvitationUncheckedUpdateManyWithoutUserNestedInput
+    twofactors?: TwoFactorUncheckedUpdateManyWithoutUserNestedInput
+    passkeys?: PasskeyUncheckedUpdateManyWithoutUserNestedInput
+    profile?: UserProfileUncheckedUpdateOneWithoutUserNestedInput
+    callSimulations?: CallSimulationUncheckedUpdateManyWithoutUserNestedInput
+    prospects?: ProspectUncheckedUpdateManyWithoutUserNestedInput
+    callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutUserNestedInput
+    conversationAnalyses?: ConversationAnalysisUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ProspectUpsertWithoutColdEmailsInput = {
+    update: XOR<ProspectUpdateWithoutColdEmailsInput, ProspectUncheckedUpdateWithoutColdEmailsInput>
+    create: XOR<ProspectCreateWithoutColdEmailsInput, ProspectUncheckedCreateWithoutColdEmailsInput>
+    where?: ProspectWhereInput
+  }
+
+  export type ProspectUpdateToOneWithWhereWithoutColdEmailsInput = {
+    where?: ProspectWhereInput
+    data: XOR<ProspectUpdateWithoutColdEmailsInput, ProspectUncheckedUpdateWithoutColdEmailsInput>
+  }
+
+  export type ProspectUpdateWithoutColdEmailsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    linkedinProfileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    customData?: NullableJsonNullValueInput | InputJsonValue
+    source?: EnumProspectSourceFieldUpdateOperationsInput | $Enums.ProspectSource
+    linkedinData?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutProspectsNestedInput
+    callPrepBriefs?: CallPrepBriefUpdateManyWithoutProspectNestedInput
+  }
+
+  export type ProspectUncheckedUpdateWithoutColdEmailsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    linkedinProfileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    customData?: NullableJsonNullValueInput | InputJsonValue
+    source?: EnumProspectSourceFieldUpdateOperationsInput | $Enums.ProspectSource
+    linkedinData?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutProspectNestedInput
   }
 
   export type SessionCreateManyUserInput = {
@@ -29066,6 +32926,30 @@ export namespace Prisma {
     prospectId: string
     formInput: JsonNullValueInput | InputJsonValue
     aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ConversationAnalysisCreateManyUserInput = {
+    id?: string
+    originalFilename: string
+    storagePath: string
+    description?: string | null
+    status?: $Enums.AnalysisStatus
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: string | null
+    assemblyAiTranscriptId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ColdEmailCreateManyUserInput = {
+    id?: string
+    prospectId?: string | null
+    userInput: JsonNullValueInput | InputJsonValue
+    aiGeneratedEmail?: NullableJsonNullValueInput | InputJsonValue
+    editedContent?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -29300,6 +33184,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     callPrepBriefs?: CallPrepBriefUpdateManyWithoutProspectNestedInput
+    coldEmails?: ColdEmailUpdateManyWithoutProspectNestedInput
   }
 
   export type ProspectUncheckedUpdateWithoutUserInput = {
@@ -29313,6 +33198,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     callPrepBriefs?: CallPrepBriefUncheckedUpdateManyWithoutProspectNestedInput
+    coldEmails?: ColdEmailUncheckedUpdateManyWithoutProspectNestedInput
   }
 
   export type ProspectUncheckedUpdateManyWithoutUserInput = {
@@ -29350,6 +33236,78 @@ export namespace Prisma {
     prospectId?: StringFieldUpdateOperationsInput | string
     formInput?: JsonNullValueInput | InputJsonValue
     aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConversationAnalysisUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    originalFilename?: StringFieldUpdateOperationsInput | string
+    storagePath?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumAnalysisStatusFieldUpdateOperationsInput | $Enums.AnalysisStatus
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    assemblyAiTranscriptId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConversationAnalysisUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    originalFilename?: StringFieldUpdateOperationsInput | string
+    storagePath?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumAnalysisStatusFieldUpdateOperationsInput | $Enums.AnalysisStatus
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    assemblyAiTranscriptId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConversationAnalysisUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    originalFilename?: StringFieldUpdateOperationsInput | string
+    storagePath?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumAnalysisStatusFieldUpdateOperationsInput | $Enums.AnalysisStatus
+    transcript?: NullableJsonNullValueInput | InputJsonValue
+    aiAnalysis?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    assemblyAiTranscriptId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ColdEmailUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userInput?: JsonNullValueInput | InputJsonValue
+    aiGeneratedEmail?: NullableJsonNullValueInput | InputJsonValue
+    editedContent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    prospect?: ProspectUpdateOneWithoutColdEmailsNestedInput
+  }
+
+  export type ColdEmailUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prospectId?: NullableStringFieldUpdateOperationsInput | string | null
+    userInput?: JsonNullValueInput | InputJsonValue
+    aiGeneratedEmail?: NullableJsonNullValueInput | InputJsonValue
+    editedContent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ColdEmailUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prospectId?: NullableStringFieldUpdateOperationsInput | string | null
+    userInput?: JsonNullValueInput | InputJsonValue
+    aiGeneratedEmail?: NullableJsonNullValueInput | InputJsonValue
+    editedContent?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -29427,6 +33385,16 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type ColdEmailCreateManyProspectInput = {
+    id?: string
+    userId: string
+    userInput: JsonNullValueInput | InputJsonValue
+    aiGeneratedEmail?: NullableJsonNullValueInput | InputJsonValue
+    editedContent?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type CallPrepBriefUpdateWithoutProspectInput = {
     id?: StringFieldUpdateOperationsInput | string
     formInput?: JsonNullValueInput | InputJsonValue
@@ -29450,6 +33418,36 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     formInput?: JsonNullValueInput | InputJsonValue
     aiCallPrep?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ColdEmailUpdateWithoutProspectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userInput?: JsonNullValueInput | InputJsonValue
+    aiGeneratedEmail?: NullableJsonNullValueInput | InputJsonValue
+    editedContent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutColdEmailsNestedInput
+  }
+
+  export type ColdEmailUncheckedUpdateWithoutProspectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    userInput?: JsonNullValueInput | InputJsonValue
+    aiGeneratedEmail?: NullableJsonNullValueInput | InputJsonValue
+    editedContent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ColdEmailUncheckedUpdateManyWithoutProspectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    userInput?: JsonNullValueInput | InputJsonValue
+    aiGeneratedEmail?: NullableJsonNullValueInput | InputJsonValue
+    editedContent?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

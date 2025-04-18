@@ -36,7 +36,9 @@ export const AudioVisualizer = ({ stream }: { stream: MediaStream | null }) => {
 
     // Disconnect previous source if exists
     if (sourceRef.current) {
-        try { sourceRef.current.disconnect(analyser); } catch (e) {}
+        try { sourceRef.current.disconnect(analyser); } catch (e) {
+            console.log("Disconnected previous source, error:", e);
+        }
     }
     
     try {
