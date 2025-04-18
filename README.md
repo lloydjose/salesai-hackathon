@@ -90,9 +90,9 @@ Manage your user profile and billing details seamlessly.
 
 ## 🛠️ Tech Stack
 
-*   **Framework:** Next.js (App Router)
+*   **Framework:** Next.js 15.3 (App Router)
 *   **Authentication:** Better Auth With One Tap, Stripe, Organization,
-*   **Language:** TypeScript
+*   **Language:** TypeScript v4
 *   **Styling:** Tailwind CSS
 *   **UI Components:** shadcn/ui
 *   **Database:** PostgreSQL
@@ -133,3 +133,4 @@ Manage your user profile and billing details seamlessly.
 ## 🏆 Hackathon Submission
 
 This project is submitted for the **Next.js Global Hackathon 2025**. My goal was to leverage the power of Next.js, Vercel, and AI to build a transformative tool for sales professionals.
+

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Zap, BrainCircuit, Target, PhoneCall, Mail, Users, BarChart } from "lucide-react";
+import { ArrowRight, Zap, BrainCircuit, Target, PhoneCall, Mail, Users } from "lucide-react";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { motion } from "framer-motion";
 

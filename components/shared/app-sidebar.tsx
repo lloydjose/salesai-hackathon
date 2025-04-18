@@ -3,13 +3,11 @@
 import * as React from "react"
 import {
   Bot,
-  LifeBuoy,
   Send,
   Settings2,
   SquareTerminal,
   Workflow,
   CreditCard,
-  UsersIcon
 } from "lucide-react"
 
 import { NavMain } from "@/components/shared/nav-main"
