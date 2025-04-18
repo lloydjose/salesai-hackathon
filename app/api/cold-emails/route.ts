@@ -7,7 +7,7 @@ import { coldEmailGeneratorSchema } from '@/lib/ai/schemas';
 import { generateColdEmailPrompt } from '@/lib/ai/utils';
 import { ColdEmailFormInput, coldEmailStyles, psychologyAngles } from '@/lib/ai/types';
 import { z } from 'zod';
-import { Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client';
 
 // Input validation schema for the API endpoint
 const emailGenInputSchema = z.object({
@@ -209,7 +209,16 @@ export async function GET(request: Request) {
     });
 
     // Process to extract relevant display info easily
-    const processedEmails: ProcessedEmail[] = emails.map(email => {
+    const processedEmails: ProcessedEmail[] = emails.map((email: {
+        id: string;
+        createdAt: Date;
+        userInput: any;
+        aiGeneratedEmail: any;
+        prospect?: {
+            id: string;
+            name: string | null;
+        } | null;
+    }) => {
         const input = email.userInput as Record<string, unknown>;
         const recipientName = email.prospect?.name || (input?.recipientName as string) || 'Unknown Recipient';
         const subjectContext = (input?.emailSubjectContext as string) || 'No Context';
