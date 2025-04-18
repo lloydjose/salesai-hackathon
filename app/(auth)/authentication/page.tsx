@@ -88,7 +88,7 @@ function AuthenticationContent() {
 					</Link>
 				</div>
 				<div className="lg:min-h-[200px] flex flex-col justify-center">
-					<h1 className="text-3xl lg:text-4xl font-bold tracking-tight mb-2">
+					<h1 className="text-3xl lg:text-4xl font-bold tracking-tight mb-2 py-4">
 						{activeForm === "sign-in" ? (
 							"Welcome back"
 						) : (
@@ -106,9 +106,9 @@ function AuthenticationContent() {
 
 				{/* Testimonial carousel - Hidden on mobile until after form */}
 				<div className="hidden lg:block lg:flex-1">
-					<div className="h-full flex flex-col justify-end">
+					<div className="h-full flex flex-col justify-center">
 						<div className="relative">
-							<div className="space-y-4">
+							<div className="space-y-4 bg-[#eeeeee] p-4 rounded-lg">
 								{testimonials.map((testimonial, index) => (
 									<div
 										key={index}
