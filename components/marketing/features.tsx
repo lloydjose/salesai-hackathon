@@ -49,7 +49,7 @@ function Feature() {
           <div className="bg-muted/50 rounded-md aspect-square p-6 flex flex-col">
             <div className="relative w-full h-32 mb-4 overflow-hidden rounded-md">
               <Image 
-                src="/images/conversation-intelligence.webp"
+                src="/images/conversation-feature.webp"
                 alt="Conversation Intelligence"
                 layout="fill" 
                 objectFit="cover"

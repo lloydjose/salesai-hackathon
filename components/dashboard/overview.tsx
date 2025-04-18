@@ -34,7 +34,7 @@ const largeActionCards = [
     title: "Review Past Calls",
     description: "Upload recordings for deep conversation analysis.",
     href: "/dashboard/conversation-intelligence",
-    imageSrc: "/images/conversation-intelligence.webp", // Replace with actual image
+    imageSrc: "/images/conversation-feature.webp", // Replace with actual image
     alt: "Illustration for conversation intelligence",
     bgColor: "#fff3fb" // Added background color
   }

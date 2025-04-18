@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { generateObject } from 'ai';
-import { openai } from '@ai-sdk/openai';
+import { google } from '@ai-sdk/google';
 import { salesCallAnalysisSchema } from '@/lib/ai/schemas';
 import { generateFeedbackPrompt } from '@/lib/ai/utils';
 // eslint-disable-next-line
@@ -101,7 +101,7 @@ export async function POST(
     
     // 4. Call AI SDK to generate structured feedback
     const { object: feedbackObject } = await generateObject({
-        model: openai(process.env.OPENAI_API_MODEL || 'gpt-4o-mini'), // Use your desired model
+        model: google(process.env.GOOGLE_GENERATIVE_AI_API_KEY_MODEL || 'gemini-2.0-flash-lite'), // Use your desired model
         schema: salesCallAnalysisSchema,
         prompt: prompt,
         temperature: 0.7, // Adjust parameters as needed
